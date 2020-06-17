@@ -1,0 +1,19 @@
+@startuml
+
+
+' userクラスを定義
+class User{
+    name: string 
+    age: int
+    }
+
+    
+' Bookクラスを定義 
+class Book{
+    author: string
+    title: string
+}
+
+User "0..*"--"0..*" Book:例
+
+@enduml
