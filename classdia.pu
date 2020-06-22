@@ -1,19 +1,49 @@
 @startuml
 
 
-' userクラスを定義
+
 class User{
-    name: string 
-    age: int
+    name: string
+    id: int
+    login_id: string
+    password: string
+
     }
 
     
-' Bookクラスを定義 
-class Book{
-    author: string
+
+class Project{
     title: string
+    overview: string
+    host_id: int
+    deadline: datatime
+    Status: int
+    isDelayed: boolean
 }
 
-User "0..*"--"0..*" Book:例
+class Task{
+    title: string
+    overview: string
+    deadline: datatime
+    Status: int
+    isDelayed: boolean
+}
+
+class Task_Staff_List{
+    task_id: int
+    task_staff_id: int
+}
+
+class User_Joined_Project_List{
+    User_id:int
+}
+
+Project "1"--"0..*" Task:▼従属
+Task "1"--"1..*" Task_Staff_List:▼担当者リスト
+User "1"--"0..*" User_Joined_Project_List:▼参加プロジェクトのリスト
+User_Joined_Project_List "1..*"--"1" Project:▲プロジェクトのリストへの登録
+
+
+
 
 @enduml
