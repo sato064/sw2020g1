@@ -4,44 +4,54 @@
 
 class User{
     name: string
-    id: int
+    user_id: int
     login_id: string
     password: string
 
     }
 
-    
+
 
 class Project{
     title: string
+    prj_id: int
     overview: string
     host_id: int
     deadline: datatime
-    Status: int
+    status: int
     isDelayed: boolean
 }
 
 class Task{
     title: string
+    task_id: int
     overview: string
     deadline: datatime
-    Status: int
+    status: int
     isDelayed: boolean
+    staff_id_list: list
+
 }
 
-class Task_Staff_List{
+
+class Join_Prj{
+    user_id: int
+    prj_id: int
+    isOwn: boolean
+}
+
+class Join_Tsk{
+    user_id: int
     task_id: int
-    task_staff_id: int
-}
+    isStaff: boolean
 
-class User_Joined_Project_List{
-    User_id:int
 }
 
 Project "1"--"0..*" Task:▼従属
-Task "1"--"1..*" Task_Staff_List:▼担当者リスト
-User "1"--"0..*" User_Joined_Project_List:▼参加プロジェクトのリスト
-User_Joined_Project_List "1..*"--"1" Project:▲プロジェクトのリストへの登録
+User "1"--"0..*" Join_Prj:▼参加
+User "1"--"0..*" Join_Tsk:▼参加
+Join_Prj"1..*"--"1" Project:参照
+Join_Tsk"1..*"--"1" Task:参照
 
 
 
