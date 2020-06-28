@@ -1,59 +1,53 @@
 @startuml
 
 
-
 class User{
+    id: int
     name: string
-    user_id: int
-    login_id: string
+    loginId: string
     password: string
-
     }
 
-
-
 class Project{
+    id: int
     title: string
-    prj_id: int
     overview: string
-    host_id: int
+    host: User
     deadline: datatime
-    status: int
+    status: enum
+    participantUserList: list
+    taskList: list
     isDelayed: boolean
 }
 
 class Task{
+    id: int
     title: string
-    task_id: int
     overview: string
+    staffUserList: list
     deadline: datatime
-    status: int
+    status: enum
     isDelayed: boolean
-    staff_id_list: list
-
 }
 
-
-class Join_Prj{
-    user_id: int
-    prj_id: int
+class Participate{
+    user: User
+    project: Project
     isOwn: boolean
 }
 
-class Join_Tsk{
-    user_id: int
-    task_id: int
+class Handle{
+    user: User
+    task: Task
     isStaff: boolean
-
 }
 
-Project "1"--"0..*" Task:▼従属
-User "1"--"0..*" Join_Prj:▼参加
-User "1"--"0..*" Join_Tsk:▼参加
-Join_Prj"1..*"--"1" Project:参照
-Join_Tsk"1..*"--"1" Task:参照
 
-
+User "1"--"0..*" Participate
+Participate"1..*"--"1" Project
+User "1"--"0..*" Handle
+Handle"1..*"--"1" Task
+Project "1"--"0..*" Task
 
 
 @enduml
