@@ -14,7 +14,7 @@ class Project{
     overview: string
     host: User
     deadline: datatime
-    status: enum
+    status: int
     participantUserList: list
     taskList: list
     isDelayed: boolean
@@ -26,7 +26,7 @@ class Task{
     overview: string
     staffUserList: list
     deadline: datatime
-    status: enum
+    status: int
     isDelayed: boolean
 }
 
@@ -43,11 +43,11 @@ class Handle{
 }
 
 
-User "1"--"0..*" Participate
-Participate"1..*"--"1" Project
-User "1"--"0..*" Handle
-Handle"1..*"--"1" Task
-Project "1"--"0..*" Task
+User "1"--"0..*" Participate :▼参加する
+Participate"1..*"--"1" Project :▲参加される
+User "1"--"0..*" Handle :▼担当する
+Handle"1..*"--"1" Task :▲担当される
+Project "1"--"0..*" Task :▼所持している
 
 
 @enduml
