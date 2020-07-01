@@ -2,8 +2,8 @@
 
 
 class User{
-    id: int
     name: string
+    id: int
     loginId: string
     password: string
     }
@@ -12,41 +12,35 @@ class Project{
     id: int
     title: string
     overview: string
-    host: User
+    host_id: int
     deadline: datatime
     status: int
-    participantUserList: list
-    taskList: list
     isDelayed: boolean
 }
 
 class Task{
     id: int
+    prj_id: int
     title: string
     overview: string
-    staffUserList: list
     deadline: datatime
     status: int
     isDelayed: boolean
 }
 
 class Participate{
-    user: User
-    project: Project
-    isOwn: boolean
+    user_id: int
+    prj_id: int
+    isPrjOwn: boolean
+    task_id: int
+    isTaskOwn: boolean
 }
 
-class Handle{
-    user: User
-    task: Task
-    isStaff: boolean
-}
+
 
 
 User "1"--"0..*" Participate :▼参加する
 Participate"1..*"--"1" Project :▲参加される
-User "1"--"0..*" Handle :▼担当する
-Handle"1..*"--"1" Task :▲担当される
 Project "1"--"0..*" Task :▼所持している
 
 
