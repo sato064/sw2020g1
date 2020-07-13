@@ -22,7 +22,7 @@ user
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
 |1|id|string|16|YES|NO|なし|ログイン時のid||
-|2|name|string|30|NO|NO|なし|ユーザ名||
+|2|name|string|20|NO|NO|なし|ユーザ名||
 |3|password|varchar|255|NO|NO|なし|パスワード|BCryptを使用し、ハッシュ化したもの|
 
 project
