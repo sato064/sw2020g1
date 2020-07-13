@@ -36,7 +36,7 @@ project
 |6|status|int|1|NO|NO|0,1,2のみ許可|プロジェクトの状態||
 |7|is_delayed|boolean||NO|NO|デフォルト:false|遅れ状況|プロジェクトが遅れていればtrue|
 
-Task
+task
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
 |1|id|int|10|YES|NO|なし|タスクid||
@@ -47,14 +47,14 @@ Task
 |6|status|int|1|NO|NO|0,1,2のみ許可|タスクの状態||
 |7|is_delayed|boolean||NO|NO|なし|デフォルト:false|プロジェクトが遅れていればtrue|
 
-Participate
+participate
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
 |1|user_id|string|16|NO|NO|他idとの重複不可|ユーザid||
 |2|prj_id|int|10|NO|NO|なし|プロジェクトid||
 |3|is_prj_own|boolean||NO|NO|なし|ホストが自分かどうか|自分がホストならtrue|
 
-Handle
+handle
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
 |1|task_id|int|10|NO|NO|なし|タスクid||
