@@ -31,10 +31,10 @@ project
 |1|id|int|10|YES|NO|なし|プロジェクトid||
 |2|titles|string|30|NO|NO|なし|プロジェクトタイトル||
 |3|overview|string|300|NO|NO|なし|プロジェクトの概要||
-|4|host_id|string|16|NO|NO|なし|プロジェクトホストのid|user/idの外部キー|
+|4|host_id|string|16|NO|NO|user/idの外部キー|プロジェクトホストのid||
 |5|deadline|datetime||NO|NO|なし|プロジェクトの期限||
 |6|status|int|1|NO|NO|0,1,2のみ許可|プロジェクトの状態||
-|7|is_delayed|boolean||NO|NO|なし|遅れ状況|プロジェクトが遅れていればtrue|
+|7|is_delayed|boolean||NO|NO|デフォルト:false|遅れ状況|プロジェクトが遅れていればtrue|
 
 Task
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
@@ -45,18 +45,18 @@ Task
 |4|overview|string|400|NO|NO|なし|タスクの概要||
 |5|deadline|datetime||NO|NO|なし|タスクの期限||
 |6|status|int|1|NO|NO|0,1,2のみ許可|タスクの状態||
-|7|is_delayed|boolean||NO|NO|なし|遅れ状況|プロジェクトが遅れていればtrue|
+|7|is_delayed|boolean||NO|NO|なし|デフォルト:false|プロジェクトが遅れていればtrue|
 
 Participate
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
-|1|user_id|string|16|YES|NO|他idとの重複不可|ユーザid||
+|1|user_id|string|16|NO|NO|他idとの重複不可|ユーザid||
 |2|prj_id|int|10|NO|NO|なし|プロジェクトid||
 |3|is_prj_own|boolean||NO|NO|なし|ホストが自分かどうか|自分がホストならtrue|
 
 Handle
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
-|1|task_id|int|10|YES|NO|なし|タスクid|prj_idとの複合キー|
-|2|prj_id|int|10|YES|NO|なし|プロジェクトid|task_idとの複合キー|
+|1|task_id|int|10|NO|NO|なし|タスクid||
+|2|prj_id|int|10|NO|NO|なし|プロジェクトid||
 |3|user_id|string|16|NO|NO|なし|他idとの重複不可|ユーザid|
