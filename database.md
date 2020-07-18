@@ -32,7 +32,7 @@ projects
 |1|id|int|10|YES|NO|なし|プロジェクトid||
 |2|title|string|30|NO|NO|なし|プロジェクトタイトル||
 |3|overview|string|300|NO|NO|なし|プロジェクトの概要||
-|4|host_id|string|16|NO|NO|なし|プロジェクトホストのid|user/idの外部キー|
+|4|host_id|string|16|NO|NO|user/idの外部キー|プロジェクトホストのid||
 |5|deadline|datetime||NO|NO|なし|プロジェクトの期限||
 |6|status|int|1|NO|NO|0,1,2のみ許可|プロジェクトの状態||
 |7|is_delayed|boolean||NO|NO|デフォルト:false|遅れ状況|プロジェクトが遅れていればtrue|
@@ -41,7 +41,7 @@ tasks
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
 |1|id|int|10|YES|NO|なし|タスクid|AUTO_INCREMENTに設定する|
-|2|prj_id|int|10|NO|NO|なし|プロジェクトid|project/idの外部キー|
+|2|prj_id|int|10|NO|NO|project/idの外部キー|プロジェクトid||
 |3|title|string|30|NO|NO|なし|タスクタイトル||
 |4|overview|string|400|NO|NO|なし|タスクの概要||
 |5|deadline|datetime||NO|NO|なし|タスクの期限||
