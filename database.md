@@ -29,7 +29,7 @@ users
 projects
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
-|1|id|int|10|YES|NO|なし|プロジェクトid||
+|1|id|int|10|YES|NO|Autoincrement|プロジェクトid||
 |2|title|string|30|NO|NO|なし|プロジェクトタイトル||
 |3|overview|string|300|NO|NO|なし|プロジェクトの概要||
 |4|host_id|string|16|NO|NO|user/idの外部キー|プロジェクトホストのid||
@@ -40,7 +40,7 @@ projects
 tasks
 |No.|項目名|型|長さ|主キー|NULL|制約|概要|備考|
 |---|---|---|---|---|---|---|---|---|
-|1|id|int|10|YES|NO|なし|タスクid|AUTO_INCREMENTに設定する|
+|1|id|int|10|YES|NO|Autoincrement|タスクid||
 |2|prj_id|int|10|NO|NO|project/idの外部キー|プロジェクトid||
 |3|title|string|30|NO|NO|なし|タスクタイトル||
 |4|overview|string|400|NO|NO|なし|タスクの概要||
