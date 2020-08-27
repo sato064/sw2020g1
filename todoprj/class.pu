@@ -1,0 +1,32 @@
+  
+@startuml
+
+
+class User{
+    name: string
+    password: string
+    }
+
+class Store{
+    id: int
+    name: string
+    info: string
+}
+
+class User_Fav_Stores{
+    usr_name: string
+    store_name: string
+
+}
+
+
+
+
+
+
+User "1"--"0..*" Store :▼作成する
+User"1"--"0..*" User_Fav_Stores :▼お気に入り登録する
+User_Fav_Stores"1"--"0..*" Store :▲お気に入り登録される
+
+
+@enduml
