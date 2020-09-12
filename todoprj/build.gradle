@@ -60,5 +60,5 @@ tomcat() {
     ajpProtocol = 'org.apache.coyote.ajp.AjpNio2Protocol'
     // プロジェクト名(コンテキストパス)
     // http://localhost:8080/StuInfo の場合
-    contextPath = 'BunG'
+    contextPath = 'todoprj'
 }
