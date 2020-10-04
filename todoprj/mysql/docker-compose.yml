@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+  semi2020_db:
+    container_name: semi2020_db
+    image: mysql:8.0
+    ports:
+      - "9203:3306"
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    environment:
+      TZ: "Asia/Tokyo"
+      MYSQL_DATABASE: semi
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: root
+
+    volumes:
+      - "./init:/docker-entrypoint-initdb.d"
+
+networks:
+  default:
+    external:
+      name: semi2020
