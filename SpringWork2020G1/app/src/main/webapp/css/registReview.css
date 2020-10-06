@@ -1,0 +1,39 @@
+body{
+  font-family: 'UD デジタル 教科書体 NK-B',UD Digi Kyokasho NK-B;
+  text-align: center;
+}
+
+.kokubunji{
+  font-size:5em;
+  color:#F2CD00;
+  display: block;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+select{
+  border: none;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  background: #fffbeb;
+}
+
+input{
+  border: none;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  background: #fffbeb;
+}
+
+input[type=submit]{
+  background: #F08300;
+  color: #fff;
+  width: auto;
+}
+input::placeholder{
+  color: #7a7a7a;
+}
