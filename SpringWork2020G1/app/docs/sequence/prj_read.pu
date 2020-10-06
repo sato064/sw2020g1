@@ -1,0 +1,67 @@
+@startuml
+
+title read projects
+
+'シーケンスの縦線の下部にシーケンスボックスを出すかどうか(hideで出さない)指定する.'
+hide footbox
+
+'アクター'
+actor User as user
+
+participant ProjectList.jsp as view
+participant Read as controller
+participant ProjectService as service1
+participant ParticipateService as service2
+participant ProjectDAO as dao1
+participant ParticipateDAO as dao2
+database projects as projects1
+database participates as projects2
+
+
+'遷移'
+user -> controller :GET
+
+activate controller
+controller -> service1 :findProject()
+
+activate service1
+service1 -> dao1 :findProject(Connection connection)
+
+activate dao1
+dao1 -> projects1 :プロジェクト情報の取得
+' SELECT * FROM projects WHERE status != 2 ORDER BY deadline ASC;
+
+activate projects1
+projects1 -> dao1 :プロジェクト一覧情報
+deactivate projects1
+
+dao1 -> service1 :List<Project> list
+deactivate dao1
+
+service1 -> controller :List<Project> list
+deactivate service1
+
+
+controller -> service2 :findParticipate()
+
+activate service2
+service2 -> dao2 :findParticipate(Connection connection)
+
+activate dao2
+dao2 -> projects2 :プロジェクト参加情報の取得
+' SELECT * FROM participates INNER JOIN users ON participates.user_id = users.id;
+
+activate projects2
+projects2 -> dao2 :プロジェクト参加一覧情報
+deactivate projects2
+
+dao2 -> service2 :List<Participate> list
+deactivate dao2
+
+service2 -> controller :List<Participate> list
+deactivate service2
+
+controller -> view :List<Project> list,  List<Participate> list
+deactivate controller
+
+@enduml
