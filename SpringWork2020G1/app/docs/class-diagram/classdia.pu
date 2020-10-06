@@ -1,0 +1,51 @@
+@startuml
+
+
+class User{
+    name: string
+    loginid: string
+    password: string
+    }
+
+class Project{
+    id: int
+    title: string
+    overview: string
+    host_id: string
+    deadline: datetime
+    status: int
+    isDelayed: boolean
+}
+
+class Task{
+    id: int
+    prj_id: int
+    title: string
+    overview: string
+    deadline: datetime
+    status: int
+    isDelayed: boolean
+}
+
+class Participate{
+    user_loginid: string
+    prj_id: int
+    isPrjOwn: boolean
+}
+class Handle{
+    task_id: int
+    prj_id: int
+    user_loginid: string
+}
+
+
+
+
+User "1"--"0..*" Participate :▼参加する
+Participate"1..*"--"1" Project :▲参加される
+Participate"1"--"0..*" Handle :▼関連がある
+Handle"1..*"--"1" Task :▲参加される
+Project "1"--"0..*" Task :▼所持している
+
+
+@enduml

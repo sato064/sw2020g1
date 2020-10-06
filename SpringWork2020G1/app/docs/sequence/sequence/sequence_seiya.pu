@@ -1,0 +1,58 @@
+@startuml
+
+title read projects
+
+'シーケンスの縦線の下部にシーケンスボックスを出すかどうか(hideで出さない)指定する.'
+hide footbox
+
+'アクター'
+actor User as user
+
+participant Delete as controller
+participant prjDeleteCpl.jsp as service1
+participant ProjectService as service2
+participant ProjectDAO as dao1
+database mst_todo as projects
+
+
+'遷移'
+user -> controller :GET
+
+activate controller
+controller -> service2 :findProject()
+
+activate service2
+service2 -> dao1 :findProject(Connection connection)
+
+activate dao1
+dao1 -> projects :取得
+' SELECT * FROM project ORDER BY deadline ASC;
+
+activate projects
+projects -> dao1 :プロジェクト一覧情報
+deactivate projects
+
+dao1 -> service2 :List<Project> list
+
+service2 -> controller :List<Project> list
+
+controller -> service2 :deleteProject(Project prj)
+deactivate controller
+
+service2 -> service2 :deleteCheck
+
+service2 -> dao1 :deleteProject(Project prj,Conection conection)
+deactivate service2
+
+activate projects
+dao1 -> projects :プロジェクト情報の削除
+deactivate dao1
+
+activate service1
+projects -> service1 :projectList
+deactivate projects
+
+service1 -> user
+
+@enduml
+

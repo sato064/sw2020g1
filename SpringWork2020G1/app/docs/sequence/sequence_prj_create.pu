@@ -1,0 +1,51 @@
+@startuml
+
+title プロジェクトの作成
+
+'シーケンスの縦線の下部にシーケンスボックスを出すかどうか(hideで出さない)指定する.'
+hide footbox
+
+'アクター'
+actor User as user
+
+participant ProjectCreate.jsp as view1
+participant projectList.jsp as view2
+participant Create as create1
+participant ProjectService as service
+participant ProjectDAO as dao
+database  mst_todo as projects
+
+'遷移'
+user -> view1
+activate view1
+view1 -> create1 :post(int prj_id,string user_id,string title,string overview,datatime deadline)
+deactivate view1
+
+activate create1
+create1 -> create1 :projectcheck
+create1 -> service :create(Project prj)
+
+activate service
+service -> dao :create(Project prj,Connection connection)
+
+activate dao
+dao -> projects :追加 insert into project values (prj_id,title,overview,user_id,deadline,0,false)
+
+activate projects
+projects -> dao :
+deactivate projects
+
+dao -> service :
+deactivate dao
+
+service -> create1 :
+deactivate service
+
+create1 ->  view2 :
+deactivate create1
+
+activate view2
+view2 -> user
+deactivate view2
+
+@enduml

@@ -1,0 +1,44 @@
+version: "3" # docker-composeのバージョンを指定
+services:
+    gradle:
+        container_name: springwork_20g1
+        build:
+            context: ..
+            dockerfile: ./docker/gradle/Dockerfile # Dockerfileをビルド
+        working_dir: /app
+        volumes:
+            - ../app:/app:cached
+        environment:
+            DRIVER_URL: jdbc:mysql://springwork_20g1_db:3306/db?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        ports: # 2020年度グループ1
+            - "8201:8080" # ポート8201番の開放
+        privileged: true
+        tty: true
+        command: wait-for-it.sh springwork_20g1_db:3306 --timeout=30 -- ./gradlew tomcatRun
+        networks:
+            - springwork2020g1-network
+
+
+    mysql:
+        container_name: springwork_20g1_db
+        build:
+            context: ../.
+            dockerfile: ./docker/mysql/Dockerfile
+        ports:
+            - "9201:3306"
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+        environment:
+            TZ: "Asia/Tokyo"
+            MYSQL_DATABASE: db
+            MYSQL_USER: test
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - "./mysql/init:/docker-entrypoint-initdb.d"
+        networks:
+            - springwork2020g1-network
+
+
+networks:
+    springwork2020g1-network:
+        driver: bridge
