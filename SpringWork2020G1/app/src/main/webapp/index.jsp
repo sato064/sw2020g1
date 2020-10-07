@@ -6,13 +6,18 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" type="text/css" href="css/index.css">
   </head>
   <body>
-    <br><br>
+    ようこそ<br>
+    共有ToDoリスト管理<br>
+    <a href="./Login">ログイン</a><br>
+    <a href="./RegistUser">新規ユーザ登録</a>
+
+    <!-- <br><br>
     <a href="./RegistUser">新規登録する</a>
     <br><br>
     <form action="./Login" method="post">
       <input type="text" placeholder="メールアドレス" name="mail_address" required/><br>
       <input type="password" placeholder="パスワード" name="password" required/><br>
       <input type="submit" value="ログイン" name="OK" /><br>
-    </form>
+    </form> -->
   </body>
 </html>
