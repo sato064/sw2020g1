@@ -42,7 +42,8 @@ public class Login extends HttpServlet {
         request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
         
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registReview.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
+        // RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registReview.jsp");
         dispatcher.forward(request, response);
     }
 
