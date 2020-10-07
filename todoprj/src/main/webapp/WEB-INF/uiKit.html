@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/css/uikit.min.css" />
+    <!-- jQuery is required -->
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- UIkit JS -->
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/js/uikit.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/js/uikit-icons.min.js">
+
+    </script>
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js">
+    </script>
+    <script src="js/uikit-icons.min.js"></script>
+
+    <script type="text/javascript">
+        function confirmLogout(){
+            flag = confirm("ログアウトしますか？");
+            // 「はい」が押されたときの処理
+            if ( flag == true ){
+                alert("ログアウトしました");
+                return true;
+            }else{    // 「いいえ」が押されたときの処理
+                return false;
+            }
+        };
+    </script>
+
+</head>
+<body>
+<div class="min">
+    <nav class="uk-navbar-container uk-margin" style="min-width: 700px;width: 100%;position: fixed;z-index:9998" uk-navbar>
+        <!-- 左側 -->
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="/TodoPrj/DisplayProject" methods="get">国分寺市グルメシステム </a>
+        </div>
+        <!-- 右側 -->
+        <div class="uk-navbar-right">
+            <div class="uk-navbar-item">
+                <form action="/TodoPrj/RegistProject" method="get">
+                    <a href="/TodoPrj/RegistProject" class="uk-icon-button" uk-icon="plus-circle"></a>
+                </form>
+                <form action="/TodoPrj/Logout" method="get">
+                    <a href="/TodoPrj/Logout" class="uk-icon-button" uk-icon="sign-out" onclick="return confirmLogout()"></a>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
+
