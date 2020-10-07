@@ -19,7 +19,7 @@ public class UserDAO {
     // 属性
 
     // データベースの接続先アドレスを静的変数として記述
-    private final static String DRIVER_URL = "jdbc:mysql://localhost:3306/gourmet?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
+    private final static String DRIVER_URL = "jdbc:mysql://localhost:3306/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
 
     // データベース接続ドライバの名前を静的変数として記述
     // Mysql5.系
@@ -65,13 +65,13 @@ public class UserDAO {
         try {
 
             // SQLコマンド
-            String sql = "insert into user (mail_address, name, password) values(?, ?, ?)";
+            String sql = "insert into users (id, name, password) values(?, ?, ?)";
 
             // SQLコマンドの実行
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // SQLコマンドのクエッションマークに値を、1番目から代入する
-            stmt.setString(1, user.getMailAddress());
+            stmt.setString(1, user.getId());
             stmt.setString(2, user.getName());
             stmt.setString(3, user.getPassword());
 
@@ -90,7 +90,7 @@ public class UserDAO {
         try {
 
             // SQLコマンド
-            String sql = "select * from user where mail_address = '" + user.getMailAddress() + "' and password = '"+ user.getPassword() + "'";
+            String sql = "select * from user where mail_address = '" + user.getName() + "' and password = '"+ user.getPassword() + "'";
 
             // SQLコマンドの実行
             Statement stmt = connection.createStatement();
@@ -101,7 +101,7 @@ public class UserDAO {
 
             // if(rs.next()){
                 User login_user = new User(
-                    rs.getInt("id"),
+                    rs.getString("id"),
                     rs.getString("name")
                 );
                 stmt.close();

@@ -1,3 +1,16 @@
+DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `projects`;
+DROP TABLE IF EXISTS `tasks`;
+DROP TABLE IF EXISTS `participates`;
+DROP TABLE IF EXISTS `handles`;
+SET CHARACTER_SET_CLIENT = utf8;
+SET CHARACTER_SET_CONNECTION = utf8;
+CREATE TABLE `users` (
+  `id` VARCHAR(16) PRIMARY KEY NOT NULL PRIMARY KEY,
+  `name` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(255) NOT NULL
+) ENGINE = InnoDB
+
 DROP DATABASE IF EXISTS mst_todo;
 CREATE DATABASE mst_todo;
 USE mst_todo;
@@ -54,6 +67,3 @@ CREATE TABLE `handles` (
   `prj_id` INT(10) NOT NULL,
   `user_id` VARCHAR(16) NOT NULL,
 )
-
-  DEFAULT CHARSET = utf8
-  COLLATE = utf8_unicode_ci;
