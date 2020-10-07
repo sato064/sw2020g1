@@ -44,17 +44,17 @@ public class RegistUser extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         // requestオブジェクトから登録情報の取り出し
-        String mail_address = request.getParameter("mail_address");
         String name = request.getParameter("name");
+        String id = request.getParameter("id");
         String password = request.getParameter("password");
 
         // コンソールに確認するために出力
-        System.out.println("取得した文字列は" + mail_address + "です！");
+        System.out.println("取得した文字列は" + id + "です！");
         System.out.println("取得した文字列は" + name + "です！");
         System.out.println("取得した文字列は" + password + "です！");
         
         // Userオブジェクトに情報を格納
-        User user = new User(mail_address, name, password);
+        User user = new User(id, name, password);
     
         // StudentManagerオブジェクトの生成
         UserManager manager = new UserManager();

@@ -21,7 +21,7 @@ public class ReviewDAO {
     // 属性
 
     // データベースの接続先アドレスを静的変数として記述
-    private final static String DRIVER_URL = "jdbc:mysql://localhost:3306/gourmet?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
+    private final static String DRIVER_URL = "jdbc:mysql://localhost:3306/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";;
 
     // データベース接続ドライバの名前を静的変数として記述
     // Mysql5.系
@@ -122,7 +122,7 @@ public class ReviewDAO {
                 Review Review = new Review();
                 Review.setId(rs.getInt("id"));
                 User user = new User(
-                    rs.getInt("user.id"),
+                    rs.getString("user.id"),
                     rs.getString("user.name")
                 );
                 Review.setUser(user);
