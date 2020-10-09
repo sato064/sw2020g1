@@ -31,7 +31,7 @@ public class PlusGood extends HttpServlet {
 
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
-        response.sendRedirect("/Gourmet/SearchInfo");
+        response.sendRedirect("/SpringWork2020G1/SearchInfo");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         // her = request.getRequestDispatcher("/WEB-INF/registReview.jsp");
         // dispatcher.forward(request, response);
@@ -55,6 +55,6 @@ public class PlusGood extends HttpServlet {
         reviewManager.countGood(review);
 
         // 成功画面を表示する
-        response.sendRedirect("/Gourmet/PlusGood");
+        response.sendRedirect("/SpringWork2020G1/PlusGood");
     }
 }

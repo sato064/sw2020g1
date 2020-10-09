@@ -17,6 +17,6 @@ pageEncoding="UTF-8"%>
       <input type="submit" value="ログイン" name="OK" /><br>
     </form>
     <br><br>
-    <a href="Gourmet/RegistUser">新規登録する</a>
+    <a href="SpringWork2020G1/RegistUser">新規登録する</a>
   </body>
 </html>

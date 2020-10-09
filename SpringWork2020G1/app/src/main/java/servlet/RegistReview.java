@@ -65,7 +65,7 @@ public class RegistReview extends HttpServlet {
         manager.registReview(review);
     
         // 成功画面を表示する
-        response.sendRedirect("/Gourmet/RegistReview");
+        response.sendRedirect("/SpringWork2020G1/RegistReview");
 
     }
 }

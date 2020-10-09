@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" type="text/css" href="css/registReview.css">
   </head>
   <body>
-    <a href="/Gourmet/Logout">ログアウトする</a>
+    <a href="/SpringWork2020G1/Logout">ログアウトする</a>
     <p class="kokubunji">KOKUBUNJI</p>
     <form action="./SearchInfo" method="GET">
       <input type="submit" value="　グルメ情報をみる　" name="OK" />
