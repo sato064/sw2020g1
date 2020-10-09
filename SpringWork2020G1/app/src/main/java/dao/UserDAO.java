@@ -88,13 +88,14 @@ public class UserDAO {
 
     public User login(String id,String pass, Connection connection){
         try {
-
+            System.out.println("TOUTATu");
             // SQLコマンド
             String sql = "select * from users where id = '" + id + "' and password = '"+ pass + "'";
 
             // SQLコマンドの実行
-            Statement stmt = connection.createStatement();
             System.out.println(sql);
+            Statement stmt = connection.createStatement();
+            
 
             ResultSet rs = stmt.executeQuery(sql);
             rs.first();
