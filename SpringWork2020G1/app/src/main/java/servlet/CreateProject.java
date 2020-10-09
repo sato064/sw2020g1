@@ -59,7 +59,7 @@ public class CreateProject extends HttpServlet {
         manager.createProject(project);
     
         // 成功画面を表示する
-        response.sendRedirect("/TodoPrj/CreateProjectSuccess");
+        response.sendRedirect("/SpringWork2020G1/CreateProjectSuccess");
 
     }
 }
