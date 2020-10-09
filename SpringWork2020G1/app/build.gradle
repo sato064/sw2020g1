@@ -65,5 +65,5 @@ tomcat {
     httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
     ajpProtocol = 'org.apache.coyote.ajp.AjpNio2Protocol'
     //プロジェクト名(コンテキストパス)
-    contextPath = 'SpringWork2020G1'
+    contextPath = 'TodoPrj'
 }

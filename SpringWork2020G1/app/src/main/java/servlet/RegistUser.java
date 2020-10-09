@@ -63,7 +63,7 @@ public class RegistUser extends HttpServlet {
         manager.registUser(user);
     
         // 成功画面を表示する
-        response.sendRedirect("/Gourmet");
+        response.sendRedirect("/TodoPrj");
 
     }
 }

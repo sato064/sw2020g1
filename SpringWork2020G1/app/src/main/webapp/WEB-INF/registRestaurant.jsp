@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
     <form action="./RegistRestaurant" method="post">
       <input type="text" placeholder="店名" name="name" required/><br>
       <input type="submit" value="飲食店の登録" name="OK" /><br>
-      <a href="/Gourmet/Login">戻る</a>
+      <a href="/TodoPrj/Login">戻る</a>
     </form>
   </body>
 </html>

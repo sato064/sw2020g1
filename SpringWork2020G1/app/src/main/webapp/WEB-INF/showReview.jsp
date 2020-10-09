@@ -9,12 +9,12 @@
     <link rel="stylesheet" type="text/css" href="css/showReview.css">
   </head>
   <body>
-    <a href="/Gourmet/Logout">ログアウトする</a>
+    <a href="/TodoPrj/Logout">ログアウトする</a>
     <br>
     <p class="kokubunji">
       KOKUBUNJI
     </p>
-    <a href="/Gourmet/Login">トップ画面に戻る</a>
+    <a href="/TodoPrj/Login">トップ画面に戻る</a>
     <br>
     <div class="sort">
       <form action="./SortReview" method="post">
