@@ -38,7 +38,7 @@ public class UserManager {
 
     }
 
-    public User login(User user) {
+    public User login(String id,String pass) {
 
         // UserDAOオブジェクト生成
         UserDAO userDAO = new UserDAO();
@@ -47,7 +47,7 @@ public class UserManager {
         this.connection = userDAO.createConnection();
 
         //
-        User login_user = userDAO.login(user, this.connection);
+        User login_user = userDAO.login(id,pass,this.connection);
 
         // DataBaseとの接続を切断する
         userDAO.closeConnection(this.connection);

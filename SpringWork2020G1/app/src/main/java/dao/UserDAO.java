@@ -86,11 +86,11 @@ public class UserDAO {
         }
     }
 
-    public User login(User user, Connection connection){
+    public User login(String id,String pass, Connection connection){
         try {
 
             // SQLコマンド
-            String sql = "select * from user where mail_address = '" + user.getName() + "' and password = '"+ user.getPassword() + "'";
+            String sql = "select * from users where id = '" + id + "' and password = '"+ pass + "'";
 
             // SQLコマンドの実行
             Statement stmt = connection.createStatement();

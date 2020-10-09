@@ -1,3 +1,4 @@
+
 //--------------------------------
 //	RegistInfo.java
 //--------------------------------
@@ -24,10 +25,10 @@ import control.RestaurantManager;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/Login")
+@WebServlet("/Main")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class Login extends HttpServlet {
+public class Main extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,7 +43,7 @@ public class Login extends HttpServlet {
         request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
         
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
         // RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registReview.jsp");
         dispatcher.forward(request, response);
     }
@@ -76,7 +77,7 @@ public class Login extends HttpServlet {
             session.setAttribute("login_user", login_user);
             System.out.println("ログイン成功");
 
-            response.sendRedirect("./Main");
+            response.sendRedirect("/WEB-INF/main.jsp");
         }else{
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/loginError.jsp");
             dispatcher.forward(request, response);
