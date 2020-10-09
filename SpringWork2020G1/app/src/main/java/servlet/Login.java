@@ -37,9 +37,9 @@ public class Login extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         
-        RestaurantManager manager = new RestaurantManager();
-        List<Restaurant> list = manager.findAll(); //Restaurantのリストの全レコードの取得
-        request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
+        //RestaurantManager manager = new RestaurantManager();
+        //List<Restaurant> list = manager.findAll(); //Restaurantのリストの全レコードの取得
+        //request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
         
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
@@ -72,9 +72,12 @@ public class Login extends HttpServlet {
         User login_user = manager.login(loginid,password);
 
         if(login_user != null){
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             session.setAttribute("login_user", login_user);
-            System.out.println("ログイン成功");
+            System.out.println(login_user.getName());
+            session.setAttribute("UserName", login_user.getName());
+            System.out.println((String)session.getAttribute("UserName"));
+            System.out.println(session.getId());
 
             response.sendRedirect("./Main");
         }else{
