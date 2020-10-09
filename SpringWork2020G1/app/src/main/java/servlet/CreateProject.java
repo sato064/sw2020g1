@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Restaurant;
-import control.RestaurantManager;
+import beans.Project;
+import control.ProjectManager;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
