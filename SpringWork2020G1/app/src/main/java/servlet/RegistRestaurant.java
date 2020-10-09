@@ -59,7 +59,7 @@ public class RegistRestaurant extends HttpServlet {
         manager.registRestaurant(restaurant);
     
         // 成功画面を表示する
-        response.sendRedirect("/TodoPrj/RegistRestaurantSuccess");
+        response.sendRedirect("/SpringWork2020G1/RegistRestaurantSuccess");
 
     }
 }

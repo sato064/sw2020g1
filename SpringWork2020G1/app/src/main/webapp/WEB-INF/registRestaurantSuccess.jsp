@@ -9,6 +9,6 @@
       <p>
         飲食店の登録完了！
       </p>
-    <a href="/TodoPrj/Login">トップに戻る</a>
+    <a href="/SpringWork2020G1/Login">トップに戻る</a>
   </BODY>
 </HTML>
