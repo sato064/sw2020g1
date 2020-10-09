@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
-@WebServlet("/RegistRestaurantSuccess")
+@WebServlet("/CreateProjectSuccess")
 
 // HttpServletを継承することで、このクラスはServletとして、働くことができる
-public class RegistRestaurantSuccess extends HttpServlet {
+public class CreateProjectSuccess extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class RegistRestaurantSuccess extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registRestaurantSuccess.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/CreateProjectSuccess.jsp");
         dispatcher.forward(request, response);
     }
 
