@@ -9,12 +9,12 @@
     <link rel="stylesheet" type="text/css" href="css/showReview.css">
   </head>
   <body>
-    <a href="/TodoPrj/Logout">ログアウトする</a>
+    <a href="/SpringWork2020G1/Logout">ログアウトする</a>
     <br>
     <p class="kokubunji">
       KOKUBUNJI
     </p>
-    <a href="/TodoPrj/Login">トップ画面に戻る</a>
+    <a href="/SpringWork2020G1/Login">トップ画面に戻る</a>
     <br>
     <div class="sort">
       <form action="./SortReview" method="post">
