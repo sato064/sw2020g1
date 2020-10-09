@@ -9,6 +9,6 @@
       <p>
         投稿完了！
       </p>
-    <a href="/Gourmet/Login">トップに戻る</a>
+    <a href="/TodoPrj/Login">トップに戻る</a>
   </BODY>
 </HTML>

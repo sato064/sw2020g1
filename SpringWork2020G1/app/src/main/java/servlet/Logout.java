@@ -39,7 +39,7 @@ public class Logout extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        response.sendRedirect("/Gourmet");
+        response.sendRedirect("/TodoPrj");
     }
 
     // requestオブジェクトには、フォームで入力された文字列などが格納されている。
