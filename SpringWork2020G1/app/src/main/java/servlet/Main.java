@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import beans.User;
-import beans.Restaurant;
+import beans.Project;
 import control.UserManager;
-import control.RestaurantManager;
+import control.ProjectManager;
 
 
 //アノテーションの記述
@@ -38,8 +38,8 @@ public class Main extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         
-        RestaurantManager manager = new RestaurantManager();
-        List<Restaurant> list = manager.findAll(); //Restaurantのリストの全レコードの取得
+        ProjectManager manager = new ProjectManager();
+        List<Project> list = manager.findAll(); //Restaurantのリストの全レコードの取得
         request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
         
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
