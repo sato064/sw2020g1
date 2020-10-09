@@ -32,7 +32,7 @@ public class CreateProject extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createRestaurant.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProject.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -44,13 +44,18 @@ public class CreateProject extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         // requestオブジェクトから登録情報の取り出し
-        String name = request.getParameter("name");
+        String title = request.getParameter("title");
+        String overview = request.getParameter("overview");
+        //Datetime deadline = request.getParameter("deadline");
+        String user = request.getParameter("user");
 
         // コンソールに確認するために出力
-        System.out.println("取得した文字列は" + name + "です！");
+        System.out.println("取得した文字列は" + title + "です！");
+        System.out.println("取得した文字列は" + overview + "です！");
+        System.out.println("取得した文字列は" + deadline + "です！");
         
         // projectオブジェクトに情報を格納
-        Project project = new Project(name);
+        Project project = new Project(title,overview);
     
         // StudentManagerオブジェクトの生成
         ProjectManager manager = new ProjectManager();
