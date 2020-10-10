@@ -17,9 +17,8 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import beans.User;
-import beans.Restaurant;
 import control.UserManager;
-import control.RestaurantManager;
+
 
 
 //アノテーションの記述
@@ -76,6 +75,7 @@ public class Login extends HttpServlet {
             session.setAttribute("login_user", login_user);
             System.out.println(login_user.getName());
             session.setAttribute("UserName", login_user.getName());
+            session.setAttribute("UserId", login_user.getId());
             System.out.println((String)session.getAttribute("UserName"));
             System.out.println(session.getId());
 

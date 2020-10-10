@@ -1,15 +1,18 @@
 package beans;
 
+import java.time.LocalDateTime;
+
 public class Project {
+
     private Integer projectID = null;
     private String projectTITLE = null;
     private String overview = null;
     private String hostID = null;
-    private DateTime deadline = null;
+    private String deadline = null;
     private Integer projectSTATUS = null;
     private boolean isDelayed = false;
 
-    public Project(int projectID,String projectTITLE,String overview,String hostID,DateTime deadline,int projectSTATUS,boolean isDelayed){
+    public Project(int projectID,String projectTITLE,String overview,String hostID,String deadline,int projectSTATUS,boolean isDelayed){
         this.projectID = projectID;
         this.projectTITLE = projectTITLE;
         this.overview = overview;
@@ -35,7 +38,7 @@ public class Project {
     public void setHostID(String hostID) {
         this.hostID = hostID;
     }
-    public void setDeadline(Datatime deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
     public void setProjectSTATUS(int projectSTATUS) {
@@ -45,25 +48,25 @@ public class Project {
         this.isDelayed = isDelayed;
     }
 
-    public int getProjectID(int projectID){
+    public int getProjectID(){
         return this.projectID;
     }
-    public String getProjectTITLE(String projectTITLE){
+    public String getProjectTITLE(){
         return this.projectTITLE;
     }
-    public String getOverview(String overview){
+    public String getOverview(){
         return this.overview;
     }
-    public String getHostID(String hostID){
+    public String getHostID(){
         return this.hostID;
     }
-    public DateTime getDeadline(DateTime deadline){
+    public String getDeadline(){
         return this.deadline;
     }
-    public int getProjectSTATUS(int projectSTATUS){
+    public int getProjectSTATUS(){
         return this.projectSTATUS;
     }
-    public boolean getIsDelayed(boolean isDelayed) {
+    public boolean getIsDelayed() {
         return this.isDelayed;
     }
 }

@@ -17,9 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import beans.User;
-import beans.Restaurant;
 import control.UserManager;
-import control.RestaurantManager;
 
 
 //アノテーションの記述

@@ -10,7 +10,6 @@ public class Review {
     private String scene=null; //Morning,Lunch,Dinner
     private User user;
     private int user_id;
-    private Restaurant restaurant;
     private int restaurant_id;
 
     // 初期値を引数に持ったコンストラクタ
@@ -23,13 +22,13 @@ public class Review {
         this.restaurant_id = restaurant_id;
     }
 
-    public Review(int id, String information, int goodCount, String scene, User user, Restaurant restaurant) {
+    public Review(int id, String information, int goodCount, String scene, User user) {
         this.id = id;
         this.information = information;
         this.goodCount = goodCount;
         this.scene = scene;
         this.user = user;
-        this.restaurant = restaurant;
+
     }
 
     public Review(int id) {
@@ -49,8 +48,6 @@ public class Review {
     public void setScene(String scene) {this.scene = scene;}
     public void setUser(User user) {this.user = user;}
     public void setUserId(int user_id) {this.user_id = user_id;}
-    public void setRestaurant(Restaurant restaurant) {this.restaurant = restaurant;}
-    public void setRestaurantId(int restaurant_id) {this.restaurant_id = restaurant_id;}
     
     // getメソッド
     // Java beansのgetメソッドはgetの後ろに続く文字列が必ず大文字であること
@@ -60,7 +57,6 @@ public class Review {
     public String getScene() {return this.scene;}
     public User getUser() {return this.user;}
     public int getUserId() {return this.user_id;}
-    public Restaurant getRestaurant() {return this.restaurant;}
-    public int getRestaurantId() {return this.restaurant_id;}
+
 
 }

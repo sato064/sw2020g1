@@ -14,7 +14,7 @@ import java.util.List; //Listのインポート
 
 import beans.User;
 import beans.Review;
-import beans.Restaurant;
+
 
 public class ReviewDAO {
 
@@ -77,7 +77,6 @@ public class ReviewDAO {
             stmt.setInt(2, review.getGoodCount());
             stmt.setString(3, review.getScene());
             stmt.setInt(4, review.getUserId());
-            stmt.setInt(5, review.getRestaurantId());
 
             stmt.executeUpdate();
 
@@ -126,11 +125,6 @@ public class ReviewDAO {
                     rs.getString("user.name")
                 );
                 Review.setUser(user);
-                Restaurant restaurant = new Restaurant(
-                    rs.getInt("restaurant.id"),
-                    rs.getString("restaurant.name")
-                );
-                Review.setRestaurant(restaurant);
                 Review.setScene(rs.getString("scene"));
                 Review.setInformation(rs.getString("information"));
                 Review.setGoodCount(rs.getInt("good_count"));

@@ -14,5 +14,6 @@ System.out.println(name);
   <body>
     ${sessionScope.UserName}さん
     ようこそ<br>
+    <a href="./CreateProject">プロジェクト新規作成はこちら</a><br>
   </body>
 </html>

@@ -38,9 +38,9 @@ public class Main extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         
-        ProjectManager manager = new ProjectManager();
-        List<Project> list = manager.findAll(); //Restaurantのリストの全レコードの取得
-        request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
+        //ProjectManager manager = new ProjectManager();
+        //List<Project> list = manager.findAll(); //Restaurantのリストの全レコードの取得
+        //request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
         
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
