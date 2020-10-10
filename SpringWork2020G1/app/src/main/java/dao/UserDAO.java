@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList; //ArrayListのインポート
 import java.util.List; //Listのインポート
 
+
 import beans.User;
 
 public class UserDAO {
