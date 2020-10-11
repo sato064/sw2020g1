@@ -13,6 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import beans.User;
 import control.UserManager;
@@ -28,9 +31,15 @@ public class RegistUser extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
+
+        response.setContentType("text/html; charset=utf-8");
+        UserManager userManager = new UserManager();
+        List<String> userList = userManager.userList();
+        Collections.reverse(userList);
+        request.setAttribute("userList",userList);
+
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
         dispatcher.forward(request, response);
@@ -58,6 +67,9 @@ public class RegistUser extends HttpServlet {
     
         // StudentManagerオブジェクトの生成
         UserManager manager = new UserManager();
+        List<String> userList = manager.userList();
+        Collections.reverse(userList);
+        request.setAttribute("userList",userList);
     
         // 登録
         manager.registUser(user);

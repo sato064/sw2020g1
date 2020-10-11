@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import beans.User;
@@ -66,6 +68,9 @@ public class Login extends HttpServlet {
     
         // StudentManagerオブジェクトの生成
         UserManager manager = new UserManager();
+        List<String> userList = manager.userList();
+        Collections.reverse(userList);
+        request.setAttribute("userList",userList);
     
         // ログイン
         User login_user = manager.login(loginid,password);

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList; //ArrayListのインポート
 import java.util.List; //Listのインポート
-
+import javax.servlet.http.HttpSession;
 
 import beans.User;
 
@@ -52,19 +52,15 @@ public class UserDAO {
     // Connectionオブジェクトを使って、データベースとの接続を切断する
     // 引数Connectionオブジェクト
     public void closeConnection(Connection con) {
-
         try {
             con.close();
         } catch (Exception ex) {
         }
     }
-
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
     public void registUser(User user, Connection connection) {
-
         try {
-
             // SQLコマンド
             String sql = "insert into users (id, name, password) values(?, ?, ?)";
 
@@ -75,14 +71,11 @@ public class UserDAO {
             stmt.setString(1, user.getId());
             stmt.setString(2, user.getName());
             stmt.setString(3, user.getPassword());
-
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
-
         } finally {
         }
     }
@@ -96,8 +89,6 @@ public class UserDAO {
             // SQLコマンドの実行
             System.out.println(sql);
             Statement stmt = connection.createStatement();
-            
-
             ResultSet rs = stmt.executeQuery(sql);
             rs.first();
 
@@ -123,5 +114,25 @@ public class UserDAO {
         } finally {
         }
     }
-
+    public List<String> userList(Connection connection){
+        try {
+            List<String> userList = new ArrayList<>();
+            PreparedStatement stmt = connection.prepareStatement("select * from users");
+            ResultSet rs = stmt.executeQuery();
+            boolean flag = rs.first();
+            while (flag){
+                //User user = new User();
+                //user.setId(rs.getString("id"));
+                //user.setName(rs.getString("name"));
+                //userList.add(user);
+                userList.add(rs.getString("name"));
+                flag = rs.next();
+            }
+            stmt.close();
+            rs.close();
+            return userList;
+        } catch (SQLException e){
+            return null;
+        }
+    }
 }
