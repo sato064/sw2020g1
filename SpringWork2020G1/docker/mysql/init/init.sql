@@ -4,9 +4,6 @@ DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS participates;
 DROP TABLE IF EXISTS handles;
 
--- SET CHARACTER_SET_CLIENT = utf8;
--- SET CHARACTER_SET_CONNECTION = utf8;
-
 CREATE TABLE users (
   id VARCHAR(16) PRIMARY KEY NOT NULL,
   name VARCHAR(20) NOT NULL,
@@ -69,7 +66,7 @@ VALUES ('親睦会', 'これからともにアプリ開発していくので懇�
 ('2020年G1春課題', '研究室で使う共有ToDoリストのアプリ開発', 'e185401f', '2020-10-16 00:00:00', 1, false);
 
 INSERT INTO tasks (prj_id, title, overview, deadline, status, is_delayed)
-VALUES (2, '要求仕様書(MarkDown記法)', 'インスペクション回数は５回', '2020-06-07 10:30:00', 2, false),
+VALUES (2, '要求仕様書', 'インスペクション回数は５回', '2020-06-07 10:30:00', 2, false),
 (2,'画面シナリオ', 'インスペクション回数は3回', '2020-06-22 10:00:00', 2, false),
 (2, 'クラス図', 'インスペクション回数は3回', '2020-07-06 09:25:00', 2, false),
 (2, 'DB設計書', 'インスペクション回数は3回', '2020-07-13 12:00:00', 2, false),
