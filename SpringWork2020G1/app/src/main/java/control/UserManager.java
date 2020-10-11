@@ -4,12 +4,13 @@ package control;
 //  自分が格納されているフォルダの外にある必要なクラス
 import java.sql.Connection;
 import java.util.List; //Listのインポート
+import java.util.ArrayList;
 
 import beans.User;
 import dao.UserDAO;
+import javax.servlet.http.HttpServlet;
 
-public class UserManager {
-
+public class UserManager extends HttpServlet{
     // 属性
     private Connection connection = null;
 
@@ -17,6 +18,14 @@ public class UserManager {
     public UserManager() {
     }
 
+    public List<String> userList() {
+        UserDAO userDAO = new UserDAO();
+        this.connection = userDAO.createConnection();
+        List<String> userList = userDAO.userList(this.connection);
+        userDAO.closeConnection(this.connection);
+        this.connection = null;
+        return userList;
+    }
     // 追加
     // 引数はUserオブジェクト
     public void registUser(User user) {

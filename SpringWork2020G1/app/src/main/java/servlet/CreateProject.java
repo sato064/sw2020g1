@@ -35,7 +35,7 @@ public class CreateProject extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registProject.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProject.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -59,7 +59,6 @@ public class CreateProject extends HttpServlet {
         String hostIdStr = hostid.toString();
 
         /*
-        
         ここでdeadlineの型変換をする
 
         */
