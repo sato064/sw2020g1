@@ -74,8 +74,8 @@ public class ProjectDAO extends DriverAccessor{
             ResultSet rs = stmt.executeQuery(sql); //SELECT文を実行し結果表を取得
             while(rs.next()){ //characterにレコードの値をいれてListのインスタンスであるlistに追加
                 Project project = new Project();
-                Review.setId(rs.getInt("id"));
-                list.add(Project);
+                project.setProjectID(rs.getInt("id"));
+                list.add(project);
             }
             stmt.close(); //close
             rs.close(); //close
