@@ -11,7 +11,7 @@ services:
         environment:
             DRIVER_URL: jdbc:mysql://springwork_20g1_db:3306/db?useUnicode=true&characterEncoding=UTF-8&useSSL=false
         ports: # 2020年度グループ1
-            - "8201:8080" # ポート8201番の開放
+            - "8080:8080" # ポート8080番の開放
         privileged: true
         tty: true
         command: wait-for-it.sh springwork_20g1_db:3306 --timeout=30 -- ./gradlew tomcatRun
