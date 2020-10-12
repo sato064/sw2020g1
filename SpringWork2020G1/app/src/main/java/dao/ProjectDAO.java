@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -61,6 +62,27 @@ public class ProjectDAO extends DriverAccessor{
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
         } finally {
+        }
+    }
+    public List<Project> findAll(Connection connection){ //Reviewのリストの全レコードの取得
+        try{
+
+            String sql = "SELECT * FROM projects"; //SELECT文(クラス内での定数)
+
+            List<Project> list = new ArrayList<>();
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql); //SELECT文を実行し結果表を取得
+            while(rs.next()){ //characterにレコードの値をいれてListのインスタンスであるlistに追加
+                Project project = new Project();
+                Review.setId(rs.getInt("id"));
+                list.add(Project);
+            }
+            stmt.close(); //close
+            rs.close(); //close
+            return list;
+        } catch (SQLException e) { //接続やSQL処理の失敗時の処理
+            e.printStackTrace();
+            return null;
         }
     }
 
