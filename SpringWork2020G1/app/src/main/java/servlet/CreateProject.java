@@ -78,7 +78,9 @@ public class CreateProject extends HttpServlet {
         manager.registProject(project);
     
         // 成功画面を表示する
-        response.sendRedirect("/SpringWork2020G1/Main");
+        //response.sendRedirect("/SpringWork2020G1/Main");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProjectSuccess.jsp");
+        dispatcher.forward(request, response);
 
     }
 }
