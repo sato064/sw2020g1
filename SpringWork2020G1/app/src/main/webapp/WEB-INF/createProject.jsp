@@ -15,12 +15,12 @@ pageEncoding="UTF-8"%>
         <form action="/SpringWork2020G1/CreateProject" method="post">
             タイトル<input type="text" id="title" name="title" placeholder="プロジェクト名" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
             概要<textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview" placeholder="概要" maxlength="300" size="80" pattern=".*\S+.*" required></textarea><br>
-            担当者<select name="user" size="5" multiple>
-            <%int i = 0;%>
-            <%while(i<=4){ %>
-            <%String use = "渡邊";  //userList.get(i)%>
-            <option value="<%=i%>"><%=use+i%></option>
-            <%i=i+1; } %>
+            <select id="user" name="user" multiple="multiple">
+                <option disabled selected>出来てないです</option>
+                <option value="渡邊">渡邊</option>
+                <option value="央ちゃん">央ちゃん</option>
+                <option value="ハネさん">ハネさん</option>
+                <option value="セイヤ">セイヤ</option>
             </select><br>
             期日<input type="date" id="deadline" name="deadline" value="2020-10-10"><br>
             <input type="submit" value="戻る" onclick="history.back()">

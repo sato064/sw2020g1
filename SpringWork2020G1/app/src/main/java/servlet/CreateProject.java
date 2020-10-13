@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Project;
+import beans.Participate;
 import control.ProjectManager;
+import control.ParticipateManager;
 
 //アノテーションの記述
 //jspで示してあげると、jspから呼び出さられる
@@ -76,6 +78,12 @@ public class CreateProject extends HttpServlet {
     
         // 登録
         manager.registProject(project);
+        int prj_id = manager.getProject(project);
+
+        //particiateに登録
+        Participate pt = new Participate(id,prj_id);
+        ParticipateManager party = new ParticipateManager();
+        party.createParticipate(pt);
     
         // 成功画面を表示する
         //response.sendRedirect("/SpringWork2020G1/Main");
