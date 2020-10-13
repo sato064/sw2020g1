@@ -13,52 +13,10 @@ import java.util.ArrayList; //ArrayListのインポート
 import java.util.List; //Listのインポート
 
 import beans.User;
+import utility.DriverAccessor;
 import beans.Review;
 
-
-public class ReviewDAO {
-
-    // 属性
-
-    // データベースの接続先アドレスを静的変数として記述
-    private final static String DRIVER_URL = "jdbc:mysql://localhost:3306/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";;
-
-    // データベース接続ドライバの名前を静的変数として記述
-    // Mysql5.系
-    // private final static String DRIVER_NAME = "com.mysql.jdbc.Driver";
-    // Mysql8.系
-    private final static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-
-    // データベースのユーザー名 （デフォルトではroot）
-    private final static String USER_NAME = "root";
-
-    // データベースのユーザーのパスワード (デフォルトでは設定なし)
-    private final static String PASSWORD = "";
-
-    // データベースとの接続を行う
-    // データベースの接続情報を持ったConnectionオブジェクトを返す
-    public Connection createConnection() {
-        try {
-            Class.forName(DRIVER_NAME);
-            Connection con = DriverManager.getConnection(DRIVER_URL, USER_NAME, PASSWORD);
-            return con;
-        } catch (ClassNotFoundException e) {
-            System.out.println("Can't Find JDBC Driver.\n");
-        } catch (SQLException e) {
-            System.out.println("Connect Error.\n");
-        }
-        return null;
-    }
-
-    // Connectionオブジェクトを使って、データベースとの接続を切断する
-    // 引数Connectionオブジェクト
-    public void closeConnection(Connection con) {
-
-        try {
-            con.close();
-        } catch (Exception ex) {
-        }
-    }
+public class ReviewDAO extends DriverAccessor {
 
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
@@ -89,26 +47,26 @@ public class ReviewDAO {
         }
     }
 
-    public List<Review> findAll(String s, Connection connection){ //Reviewのリストの全レコードの取得
-        try{
+    public List<Review> findAll(String s, Connection connection) { // Reviewのリストの全レコードの取得
+        try {
 
-            String sql = "SELECT * FROM (review INNER JOIN user ON review.user_id = user.id) INNER JOIN restaurant ON review.restaurant_id = restaurant.id"; //SELECT文(クラス内での定数)
-            
+            String sql = "SELECT * FROM (review INNER JOIN user ON review.user_id = user.id) INNER JOIN restaurant ON review.restaurant_id = restaurant.id"; // SELECT文(クラス内での定数)
+
             System.out.println(s);
 
-            if(s.equals("good_count")){
-                sql = "SELECT * FROM (review INNER JOIN user ON review.user_id = user.id) INNER JOIN restaurant ON review.restaurant_id = restaurant.id ORDER BY good_count DESC"; //SELECT文(クラス内での定数)
+            if (s.equals("good_count")) {
+                sql = "SELECT * FROM (review INNER JOIN user ON review.user_id = user.id) INNER JOIN restaurant ON review.restaurant_id = restaurant.id ORDER BY good_count DESC"; // SELECT文(クラス内での定数)
             }
 
-            if(s.equals("Morning")){
+            if (s.equals("Morning")) {
                 sql = "SELECT * FROM (review INNER JOIN user ON review.user_id = user.id) INNER JOIN restaurant ON review.restaurant_id = restaurant.id WHERE scene = 'Morning'";
             }
 
-            if(s.equals("Lunch")){
+            if (s.equals("Lunch")) {
                 sql = "SELECT * FROM (review INNER JOIN user ON review.user_id = user.id) INNER JOIN restaurant ON review.restaurant_id = restaurant.id WHERE scene = 'Lunch'";
             }
 
-            if(s.equals("Dinner")){
+            if (s.equals("Dinner")) {
                 sql = "SELECT * FROM (review INNER JOIN user ON review.user_id = user.id) INNER JOIN restaurant ON review.restaurant_id = restaurant.id WHERE scene = 'Dinner'";
             }
 
@@ -116,24 +74,21 @@ public class ReviewDAO {
 
             List<Review> list = new ArrayList<>();
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql); //SELECT文を実行し結果表を取得
-            while(rs.next()){ //characterにレコードの値をいれてListのインスタンスであるlistに追加
+            ResultSet rs = stmt.executeQuery(sql); // SELECT文を実行し結果表を取得
+            while (rs.next()) { // characterにレコードの値をいれてListのインスタンスであるlistに追加
                 Review Review = new Review();
                 Review.setId(rs.getInt("id"));
-                User user = new User(
-                    rs.getString("user.id"),
-                    rs.getString("user.name")
-                );
+                User user = new User(rs.getString("user.id"), rs.getString("user.name"));
                 Review.setUser(user);
                 Review.setScene(rs.getString("scene"));
                 Review.setInformation(rs.getString("information"));
                 Review.setGoodCount(rs.getInt("good_count"));
                 list.add(Review);
             }
-            stmt.close(); //close
-            rs.close(); //close
+            stmt.close(); // close
+            rs.close(); // close
             return list;
-        } catch (SQLException e) { //接続やSQL処理の失敗時の処理
+        } catch (SQLException e) { // 接続やSQL処理の失敗時の処理
             e.printStackTrace();
             return null;
         }
@@ -145,7 +100,7 @@ public class ReviewDAO {
 
             // SQLコマンド
             String sql = "UPDATE review SET good_count=good_count+1 WHERE id = ?";
-            
+
             // SQLのコマンドを実行する
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, review.getId());
@@ -154,13 +109,13 @@ public class ReviewDAO {
             stmt.executeUpdate();
 
             // オブジェクトを返す
-            //return Review;
+            // return Review;
 
         } catch (SQLException e) {
 
             // エラーが発生した場合、エラーの原因を出力し、nullオブジェクトを返す
             e.printStackTrace();
-            //return null;
+            // return null;
 
         } finally {
         }
