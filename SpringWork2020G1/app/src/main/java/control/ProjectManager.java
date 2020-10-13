@@ -30,6 +30,14 @@ public class ProjectManager extends HttpServlet{
         projectDAO.closeConnection(this.connection);
         this.connection = null;
     }
+    public int getProject(Project project){
+        ProjectDAO projectDAO = new ProjectDAO();
+        this.connection = projectDAO.createConnection();
+        int prj_id = projectDAO.getProject(project,this.connection);
+        projectDAO.closeConnection(this.connection);
+        this.connection = null;
+        return prj_id;
+    }
 
     public List findAllProject(){
         ProjectDAO projectDAO = new ProjectDAO();

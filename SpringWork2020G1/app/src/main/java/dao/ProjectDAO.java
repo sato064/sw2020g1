@@ -15,8 +15,8 @@ import beans.Project;
 public class ProjectDAO extends DriverAccessor{
 
 
-    public static final String DISPLAY_PROJECT = "select * from projects inner join student_info on projects.authorId = student_info.student_id";
-    public static final String REGIST_PROJECT = "insert into projects(projectTitle,projectInfo,authorId,detailedInfo) values(?,?,?,?)";
+    public static final String DISPLAY_PROJECT = "select * from projects";
+    public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
     public static final String DELETE_PROJECT = "delete from projects where projectId = ?";
 
     public List<Project> projectList(Connection connection){
@@ -47,9 +47,7 @@ public class ProjectDAO extends DriverAccessor{
 
     public void registProject(Project project,Connection connection) {
         try {
-            String sql = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            System.out.println("TOUTATU/DAO");
+            PreparedStatement stmt = connection.prepareStatement(REGIST_PROJECT);
             stmt.setString(1, project.getProjectTITLE());
             stmt.setString(2, project.getOverview());
             stmt.setString(3, project.getHostID());
@@ -61,6 +59,25 @@ public class ProjectDAO extends DriverAccessor{
         } catch (SQLException e) {
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
+        } finally {
+        }
+    }
+    public int getProject(Project project,Connection connection) {
+        try {
+            //読み込み用
+            String sql = "select * from projects where id=(select MAX(id) from projects)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            rs.first();
+            int prj_id = rs.getInt("id");
+            statement.close();
+            rs.close();
+            return prj_id;
+
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return 0;
         } finally {
         }
     }
