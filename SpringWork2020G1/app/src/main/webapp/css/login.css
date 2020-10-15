@@ -19,12 +19,17 @@ body{
 .h1 {
   margin-left: 2%;
   margin-right: 2%;
+  margin-bottom: 3%;
   padding-top: 2%;
   padding-left: 6%;
   height: 30px;
   text-align: left;
   font-size: 100%;
   border-bottom: 1px  solid #cccccc;
+}
+
+.h2 {
+  font-size: 150%;
 }
 
 form {
@@ -52,7 +57,7 @@ input::placeholder {
 
 a, input[type="submit"] {
   padding: 2% 5% 2% 5%;
-  margin: 2% 10% 2% 10%;
+  margin: 2% 7% 2% 7%;
   width: auto;
   height: auto;
   border-radius: 10px;
