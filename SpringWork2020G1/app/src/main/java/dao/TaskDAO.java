@@ -32,7 +32,7 @@ public class TaskDAO extends DriverAccessor{
                 task.setTaskTITLE(rs.getString("taskTitle"));
                 task.setOverview(rs.getString("overview"));
                 task.setDeadline(rs.getString("deadline"));
-                task.setProjectSTATUS(rs.getInt("status"));
+                task.setTaskSTATUS(rs.getInt("status"));
                 task.setIsDelayed(rs.getBoolean("isdelayed"));
                 taskList.add(task);
                 Flag = rs.next();
@@ -101,7 +101,7 @@ public class TaskDAO extends DriverAccessor{
             return null;
         }
     }
-
+/*
     public void deleteProject(Task task,Connection connection){
         try {
 
@@ -115,4 +115,6 @@ public class TaskDAO extends DriverAccessor{
         } finally {
         }
     }
+*/
+
 }

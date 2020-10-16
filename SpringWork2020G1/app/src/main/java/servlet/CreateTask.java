@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.Task;
 import beans.Participate;
+import beans.Project;
 import control.TaskManager;
 import control.ParticipateManager;
 
@@ -77,11 +78,11 @@ public class CreateTask extends HttpServlet {
         TaskManager manager = new TaskManager();
     
         // 登録
-        manager.registTask(task);
-        int tsk_id = manager.getTask(task);
+        //manager.registTask(task);
+        //int tsk_id = manager.getTask(task);
 
         //particiateに登録
-        Participate pt = new Participate(id,tsk_id);
+        Participate pt = new Participate(id,0);
         ParticipateManager party = new ParticipateManager();
         party.createParticipate(pt);
     
