@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.StreamTokenizer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ public class ProjectDAO extends DriverAccessor{
 
     public static final String DISPLAY_PROJECT = "select * from projects ORDER BY deadline ASC";
     public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
+    public static final String FIND_PROJECT = "select * from projects where id = ?";
     public static final String DELETE_PROJECT = "delete from projects where projectId = ?";
 
     public List<Project> projectList(Connection connection){
@@ -45,6 +47,29 @@ public class ProjectDAO extends DriverAccessor{
             rs.close();
             System.out.println(projectList);
             return projectList;
+        } catch (SQLException e){
+            return null;
+        }
+    }
+
+    public Project findProject(int prjId ,Connection connection) {
+        try{
+        PreparedStatement statement = connection.prepareStatement(FIND_PROJECT);
+        statement.setInt(1, prjId);
+        //System.out.println(statement);
+        ResultSet rs = statement.executeQuery();
+        rs.first();
+        Project project = new Project();
+            project.setProjectID(rs.getInt("id"));
+            project.setProjectTITLE(rs.getString("title"));
+            project.setOverview(rs.getString("overview"));
+            project.setHostID(rs.getString("host_id"));
+            project.setDeadline(rs.getString("deadline"));
+            project.setProjectSTATUS(rs.getInt("status"));
+            project.setIsDelayed(rs.getBoolean("is_delayed"));
+        statement.close();
+        rs.close();
+        return project;
         } catch (SQLException e){
             return null;
         }

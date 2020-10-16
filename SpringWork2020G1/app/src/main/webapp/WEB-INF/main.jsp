@@ -32,6 +32,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
         <th>概要</th>
         <th>期日</th>
         <th>メンバー</th>
+        <th>詳細</th>
       </tr>
       <%int i = 0;%>
       <%for (Project project : projectList) {%>
@@ -53,7 +54,13 @@ List<User> userList = (List<User>) request.getAttribute("userList");
                 <%}%>
               <%}%>
             <%k++;} %>
-          </td>
+           </td>
+           <td>
+             <c:url value="/ShowProject" var="url" >
+　           <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
+            </c:url>
+            <a href="${url}">リンク</a>
+           </td>
         </tr>
         <%i = i+1;%>
       <%}%>
