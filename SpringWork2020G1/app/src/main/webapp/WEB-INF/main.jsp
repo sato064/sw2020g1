@@ -37,18 +37,30 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <%int i = 0;%>
       <%for (Project project : projectList) {%>
         <%int k = 0;%>
-        <%int w = 0;%>
         <%project = projectList.get(i);%>
         <tr>
           <td><%=project.getProjectTITLE()%></td>
           <td><%=project.getOverview()%></td>
           <td><%=project.getDeadline()%></td>
           <td>
-            <c:url value="/ShowProject" var="url" >
+            <%for (Participate participate : participateList) {%>
+              <%participate = participateList.get(k);%>
+              <%if(project.getProjectID() == participate.getPrjId()){%>
+                <%for(int w=0;w<=userList.size()-1;w++){%>
+                  <%User user = userList.get(w);%>
+                  <%if(participate.getUserId().equals(user.getId())){%>
+                    <%=user.getName()+" "%>
+                  <%}%>
+                <%}%>
+              <%}%>
+            <%k++;} %>
+           </td>
+           <td>
+             <c:url value="/ShowProject" var="url" >
 　           <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
             </c:url>
             <a href="${url}">リンク</a>
-          </td>
+           </td>
         </tr>
         <%i = i+1;%>
       <%}%>
