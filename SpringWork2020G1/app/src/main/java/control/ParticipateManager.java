@@ -13,6 +13,14 @@ public class ParticipateManager extends HttpServlet{
     public ParticipateManager(){
 
     }
+    public List<Participate> participateList() {
+        ParticipateDAO participateDAO = new ParticipateDAO();
+        this.connection = participateDAO.createConnection();
+        List<Participate> participateList = participateDAO.participateList(this.connection);
+        participateDAO.closeConnection(this.connection);
+        this.connection = null;
+        return participateList;
+    }
     public void createParticipate(Participate participate){
         ParticipateDAO participateDAO = new ParticipateDAO();
         this.connection = participateDAO.createConnection();

@@ -1,7 +1,3 @@
-//--------------------------------
-//	RegistInfo.java
-//--------------------------------
-//　自分が格納されているフォルダ名
 package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
@@ -68,9 +64,6 @@ public class Login extends HttpServlet {
     
         // StudentManagerオブジェクトの生成
         UserManager manager = new UserManager();
-        List<String> userList = manager.userList();
-        Collections.reverse(userList);
-        request.setAttribute("userList",userList);
     
         // ログイン
         User login_user = manager.login(loginid,password);

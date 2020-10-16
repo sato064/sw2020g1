@@ -1,7 +1,3 @@
-//--------------------------------
-//	RegistInfo.java
-//--------------------------------
-//　自分が格納されているフォルダ名
 package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
@@ -34,12 +30,6 @@ public class RegistUser extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
-        response.setContentType("text/html; charset=utf-8");
-        UserManager userManager = new UserManager();
-        List<String> userList = userManager.userList();
-        Collections.reverse(userList);
-        request.setAttribute("userList",userList);
-
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
         dispatcher.forward(request, response);
@@ -67,9 +57,6 @@ public class RegistUser extends HttpServlet {
     
         // StudentManagerオブジェクトの生成
         UserManager manager = new UserManager();
-        List<String> userList = manager.userList();
-        Collections.reverse(userList);
-        request.setAttribute("userList",userList);
     
         // 登録
         manager.registUser(user);

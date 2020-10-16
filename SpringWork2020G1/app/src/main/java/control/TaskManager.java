@@ -3,7 +3,7 @@ package control;
 import java.sql.Connection;
 import java.util.List;
 
-import beans.Project;
+import beans.Task;
 import dao.TaskDAO;
 
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ public class TaskManager extends HttpServlet{
     }
     public List<Task> taskList() {
         TaskDAO taskDAO = new TaskDAO();
-        this.connection = tasktDAO.createConnection();
+        this.connection = taskDAO.createConnection();
         List<Task> taskList = taskDAO.taskList(this.connection);
         taskDAO.closeConnection(this.connection);
         this.connection = null;

@@ -15,7 +15,7 @@ import beans.Project;
 public class ProjectDAO extends DriverAccessor{
 
 
-    public static final String DISPLAY_PROJECT = "select * from projects";
+    public static final String DISPLAY_PROJECT = "select * from projects ORDER BY deadline ASC";
     public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
     public static final String DELETE_PROJECT = "delete from projects where projectId = ?";
 
@@ -81,28 +81,6 @@ public class ProjectDAO extends DriverAccessor{
         } finally {
         }
     }
-    public List<Project> findAll(Connection connection){ //Reviewのリストの全レコードの取得
-        try{
-
-            String sql = "SELECT * FROM projects"; //SELECT文(クラス内での定数)
-
-            List<Project> list = new ArrayList<>();
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql); //SELECT文を実行し結果表を取得
-            while(rs.next()){ //characterにレコードの値をいれてListのインスタンスであるlistに追加
-                Project project = new Project();
-                project.setProjectID(rs.getInt("id"));
-                list.add(project);
-            }
-            stmt.close(); //close
-            rs.close(); //close
-            return list;
-        } catch (SQLException e) { //接続やSQL処理の失敗時の処理
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public void deleteProject(Project project,Connection connection){
         try {
 
