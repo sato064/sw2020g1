@@ -34,11 +34,11 @@ public class Main extends HttpServlet {
 
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
-        
+        /*
         ProjectManager manager = new ProjectManager();
         List<Project> projectList = manager.projectList(); //Projectのリストの全レコードの取得
         request.setAttribute("projectList", projectList); //ProjectのリストをprojctListという名前
-        
+        */
         ParticipateManager manager1 = new ParticipateManager();
         List<Participate> participateList = manager1.participateList();
         request.setAttribute("participateList", participateList);

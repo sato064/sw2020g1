@@ -15,7 +15,7 @@ import beans.Project;
 public class ProjectDAO extends DriverAccessor{
 
 
-    public static final String DISPLAY_PROJECT = "select * from projects ORDER BY deadline ASC";
+    public static final String DISPLAY_PROJECT = "select * from projects";
     public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
     public static final String DELETE_PROJECT = "delete from projects where projectId = ?";
 
@@ -23,22 +23,27 @@ public class ProjectDAO extends DriverAccessor{
         try {
             List<Project> projectList = new ArrayList<>();
             PreparedStatement statement = connection.prepareStatement(DISPLAY_PROJECT);
+            System.out.println(DISPLAY_PROJECT);
             ResultSet rs = statement.executeQuery();
             boolean Flag = rs.first();
-            while (Flag){
+            do {
+                System.out.println("REGISTING");
+                
                 Project project = new Project();
-                project.setProjectID(rs.getInt("projectId"));
-                project.setProjectTITLE(rs.getString("projectTitle"));
+                project.setProjectID(rs.getInt("id"));
+                project.setProjectTITLE(rs.getString("title"));
                 project.setOverview(rs.getString("overview"));
-                project.setHostID(rs.getString("hostId"));
+                project.setHostID(rs.getString("host_id"));
                 project.setDeadline(rs.getString("deadline"));
                 project.setProjectSTATUS(rs.getInt("status"));
-                project.setIsDelayed(rs.getBoolean("isdelayed"));
+                project.setIsDelayed(rs.getBoolean("is_delayed"));
                 projectList.add(project);
+                System.out.println(project);
                 Flag = rs.next();
-            }
+            } while (Flag);
             statement.close();
             rs.close();
+            System.out.println(projectList);
             return projectList;
         } catch (SQLException e){
             return null;
