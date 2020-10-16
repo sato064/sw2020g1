@@ -51,6 +51,9 @@ public class Project {
     public int getProjectID(){
         return this.projectID;
     }
+    public String getPrjIDStr(){
+        return this.projectID.toString();
+    }
     public String getProjectTITLE(){
         return this.projectTITLE;
     }
