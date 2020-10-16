@@ -1,6 +1,3 @@
-package servlet;
-
-//自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -80,9 +77,9 @@ public class Login extends HttpServlet {
             session.setAttribute("UserId", login_user.getId());
             System.out.println((String)session.getAttribute("UserName"));
             System.out.println(session.getId());
-            projects = pManager.projectList();
-            session.setAttribute("ProjectList",projects);
-            System.out.println(projects);
+            //projects = pManager.projectList();
+            //session.setAttribute("ProjectList",projects);
+            //System.out.println(projects);
             System.out.println("session set lists");
 
             response.sendRedirect("./Main");
