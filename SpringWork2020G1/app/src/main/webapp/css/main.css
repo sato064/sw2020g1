@@ -9,27 +9,22 @@ header {
   font-size: 120%;
 }
 
-body {
+body{
   font-family: Roboto;
   margin: 0px;
   color: #053C58;
   text-align: center;
 }
 
-.h1 {
-  margin: 60px;
-  font-size: 200%;
-}
-
 a {
-  padding: 2%;
-  margin: 5%;
-  border-radius: 10px;
+  border-radius: 100%;
+  border: none;
   background-color: #99CCCC;
-  font-size: 150%;
+  font-size: 400%;
+  color: #fff;
   text-decoration: none;
 }
 
 a:active {
-  color: #ffffff;
+  color: #fff;
 }
