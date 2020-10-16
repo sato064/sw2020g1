@@ -21,9 +21,10 @@ List<User> userList = (List<User>) request.getAttribute("userList");
   <body>
     <header>
       ようこそ
-      ${sessionScope.UserName}さん
-      <a href="./CreateProject">＋</a><br>
-      <br>
+      ${sessionScope.UserName}さん<br>
+        <div class="right">
+          <a href="./CreateProject">+</a>
+        </div>
     </header>
     <table border="1">
       <center>
