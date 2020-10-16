@@ -17,6 +17,7 @@ public class ProjectManager extends HttpServlet{
     public List<Project> projectList() {
         ProjectDAO projectDAO = new ProjectDAO();
         this.connection = projectDAO.createConnection();
+        System.out.println("QUERRY START");
         List<Project> projectList = projectDAO.projectList(this.connection);
         projectDAO.closeConnection(this.connection);
         this.connection = null;

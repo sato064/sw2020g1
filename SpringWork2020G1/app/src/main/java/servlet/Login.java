@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import beans.Project;
 import beans.User;
+import control.ProjectManager;
 import control.UserManager;
 
 
@@ -27,6 +29,7 @@ import control.UserManager;
 public class Login extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    List<Project> projects = new ArrayList<Project>();
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,6 +67,7 @@ public class Login extends HttpServlet {
     
         // StudentManagerオブジェクトの生成
         UserManager manager = new UserManager();
+        ProjectManager pManager = new ProjectManager();
     
         // ログイン
         User login_user = manager.login(loginid,password);
@@ -76,6 +80,10 @@ public class Login extends HttpServlet {
             session.setAttribute("UserId", login_user.getId());
             System.out.println((String)session.getAttribute("UserName"));
             System.out.println(session.getId());
+            projects = pManager.projectList();
+            session.setAttribute("ProjectList",projects);
+            System.out.println(projects);
+            System.out.println("session set lists");
 
             response.sendRedirect("./Main");
         }else{
