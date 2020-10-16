@@ -22,8 +22,7 @@ public class UserDAO extends DriverAccessor {
     public List<User> userList(Connection connection) {
         try {
             List<User> userList = new ArrayList<>();
-            String LIST_PRJ = "select * from projects";
-            PreparedStatement stmt = connection.prepareStatement(LIST_PRJ);
+            PreparedStatement stmt = connection.prepareStatement(LIST_USER);
             ResultSet rs = stmt.executeQuery();
             boolean flag = rs.first();
             while (flag) {
