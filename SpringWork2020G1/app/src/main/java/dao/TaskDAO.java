@@ -101,8 +101,10 @@ public class TaskDAO extends DriverAccessor{
             return null;
         }
     }
+/*
 
     public void deleteTask(Task task,Connection connection){
+
         try {
 
             PreparedStatement statement = connection.prepareStatement(DELETE_TASK);
@@ -115,4 +117,6 @@ public class TaskDAO extends DriverAccessor{
         } finally {
         }
     }
+*/
+
 }
