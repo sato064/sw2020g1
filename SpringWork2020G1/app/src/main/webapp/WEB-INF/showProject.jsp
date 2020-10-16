@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%
 String name = (String)session.getAttribute("UserName");
+Project finded_project = (Project)request.getAttribute("finded_project");
 List<Project> projectList = (List<Project>) request.getAttribute("projectList");
 List<Participate> participateList = (List<Participate>) request.getAttribute("participateList");
 List<User> userList = (List<User>) request.getAttribute("userList");
@@ -25,34 +26,12 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <a href="./CreateProject">＋</a><br>
       <br>
     </header>
-    <table border="1">
-      <center>
-      <tr>
-        <th>プロジェクト名</th>
-        <th>概要</th>
-        <th>期日</th>
-        <th>メンバー</th>
-        <th>詳細</th>
-      </tr>
-      <%int i = 0;%>
-      <%for (Project project : projectList) {%>
-        <%int k = 0;%>
-        <%int w = 0;%>
-        <%project = projectList.get(i);%>
-        <tr>
-          <td><%=project.getProjectTITLE()%></td>
-          <td><%=project.getOverview()%></td>
-          <td><%=project.getDeadline()%></td>
-          <td>
-            <c:url value="/ShowProject" var="url" >
-　           <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
-            </c:url>
-            <a href="${url}">リンク</a>
-          </td>
-        </tr>
-        <%i = i+1;%>
-      <%}%>
-      </center>
-    </table>
-  </body>
+    プロジェクト名:<%=finded_project.getProjectTITLE()%><br>
+    詳細:<%=finded_project.getOverview()%><br>
+    期日:<%=finded_project.getDeadline()%><br>
+
+    <a href="./Main">ホームへ戻る</a><br>
+
+
+    
 </html>
