@@ -39,15 +39,6 @@ public class ProjectManager extends HttpServlet{
         return prj_id;
     }
 
-    public List findAllProject(){
-        ProjectDAO projectDAO = new ProjectDAO();
-        this.connection = projectDAO.createConnection();
-        List<Project> projectList = projectDAO.findAll(this.connection);
-        projectDAO.closeConnection(this.connection);
-        this.connection = null;
-        return projectList;
-    }
-
     public void deleteProject(Project project){
         ProjectDAO projectDAO = new ProjectDAO();
         this.connection = projectDAO.createConnection();

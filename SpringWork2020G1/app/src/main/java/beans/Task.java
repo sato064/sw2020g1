@@ -24,6 +24,8 @@ public class Task {
 
     public Task(){
 
+    }
+
     public void setTaskID(int taskID) {
         this.taskID = taskID;
     }

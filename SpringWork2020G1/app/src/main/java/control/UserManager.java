@@ -1,4 +1,3 @@
-//　自分が格納されているフォルダ名
 package control;
 
 //  自分が格納されているフォルダの外にある必要なクラス
@@ -18,10 +17,10 @@ public class UserManager extends HttpServlet{
     public UserManager() {
     }
 
-    public List<String> userList() {
+    public List<User> userList() {
         UserDAO userDAO = new UserDAO();
         this.connection = userDAO.createConnection();
-        List<String> userList = userDAO.userList(this.connection);
+        List<User> userList = userDAO.userList(this.connection);
         userDAO.closeConnection(this.connection);
         this.connection = null;
         return userList;
