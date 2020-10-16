@@ -15,7 +15,7 @@ import beans.Project;
 public class ProjectDAO extends DriverAccessor{
 
 
-    public static final String DISPLAY_PROJECT = "select * from projects";
+    public static final String DISPLAY_PROJECT = "select * from projects ORDER BY deadline ASC";
     public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
     public static final String DELETE_PROJECT = "delete from projects where projectId = ?";
 
