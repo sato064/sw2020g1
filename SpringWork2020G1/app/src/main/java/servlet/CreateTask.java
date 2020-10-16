@@ -79,12 +79,15 @@ public class CreateTask extends HttpServlet {
     
         // 登録
         //manager.registTask(task);
+
+        
         //int tsk_id = manager.getTask(task);
 
-        //particiateに登録
-        Participate pt = new Participate(id,0);
-        ParticipateManager party = new ParticipateManager();
-        party.createParticipate(pt);
+        //particiateじゃないです
+        //Participate pt = new Participate(id,tsk_id);
+        //ParticipateManager party = new ParticipateManager();
+        //party.createParticipate(pt);
+
     
         // 成功画面を表示する
         //response.sendRedirect("/SpringWork2020G1/Main");

@@ -1,5 +1,3 @@
-
-//　自分が格納されているフォルダ名
 package dao;
 
 //  自分が格納されているフォルダの外にある必要なクラス
@@ -18,16 +16,34 @@ import utility.DriverAccessor;
 
 public class UserDAO extends DriverAccessor {
 
+    public static final String LIST_USER = "select * from users";
+    public static final String REGIST_USER = "insert into users (id, name, password) values(?, ?, ?)";
+
+    public List<User> userList(Connection connection) {
+        try {
+            List<User> userList = new ArrayList<>();
+            PreparedStatement stmt = connection.prepareStatement(LIST_USER);
+            ResultSet rs = stmt.executeQuery();
+            boolean flag = rs.first();
+            while (flag) {
+                User user = new User();
+                user.setId(rs.getString("id"));
+                user.setName(rs.getString("name"));
+                userList.add(user);
+                flag = rs.next();
+            }
+            stmt.close();
+            rs.close();
+            return userList;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
     public void registUser(User user, Connection connection) {
         try {
-            // SQLコマンド
-            String sql = "insert into users (id, name, password) values(?, ?, ?)";
-
-            // SQLコマンドの実行
-            PreparedStatement stmt = connection.prepareStatement(sql);
-
+            PreparedStatement stmt = connection.prepareStatement(REGIST_USER);
             // SQLコマンドのクエッションマークに値を、1番目から代入する
             stmt.setString(1, user.getId());
             stmt.setString(2, user.getName());
@@ -43,14 +59,10 @@ public class UserDAO extends DriverAccessor {
 
     public User login(String id, String pass, Connection connection) {
         try {
-            System.out.println("TOUTATu");
-            // SQLコマンド
-            String sql = "select * from users where id = '" + id + "' and password = '" + pass + "'";
-
-            // SQLコマンドの実行
-            System.out.println(sql);
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            String LOGIN_USER = "select * from users where id = '" + id + "' and password = '" + pass + "'";
+            System.out.println(LOGIN_USER);
+            PreparedStatement stmt = connection.prepareStatement(LOGIN_USER);
+            ResultSet rs = stmt.executeQuery();
             rs.first();
 
             // if(rs.next()){
@@ -62,7 +74,6 @@ public class UserDAO extends DriverAccessor {
             // else{
             // return null;
             // }
-
         } catch (SQLException e) {
 
             // エラーが発生した場合、エラーの原因を出力する
@@ -70,28 +81,6 @@ public class UserDAO extends DriverAccessor {
             return null;
 
         } finally {
-        }
-    }
-
-    public List<String> userList(Connection connection) {
-        try {
-            List<String> userList = new ArrayList<>();
-            PreparedStatement stmt = connection.prepareStatement("select * from users");
-            ResultSet rs = stmt.executeQuery();
-            boolean flag = rs.first();
-            while (flag) {
-                // User user = new User();
-                // user.setId(rs.getString("id"));
-                // user.setName(rs.getString("name"));
-                // userList.add(user);
-                userList.add(rs.getString("name"));
-                flag = rs.next();
-            }
-            stmt.close();
-            rs.close();
-            return userList;
-        } catch (SQLException e) {
-            return null;
         }
     }
 }

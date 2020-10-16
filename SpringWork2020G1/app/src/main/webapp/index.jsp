@@ -13,16 +13,7 @@ pageEncoding="UTF-8"%>
     <div class="h1">
       共有ToDoリスト管理
     </div>
-    <a href="./Login">ログイン</a>
+    <a href="./Login"> 　ログイン　 </a>
     <a href="./RegistUser">新規ユーザ登録</a>
-
-    <!-- <br><br>
-    <a href="./RegistUser">新規登録する</a>
-    <br><br>
-    <form action="./Login" method="post">
-      <input type="text" placeholder="メールアドレス" name="mail_address" required/><br>
-      <input type="password" placeholder="パスワード" name="password" required/><br>
-      <input type="submit" value="ログイン" name="OK" /><br>
-    </form> -->
   </body>
 </html>

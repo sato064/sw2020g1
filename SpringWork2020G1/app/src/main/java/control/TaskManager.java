@@ -2,7 +2,6 @@ package control;
 
 import java.sql.Connection;
 import java.util.List;
-
 import beans.Project;
 import beans.Task;
 import dao.TaskDAO;

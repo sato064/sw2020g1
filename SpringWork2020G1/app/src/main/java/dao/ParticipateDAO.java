@@ -10,14 +10,35 @@ import java.util.ArrayList;
 
 import beans.User;
 import utility.DriverAccessor;
-import beans.Project;
 import beans.Participate;
 
 public class ParticipateDAO extends DriverAccessor{
 
-    public static final String CREATE_PROJECT = "insert into participates(user_id,prj_id,is_prj_own) values(?,?,?)";
-    public static final String DELETE_PROJECT = "delete from participates where user_id = ? and prj_id = ?";
+    public static final String DISPLAY_PARTICIPATE = "select * from participates";
+    public static final String CREATE_PARTICIPATE = "insert into participates(user_id,prj_id,is_prj_own) values(?,?,?)";
+    public static final String DELETE_PARTICIPATE = "delete from participates where user_id = ? and prj_id = ?";
 
+    public List<Participate> participateList(Connection connection){
+        try {
+            List<Participate> participateList = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement(DISPLAY_PARTICIPATE);
+            ResultSet rs = statement.executeQuery();
+            boolean Flag = rs.first();
+            while (Flag){
+                Participate participate = new Participate();
+                participate.setUserId(rs.getString("user_id"));
+                participate.setPrjId(rs.getInt("prj_id"));
+                participate.setIsPrjOwn(rs.getBoolean("is_prj_own"));
+                participateList.add(participate);
+                Flag = rs.next();
+            }
+            statement.close();
+            rs.close();
+            return participateList;
+        } catch (SQLException e){
+            return null;
+        }
+    }
     public void createParticipate(Participate participate,Connection connection) {
         try {
             System.out.println("CREATE_PARTY");
@@ -30,7 +51,7 @@ public class ParticipateDAO extends DriverAccessor{
             stmt1.close();
             rs.close();
 
-            PreparedStatement stmt = connection.prepareStatement(CREATE_PROJECT);
+            PreparedStatement stmt = connection.prepareStatement(CREATE_PARTICIPATE);
             stmt.setString(1, participate.getUserId());
             stmt.setInt(2, participate.getPrjId());
             if(participate.getUserId().equals(hostID)){
@@ -49,7 +70,7 @@ public class ParticipateDAO extends DriverAccessor{
     public void deleteParticipate(Participate participate,Connection connection){
         try {
 
-            PreparedStatement stmt = connection.prepareStatement(DELETE_PROJECT);
+            PreparedStatement stmt = connection.prepareStatement(DELETE_PARTICIPATE);
             stmt.setString(1,participate.getUserId());
             stmt.setInt(2,participate.getPrjId());
             stmt.executeUpdate();

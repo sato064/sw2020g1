@@ -17,7 +17,7 @@ public class TaskDAO extends DriverAccessor{
 
     public static final String DISPLAY_TASK = "select * from tasks";
     public static final String REGIST_TASK = "insert into tasks ( title, overview, deadline, status ,is_delayed) values(?, ?, ?, ? ,?)";
-    public static final String DELETE_PROJECT = "delete from tasks where taskId = ?";
+    public static final String DELETE_TASK = "delete from tasks where taskId = ?";
 
     public List<Task> taskList(Connection connection){
         try {
@@ -102,7 +102,9 @@ public class TaskDAO extends DriverAccessor{
         }
     }
 /*
-    public void deleteProject(Task task,Connection connection){
+
+    public void deleteTask(Task task,Connection connection){
+
         try {
 
             PreparedStatement statement = connection.prepareStatement(DELETE_TASK);
