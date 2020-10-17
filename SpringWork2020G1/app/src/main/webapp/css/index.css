@@ -28,6 +28,15 @@ a {
   background-color: #99CCCC;
   font-size: 150%;
   text-decoration: none;
+  box-shadow: 1px 1px 1px #405757;
+}
+
+a:hover {
+  box-shadow:
+    1px 1px 3px transparent,
+    -1px -1px 3px transparent,
+    inset 1px 1px 3px #405757,
+    inset -1px -1px 3px #fff;;
 }
 
 a:active {

@@ -20,13 +20,17 @@ List<User> userList = (List<User>) request.getAttribute("userList");
   </head>
   <body>
     <header>
-      ようこそ
-      ${sessionScope.UserName}さん<br>
+      <div class="welcome">
+        ようこそ
+        ${sessionScope.UserName}さん
+      </div><br>
+      <div class="logout">
+        <a href="/SpringWork2020G1/Logout">ログアウト </a>
+      </div>
         <div class="right">
-          <a href="./CreateProject">+</a>
+          <a href="./CreateProject">＋</a>
         </div>
     </header>
-    <a href="/SpringWork2020G1/Logout">ログアウト </a>
     <table border="1">
       <center>
       <tr>
