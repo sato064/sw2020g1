@@ -26,6 +26,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
           <a href="./CreateProject">+</a>
         </div>
     </header>
+    <a href="/SpringWork2020G1/Logout">ログアウト </a>
     <table border="1">
       <center>
       <tr>
