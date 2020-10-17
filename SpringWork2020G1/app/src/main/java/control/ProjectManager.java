@@ -23,6 +23,15 @@ public class ProjectManager extends HttpServlet{
         this.connection = null;
         return projectList;
     }
+    public List<Project> finprojectList() {
+        ProjectDAO projectDAO = new ProjectDAO();
+        this.connection = projectDAO.createConnection();
+        System.out.println("QUERRY START");
+        List<Project> projectList = projectDAO.finprojectList(this.connection);
+        projectDAO.closeConnection(this.connection);
+        this.connection = null;
+        return projectList;
+    }
 
     public void registProject(Project project){
         ProjectDAO projectDAO = new ProjectDAO();

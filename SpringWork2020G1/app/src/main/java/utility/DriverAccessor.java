@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DriverAccessor {
 
-    //private final static String DRIVER_URL ="jdbc:mysql://localhost:3306/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
-    private final static String DRIVER_URL = "jdbc:mysql://springwork_20g1_db/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&useSSL=false";
+    private final static String DRIVER_URL ="jdbc:mysql://localhost:3306/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
+    //private final static String DRIVER_URL = "jdbc:mysql://springwork_20g1_db/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&useSSL=false";
 
     // データベース接続ドライバの名前を静的変数として記述
     // Mysql5.系
@@ -19,7 +19,7 @@ public class DriverAccessor {
     private final static String USER_NAME = "root";
 
     // データベースのユーザーのパスワード (デフォルトでは設定なし)
-    private final static String PASSWORD = "root";
+    private final static String PASSWORD = "";
 
     // データベースとの接続を行う
     // データベースの接続情報を持ったConnectionオブジェクトを返す

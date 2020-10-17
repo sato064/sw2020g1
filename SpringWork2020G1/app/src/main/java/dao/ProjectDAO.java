@@ -19,7 +19,8 @@ public class ProjectDAO extends DriverAccessor{
 
 
     public static final String FIND_DELAY = "select * from projects where is_delayed = false ORDER BY deadline ASC";
-    public static final String DISPLAY_PROJECT = "select * from projects ORDER BY deadline ASC";
+    public static final String DISPLAY_PROJECT = "select * from projects where status = 0 or status = 1 ORDER BY deadline ASC";
+    public static final String DISPLAY_PROJECT_FIN = "select * from projects where status = 2 ORDER BY deadline ASC";
     public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
     public static final String FIND_PROJECT = "select * from projects where id = ?";
     public static final String UPDATE_STATUS = "update projects set `is_delayed` = true WHERE id=?";
@@ -32,12 +33,41 @@ public class ProjectDAO extends DriverAccessor{
             System.out.println(DISPLAY_PROJECT);
             ResultSet rs = statement.executeQuery();
             boolean Flag = rs.first();
-            LocalDateTime ltd_now = LocalDateTime.now();
-            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
 
             do {
                 System.out.println("REGISTING");
-                boolean delay_flag = false;
+                Project project = new Project();
+                project.setProjectID(rs.getInt("id"));
+                project.setProjectTITLE(rs.getString("title"));
+                project.setOverview(rs.getString("overview"));
+                project.setHostID(rs.getString("host_id"));
+                project.setDeadline(rs.getString("deadline"));
+                project.setProjectSTATUS(rs.getInt("status"));
+                project.setIsDelayed(rs.getBoolean("is_delayed"));
+                projectList.add(project);
+                System.out.println(project);
+                Flag = rs.next();
+            } while (Flag);
+            statement.close();
+            rs.close();
+            System.out.println(projectList);
+            return projectList;
+        } catch (SQLException e){
+            return null;
+        }
+    }
+    public List<Project> finprojectList(Connection connection){
+        try {
+            List<Project> projectList = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement(DISPLAY_PROJECT_FIN);
+            System.out.println(DISPLAY_PROJECT);
+            ResultSet rs = statement.executeQuery();
+            boolean Flag = rs.first();
+
+
+            do {
+                System.out.println("REGISTING");
                 Project project = new Project();
                 project.setProjectID(rs.getInt("id"));
                 project.setProjectTITLE(rs.getString("title"));
