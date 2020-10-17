@@ -77,7 +77,9 @@ public class Login extends HttpServlet {
             session.setAttribute("UserId", login_user.getId());
             System.out.println((String)session.getAttribute("UserName"));
             System.out.println(session.getId());
+            System.out.println("------------------------");
             //projects = pManager.projectList();
+            pManager.delayChecker();
             //session.setAttribute("ProjectList",projects);
             //System.out.println(projects);
             System.out.println("session set lists");

@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import beans.User;
 import utility.DriverAccessor;
@@ -16,9 +18,11 @@ import beans.Project;
 public class ProjectDAO extends DriverAccessor{
 
 
+    public static final String FIND_DELAY = "select * from projects where is_delayed = false ORDER BY deadline ASC";
     public static final String DISPLAY_PROJECT = "select * from projects ORDER BY deadline ASC";
     public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
     public static final String FIND_PROJECT = "select * from projects where id = ?";
+    public static final String UPDATE_STATUS = "update projects set `is_delayed` = true WHERE id=?";
     public static final String DELETE_PROJECT = "delete from projects where projectId = ?";
 
     public List<Project> projectList(Connection connection){
@@ -28,9 +32,12 @@ public class ProjectDAO extends DriverAccessor{
             System.out.println(DISPLAY_PROJECT);
             ResultSet rs = statement.executeQuery();
             boolean Flag = rs.first();
+            LocalDateTime ltd_now = LocalDateTime.now();
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
             do {
                 System.out.println("REGISTING");
-                
+                boolean delay_flag = false;
                 Project project = new Project();
                 project.setProjectID(rs.getInt("id"));
                 project.setProjectTITLE(rs.getString("title"));
@@ -49,6 +56,42 @@ public class ProjectDAO extends DriverAccessor{
             return projectList;
         } catch (SQLException e){
             return null;
+        }
+    }
+    public int delayChecker(Connection connection){
+        try {
+            System.out.println("Checker done");
+            PreparedStatement statement = connection.prepareStatement(FIND_DELAY);
+            ResultSet rs = statement.executeQuery();
+            boolean Flag = rs.first();
+            LocalDateTime ltd_now = LocalDateTime.now();
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            int id;
+            do {
+                boolean delay_flag = false;
+                LocalDateTime ltd = LocalDateTime.parse(rs.getString("deadline"),f);
+                if(ltd.isBefore(ltd_now)){
+                    delay_flag = true;
+                    
+                }
+                System.out.println(delay_flag);
+                if(delay_flag){
+                    System.out.println("Updating");
+                    id = rs.getInt("id");
+                    break;
+
+                }
+                //System.out.println(rs.next());
+
+                Flag = rs.next();
+            } while (Flag);
+            id = rs.getInt("id");
+            statement.close();
+            rs.close();
+            return id;
+            
+        } catch (SQLException e){
+            return 0;
         }
     }
 
@@ -108,6 +151,39 @@ public class ProjectDAO extends DriverAccessor{
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
             return 0;
+        } finally {
+        }
+    }
+    public void delayProject(int id,Connection connection) {
+        try {
+            //読み込み用
+            String sql = "update projects set `is_delayed` = true WHERE id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+            statement.close();
+
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+        } finally {
+        }
+    }
+
+    public void updateProject(Connection connection) {
+        try {
+            //読み込み用
+            String sql = "select * from projects where id=(select MAX(id) from projects)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            rs.first();
+            int prj_id = rs.getInt("id");
+            statement.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
         } finally {
         }
     }

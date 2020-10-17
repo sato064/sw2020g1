@@ -42,6 +42,16 @@ public class ProjectManager extends HttpServlet{
 
     }
 
+    public void delayChecker(){
+        ProjectDAO projectDAO = new ProjectDAO();
+        this.connection = projectDAO.createConnection();
+        int id = projectDAO.delayChecker(this.connection);
+        projectDAO.delayProject(id, connection);
+        projectDAO.closeConnection(this.connection);
+        this.connection = null;
+
+    }
+
     public int getProject(Project project){
         ProjectDAO projectDAO = new ProjectDAO();
         this.connection = projectDAO.createConnection();
