@@ -27,7 +27,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <div class="logout">
         <a href="/SpringWork2020G1/Logout">ログアウト </a>
       </div>
-      <a href="./FinishedPrj">終了したプロジェクトはこっち</a>
+      <a href="./Main">現存プロジェクトはこっち</a>
         <div class="right">
           <a href="./CreateProject">＋</a>
         </div>
@@ -40,7 +40,6 @@ List<User> userList = (List<User>) request.getAttribute("userList");
         <th>概要</th>
         <th>期日</th>
         <th>メンバー</th>
-        <th>スケジュール状況</th>
         <th>詳細</th>
         
       </tr>
@@ -64,12 +63,6 @@ List<User> userList = (List<User>) request.getAttribute("userList");
                 <%}%>
               <%}%>
             <%k++;} %>
-           </td>
-           <td>
-              <%if(project.getIsDelayed()){%>
-                遅れ発生
-              <%}%>
-                
            </td>
            <td>
              <c:url value="/ShowProject" var="url" >
