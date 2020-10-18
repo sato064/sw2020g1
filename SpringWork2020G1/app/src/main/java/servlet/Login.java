@@ -10,11 +10,12 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import beans.Project;
 import beans.User;
 import control.ProjectManager;
 import control.UserManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 
 
@@ -58,18 +59,20 @@ public class Login extends HttpServlet {
         // コンソールに確認するために出力
         System.out.println("取得した文字列は" + loginid + "です！");
         System.out.println("取得した文字列は" + password + "です！");
-        
-        // Userオブジェクトに情報を格納
-        //User user = new User(loginid, null, password);
-    
-        // StudentManagerオブジェクトの生成
+
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         UserManager manager = new UserManager();
         ProjectManager pManager = new ProjectManager();
     
-        // ログイン
-        User login_user = manager.login(loginid,password);
 
-        if(login_user != null){
+        String pwd_hash = encoder.encode(password);
+        //System.out.println(manager.getPass(loginid));
+        boolean login = encoder.matches(password,manager.getPass(loginid));
+
+        if(login){
+            User login_user = manager.getUser(loginid);
             HttpSession session = request.getSession(true);
             session.setAttribute("login_user", login_user);
             System.out.println(login_user.getName());

@@ -83,4 +83,58 @@ public class UserDAO extends DriverAccessor {
         } finally {
         }
     }
+    public String getPass(String id, Connection connection) {
+        try {
+            String LOGIN_USER = "select * from users where id = '" + id + "'";
+
+            PreparedStatement stmt = connection.prepareStatement(LOGIN_USER);
+            ResultSet rs = stmt.executeQuery();
+            rs.first();
+
+            // if(rs.next()){
+            String pass = rs.getString("password");
+            //System.out.println(pass);
+            //System.out.println("hakore");
+            stmt.close();
+            rs.close();
+            return pass;
+            // }
+            // else{
+            // return null;
+            // }
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return null;
+
+        } finally {
+        }
+    }
+    public User getUser(String id, Connection connection) {
+        try {
+            String LOGIN_USER = "select * from users where id = '" + id + "'";
+            System.out.println(LOGIN_USER);
+            PreparedStatement stmt = connection.prepareStatement(LOGIN_USER);
+            ResultSet rs = stmt.executeQuery();
+            rs.first();
+
+            // if(rs.next()){
+                User login_user = new User(rs.getString("id"), rs.getString("name"));
+                stmt.close();
+                rs.close();
+                return login_user;
+            // }
+            // else{
+            // return null;
+            // }
+        } catch (SQLException e) {
+
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+            return null;
+
+        } finally {
+        }
+    }
 }

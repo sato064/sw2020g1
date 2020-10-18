@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import beans.User;
 import dao.UserDAO;
 import javax.servlet.http.HttpServlet;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserManager extends HttpServlet{
     // 属性
@@ -34,6 +35,8 @@ public class UserManager extends HttpServlet{
 
         // DataBaseへ接続し、コネクションオブジェクトを生成する
         this.connection = userDAO.createConnection();
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         // UserオブジェクトをDataBaseに登録する
         userDAO.registUser(user, this.connection);
@@ -66,5 +69,46 @@ public class UserManager extends HttpServlet{
         return login_user;
 
     }
+    public String getPass(String id) {
+
+        // UserDAOオブジェクト生成
+        UserDAO userDAO = new UserDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = userDAO.createConnection();
+
+        //
+        String pass = userDAO.getPass(id,this.connection);
+
+        // DataBaseとの接続を切断する
+        userDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+        return pass;
+
+    }
+    public User getUser(String id) {
+
+        // UserDAOオブジェクト生成
+        UserDAO userDAO = new UserDAO();
+
+        // DataBaseへ接続し、コネクションオブジェクトを生成する
+        this.connection = userDAO.createConnection();
+
+        //
+        User user = userDAO.getUser(id,this.connection);
+
+        // DataBaseとの接続を切断する
+        userDAO.closeConnection(this.connection);
+
+        // コネクションオブジェクトを破棄する
+        this.connection = null;
+
+        return user;
+
+    }
+
 
 }

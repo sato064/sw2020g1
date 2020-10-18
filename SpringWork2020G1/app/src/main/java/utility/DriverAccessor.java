@@ -5,8 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DriverAccessor {
-
+    //ローカル
     //private final static String DRIVER_URL ="jdbc:mysql://localhost:3306/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true";
+    //リモート
     private final static String DRIVER_URL = "jdbc:mysql://springwork_20g1_db/mst_todo?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B9:00&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&useSSL=false";
 
     // データベース接続ドライバの名前を静的変数として記述

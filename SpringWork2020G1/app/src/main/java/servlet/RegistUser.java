@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import beans.User;
 import control.UserManager;
@@ -51,9 +52,16 @@ public class RegistUser extends HttpServlet {
         System.out.println("取得した文字列は" + id + "です！");
         System.out.println("取得した文字列は" + name + "です！");
         System.out.println("取得した文字列は" + password + "です！");
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        String pwd_hash = encoder.encode(password);
+        System.out.println(pwd_hash);
+
+
         
         // Userオブジェクトに情報を格納
-        User user = new User(id, name, password);
+        User user = new User(id, name, pwd_hash);
     
         // StudentManagerオブジェクトの生成
         UserManager manager = new UserManager();
