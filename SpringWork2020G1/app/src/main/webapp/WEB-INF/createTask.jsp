@@ -15,12 +15,12 @@ pageEncoding="UTF-8"%>
         <form action="/SpringWork2020G1/CreateTask" method="post">
             タイトル<input type="text" id="title" name="title" placeholder="プロジェクト名" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
             概要<textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview" placeholder="概要" maxlength="300" size="80" pattern=".*\S+.*" required></textarea><br>
-            <select id="user" name="user" multiple="multiple">
-                <option disabled selected>出来てないです</option>
-                <option value="渡邊">渡邊</option>
-                <option value="央ちゃん">央ちゃん</option>
-                <option value="ハネさん">ハネさん</option>
-                <option value="セイヤ">セイヤ</option>
+            <select id="user" name="user" multiple>
+                <option disabled selected>担当者を選択してください</option>
+                <%for(int count=0;count<=userList.size()-1;count=count+1){%>
+                    <%User use = userList.get(count);%>
+                        <option value="<%=use.getId()%>"><%=use.getName()%></option>
+                <%}%>
             </select><br>
             期日<input type="date" id="deadline" name="deadline" value="2020-10-10"><br>
             <input type="submit" value="戻る" onclick="history.back()">
