@@ -92,3 +92,45 @@ body{
   color: #053C58;
   text-align: center;
 }
+
+.prj {
+  background-color: #EAEEF1;
+  /* margin: 5px 60px 20px 60px; */
+  /* margin: 1px 60px 20px 60px; */
+}
+
+.prj-header-left {
+  float: left;
+  width: 20%;
+}
+
+.prj-header-left-left {
+  float: left;
+  width: 50%;
+}
+
+.prj-header-left-right {
+  float: right;
+  width: 50%;
+}
+
+.prj-header-right {
+  float: right;
+  width: 30%;
+}
+
+.prj-title {
+  text-align: left;
+}
+
+.members {
+  float: left;
+  width: 30%;
+  text-align: left;
+}
+
+.view {
+  float: right;
+  width: 70%;
+  text-align: left;
+}
