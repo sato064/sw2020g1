@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList; //ArrayListのインポート
 import java.util.List; //Listのインポート
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import beans.User;
 import utility.DriverAccessor;
@@ -56,6 +57,24 @@ public class UserDAO extends DriverAccessor {
         } finally {
         }
     }
+
+    public void updateUser(User user, Connection connection) {
+        try {
+            String updatesql = "update users set name = ? , password = ? where id = ?";
+            PreparedStatement stmt = connection.prepareStatement(updatesql);
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getId());
+            System.out.println(stmt);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+        } finally {
+        }
+    }
+
 
     public User login(String id, String pass, Connection connection) {
         try {
