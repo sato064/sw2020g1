@@ -80,5 +80,24 @@ public class ParticipateDAO extends DriverAccessor{
             e.printStackTrace();
         } finally {
         }
+        
+
+    
     }
+    public void joinProject(String userid,int prjid,Connection connection){
+        try {
+            String joinsql = "insert into participates(user_id,prj_id,is_prj_own) values(?,?,false)";
+            PreparedStatement stmt = connection.prepareStatement(joinsql);
+            stmt.setString(1,userid);
+            stmt.setInt(2,prjid);
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+        }
+    }
+    
 }

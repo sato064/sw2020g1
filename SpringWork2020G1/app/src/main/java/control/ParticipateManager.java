@@ -35,4 +35,14 @@ public class ParticipateManager extends HttpServlet{
         participateDAO.closeConnection(this.connection);
         this.connection = null;
     }
+    public void joinProject(String userid,int prjid) {
+        ParticipateDAO participateDAO = new ParticipateDAO();
+        this.connection = participateDAO.createConnection();
+        participateDAO.joinProject(userid, prjid, this.connection);
+        participateDAO.closeConnection(this.connection);
+        this.connection = null;
+
+        
+    }
+
 }
