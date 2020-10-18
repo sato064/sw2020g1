@@ -91,5 +91,67 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <%}%>
       </center>
     </table>
+    <br><br>
+
+    <%int i1 = 0;%>
+      <%for (Project project : projectList) {%>
+        <%int k1 = 0;%>
+        <%project = projectList.get(i1);%>
+        <div class="prj">
+          <div class="prj-header">
+            <div class="prj-header-left">
+              <div class="prj-header-left-left">
+                <% if(project.getProjectSTATUS()==0) { %>
+                  予定
+                <% } %>
+                <% if(project.getProjectSTATUS()==1) { %>
+                  実行中
+                <% } %>
+                <% if(project.getProjectSTATUS()==2) { %>
+                  終了
+                <% } %>
+              </div>
+              <div class="prj-header-left-right">
+                <%if(project.getIsDelayed()){%>
+                  遅れ
+                <%}%>
+              </div>
+            </div>
+            <div class="prj-header-right">
+              <%=project.getDeadline()%>まで
+            </div>
+          </div><br>
+          <div class="prj-title">
+            <%=project.getProjectTITLE()%>
+          </div>
+          <br>
+          <div class="members">
+            プロジェクトホスト<br>
+            参加者<br>
+            <%for (Participate participate : participateList) {%>
+              <%participate = participateList.get(k1);%>
+              <%if(project.getProjectID() == participate.getPrjId()){%>
+                <%for(int w1=0;w1<=userList.size()-1;w1++){%>
+                  <%User user = userList.get(w1);%>
+                  <%if(participate.getUserId().equals(user.getId())){%>
+                    <%=user.getName()+" "%>
+                    <br>
+                  <%}%>
+                <%}%>
+              <%}%>
+            <%k1++;} %>
+          </div>
+          <div class="view">
+            <div class="overview">
+              概要<br>
+              <%=project.getOverview()%>
+            </div>
+            <div class="participate">
+              
+            </div>
+          </div>
+        </div>
+        <%i1 = i1+1;%>
+      <%}%>
   </body>
 </html>
