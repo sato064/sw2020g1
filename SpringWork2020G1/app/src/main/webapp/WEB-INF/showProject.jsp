@@ -32,7 +32,9 @@ List<User> userList = (List<User>) request.getAttribute("userList");
     <c:url value="/JoinProject" var="url" >
 　           <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
             </c:url>
-            <a href="${url}">このプロジェクトに参加する</a>
+            <% if(finded_project.getProjectSTATUS()==2) {}else{ %>
+              <a href="${url}">このプロジェクトに参加する</a>
+            <% } %>
 
     <a href="./Main">ホームへ戻る</a><br>
 
