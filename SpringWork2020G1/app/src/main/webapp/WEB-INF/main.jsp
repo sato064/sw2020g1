@@ -29,8 +29,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             <a href="/SpringWork2020G1/Logout">ログアウト </a>
           </div>
           <div class="header-left-right">
-            <!-- ⭐️ここにユーザ情報の変更のaタグいれてえ⭐️ -->
-            <a href="./UpdateUser">ユーザ情報変更</a>
+            <a href="./UpdateUser">ユーザ情報の変更</a>
           </div>
         </div>
       </div>
@@ -42,7 +41,9 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             <a href="./CreateProject">＋</a>
         </div>
       </div>
-    </header>
+    </header><br><br><br><br><br>
+
+    <!-- ⭐️　⬇️今後の参考になるからまだ残しておいてほしい⬇️　⭐️ -->
     <table border="1">
       <center>
       <tr>
@@ -94,6 +95,8 @@ List<User> userList = (List<User>) request.getAttribute("userList");
     </table>
     <br><br>
 
+    <!-- ⭐️ここにソートのプルダウンメニュー追加してえ⭐️ -->
+
     <%int i1 = 0;%>
       <%for (Project project : projectList) {%>
         <%int k1 = 0;%>
@@ -103,13 +106,13 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             <div class="prj-header-left">
               <div class="prj-header-left-left">
                 <% if(project.getProjectSTATUS()==0) { %>
-                  予定
+                  <div class="status0">予定</div>
                 <% } %>
                 <% if(project.getProjectSTATUS()==1) { %>
-                  実行中
+                  <div class="status1">実行中</div>
                 <% } %>
                 <% if(project.getProjectSTATUS()==2) { %>
-                  終了
+                  <div class="status2">終了</div>
                 <% } %>
               </div>
               <div class="prj-header-left-right">
@@ -125,10 +128,13 @@ List<User> userList = (List<User>) request.getAttribute("userList");
           <div class="prj-title">
             <%=project.getProjectTITLE()%>
           </div>
-          <br>
           <div class="members">
-            プロジェクトホスト<br>
-            参加者<br>
+            <div class="members-title">
+              プロジェクトホスト<br>
+            </div>
+            <div class="members-title">
+              参加者<br>
+            </div>
             <%for (Participate participate : participateList) {%>
               <%participate = participateList.get(k1);%>
               <%if(project.getProjectID() == participate.getPrjId()){%>
@@ -144,11 +150,13 @@ List<User> userList = (List<User>) request.getAttribute("userList");
           </div>
           <div class="view">
             <div class="overview">
-              概要<br>
+              <div class="overview-title">
+                概要<br>
+              </div>
               <%=project.getOverview()%>
             </div>
             <div class="participate">
-              
+              <!-- ⭐️ここに参加のボタンいれてえ⭐️ -->
             </div>
           </div>
         </div>
