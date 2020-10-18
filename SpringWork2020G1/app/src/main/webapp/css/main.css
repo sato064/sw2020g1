@@ -173,7 +173,7 @@ header {
   text-align: left;
   background-color: #fff;
   border-radius: 10px;
-  border-style: groove;
+  /* border-style: groove; */
 }
 
 .members-title {
@@ -183,7 +183,7 @@ header {
 
 .view {
   float: right;
-  width: 82%;
+  width: 84%;
   text-align: left;
 }
 
@@ -193,10 +193,15 @@ header {
   text-align: left;
   background-color: #fff;
   border-radius: 10px;
-  border-style: groove;
+  /* border-style: groove; */
 }
 
 .overview-title {
   font-weight: bold;
   line-height: 40px;
+}
+
+.participate {
+  margin-top: 20px;
+  text-align: right;
 }

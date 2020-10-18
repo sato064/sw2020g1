@@ -43,7 +43,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       </div>
     </header><br><br><br><br><br>
 
-    <!-- ⭐️　⬇️今後の参考になるからまだ残しておいてほしい⬇️　⭐️ -->
+    <!-- ⭐️　⬇️表形式のやつは今後の参考になるからまだ残しておいてほしい⬇️　⭐️ -->
     <table border="1">
       <center>
       <tr>
@@ -100,6 +100,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
     <%int i1 = 0;%>
       <%for (Project project : projectList) {%>
         <%int k1 = 0;%>
+        <%boolean noParticipate = true; %>
         <%project = projectList.get(i1);%>
         <div class="prj">
           <div class="prj-header">
@@ -141,6 +142,10 @@ List<User> userList = (List<User>) request.getAttribute("userList");
                 <%for(int w1=0;w1<=userList.size()-1;w1++){%>
                   <%User user = userList.get(w1);%>
                   <%if(participate.getUserId().equals(user.getId())){%>
+                    <% if(name==user.getName()) { %>
+                      <% noParticipate = false; %>
+                      ●
+                    <% } %>
                     <%=user.getName()+" "%>
                     <br>
                   <%}%>
@@ -157,6 +162,9 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             </div>
             <div class="participate">
               <!-- ⭐️ここに参加のボタンいれてえ⭐️ -->
+              <% if(noParticipate == true) { %>
+                <a href="${url}">このプロジェクトに参加する</a>
+              <% } %>
             </div>
           </div>
         </div>
