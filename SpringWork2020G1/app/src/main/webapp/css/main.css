@@ -1,60 +1,89 @@
 header {
   display: flex;
-  padding: 5px 10px 5px 30px;
-  padding-left: 30px;
-  width: 100%;
+  padding: 5px 20px 5px 30px;
   height: 55px;
   background-color: #cccccc;
 }
 
-.welcome {
-  font-size: 120%;
-  width: 300px;
-  height: 25px;
+.header-left {
+  float: left;
+  width: 70%;
 }
 
-.logout {
-  font-size: 9px;
-  width: 100px;
-  height: 25px;
-  position:relative;
-  top: 30px;
-  left:-220px;
-  line-height: 25px;
-  border: none;
+.header-left-bottom {
+  float: left;
+  width: 30%;
+}
+.header-left-left {
+  float: left;
+  width: 50%;
+}
+
+.header-left-right {
+  float: right;
+  width: 50%;
+}
+
+.header-right {
+  float: right;
+  width: 30%;
+}
+
+.header-right-left {
+  float: left;
+  width: 80%;
+}
+
+.header-right-right {
+  float: right;
+  width: 20%;
+}
+
+.header-left-top {
+  text-align: left;
+  font-size: 18px;
+}
+
+.header-left-left a {
+  font-size: 11px;
+  padding: 6px 12px 6px 12px;
+  line-height: 30px;
+  color: #053C58;
+  text-decoration: none;
   background-color: #EF858C;
   box-shadow: 1px 1px 1px #405757;
 }
 
-.logout a {
+.header-right-left a {
+  font-size: 15px;
+  padding: 15px 13px 15px 13px;
+  line-height: 57px;
+  color: #053C58;
   text-decoration: none;
+  background-color: #99CCCC;
+  box-shadow: 1px 1px 1px #405757;
 }
 
-.right a {
+.header-right-right a {
   border-radius: 100%;
-  padding: 10px 11px 10px 11px;
+  padding: 8px;
   border: none;
   background-color: #99CCCC;
-  font-size: 210%;
+  font-size: 35px;
+  line-height: 57px;
   color: #fff;
   text-decoration: none;
-  vertical-align: middle;
   box-shadow: 1px 1px 1px #405757;
   text-shadow:  1px  1px 1px #009999, -1px  1px 1px #009999, 1px  -1px 1px #009999, -1px  -1px 1px #009999;
 }
 
-.right a:hover, .logout:hover {
+.header-right-left a:hover, .header-right-right a:hover, .header-left-left a:hover {
   box-shadow:
     1px 1px 3px transparent,
     -1px -1px 3px transparent,
     inset 1px 1px 3px #405757,
-    inset -1px -1px 3px #fff;;
-}
-
-.right {
-  display: block;
-  text-align: right;
-  width: 70%;
+    inset -1px -1px 3px #fff;
+  transition: all 0.3s;
 }
 
 body{
@@ -63,40 +92,3 @@ body{
   color: #053C58;
   text-align: center;
 }
-
-
-/* <!-- ⭐️⭐️　↓cssの途中だから消さないで　⭐️⭐️ -->
-    <!-- <%int i = 0;%>
-    <%for (Project project : projectList) {%>
-      <%int k = 0;%>
-      <%project = projectList.get(i);%>
-        プロジェクト名
-        <td><%=project.getProjectTITLE()%></td>
-        概要
-        <td><%=project.getOverview()%></td>
-        期日
-        <td><%=project.getDeadline()%></td>
-        メンバー
-        <td>
-          <%for (Participate participate : participateList) {%>
-            <%participate = participateList.get(k);%>
-            <%if(project.getProjectID() == participate.getPrjId()){%>
-              <%for(int w=0;w<=userList.size()-1;w++){%>
-                <%User user = userList.get(w);%>
-                <%if(participate.getUserId().equals(user.getId())){%>
-                  <%=user.getName()+" "%>
-                <%}%>
-              <%}%>
-            <%}%>
-          <%k++;} %>
-         </td>
-         詳細
-         <td>
-           <c:url value="/ShowProject" var="url" >
-　           <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
-          </c:url>
-          <a href="${url}">リンク</a>
-         </td>
-      </tr>
-      <%i = i+1;%>
-    <%}%> --> */

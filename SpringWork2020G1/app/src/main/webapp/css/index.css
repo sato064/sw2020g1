@@ -2,7 +2,6 @@ header {
   display: flex;
   padding: 10px;
   padding-left: 30px;
-  width: 100%;
   height: 50px;
   background-color: #cccccc;
   align-items: center;
@@ -28,7 +27,7 @@ a {
   background-color: #99CCCC;
   font-size: 150%;
   text-decoration: none;
-  box-shadow: 1px 1px 1px #405757;
+  box-shadow: 1px 1px 3px #405757;
 }
 
 a:hover {
@@ -36,7 +35,8 @@ a:hover {
     1px 1px 3px transparent,
     -1px -1px 3px transparent,
     inset 1px 1px 3px #405757,
-    inset -1px -1px 3px #fff;;
+    inset -1px -1px 3px #fff;
+  transition: all 0.3s;
 }
 
 a:active {
