@@ -3,12 +3,12 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import= "beans.User" %>
 <%@ page import= "beans.Participate" %>
-<%@ page import= "beans.Project" %>
+<%@ page import= "beans.Task" %>
 <%@ page import="java.util.List" %>
 <%
 String name = (String)session.getAttribute("UserName");
-Project finded_project = (Project)request.getAttribute("finded_project");
-List<Project> projectList = (List<Project>) request.getAttribute("projectList");
+Task finded_task = (Task)request.getAttribute("finded_task");
+List<Task> taskList = (List<Task>) request.getAttribute("taskList");
 List<Participate> participateList = (List<Participate>) request.getAttribute("participateList");
 List<User> userList = (List<User>) request.getAttribute("userList");
 %>
@@ -23,13 +23,64 @@ List<User> userList = (List<User>) request.getAttribute("userList");
     <header>
       ようこそ
       ${sessionScope.UserName}さん
-      <a href="./CreateProject">＋</a><br>
+      <a href="./CreateTask">＋</a><br>
       <br>
     </header>
-    プロジェクト名:<%=finded_project.getProjectTITLE()%><br>
-    詳細:<%=finded_project.getOverview()%><br>
-    期日:<%=finded_project.getDeadline()%><br>
+    タスク名:<%=finded_task.getTaskTITLE()%><br>
+    詳細:<%=finded_task.getOverview()%><br>
+    期日:<%=finded_task.getDeadline()%><br>
+    <table border="1">
+      <center>
+      <tr>
+        <th>タスク名</th>
+        <th>概要</th>
+        <th>期日</th>
+        <th>担当者</th>
+        <th>スケジュール状況</th>
+        <th>詳細</th>
+        
+      </tr>
+      <%int i = 0;%>
+      <%for (Task task: taskList) {%>
+        <%int k = 0;%>
+        <%task = taskList.get(i);%>
+        <tr>
+          <td><%=task.getTaskTITLE()%></td>
+          <td><%=task.getOverview()%></td>
+          <td><%=task.getDeadline()%></td>
+          <td>
+            <%for (Participate participate : participateList) {%>
+              <%participate = participateList.get(k);%>
+              <%if(task.getTaskID() == participate.getPrjId()){%>
+                <%for(int w=0;w<=userList.size()-1;w++){%>
+                  <%User user = userList.get(w);%>
+                  <%if(participate.getUserId().equals(user.getId())){%>
+                    <%=user.getName()+" "%>
+                  <%}%>
+                <%}%>
+              <%}%>
+            <%k++;} %>
+           </td>
+           <td>
+              <%if(task.getIsDelayed()){%>
+                遅れ発生
+              <%}%>
+                
+           </td>
+           <td>
+            <c:url value="/ShowTask" var="url" >
+　           <c:param name="id" value="<%=task.getTskIDStr()%>"/>
+           </c:url>
+           <a href="${url}">リンク</a>
+          </td>
+        </tr>
+        <%i = i+1;%>
+      <%}%>
+      </center>
+    </table>
+    <br><br>
 
+   
     <a href="./Main">ホームへ戻る</a><br>
 
 

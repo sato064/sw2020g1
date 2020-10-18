@@ -59,6 +59,10 @@ public class Task {
     public int getProjectID(){
         return this.projectID;
     }
+
+    public String getTskIDStr(){
+        return this.taskID.toString();
+    }
     public String getTaskTITLE(){
         return this.taskTITLE;
     }
