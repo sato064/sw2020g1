@@ -29,6 +29,10 @@ List<User> userList = (List<User>) request.getAttribute("userList");
     プロジェクト名:<%=finded_project.getProjectTITLE()%><br>
     詳細:<%=finded_project.getOverview()%><br>
     期日:<%=finded_project.getDeadline()%><br>
+    <c:url value="/JoinProject" var="url" >
+　           <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
+            </c:url>
+            <a href="${url}">このプロジェクトに参加する</a>
 
     <a href="./Main">ホームへ戻る</a><br>
 
