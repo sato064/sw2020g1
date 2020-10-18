@@ -30,6 +30,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
           </div>
           <div class="header-left-right">
             <!-- ⭐️ここにユーザ情報の変更のaタグいれてえ⭐️ -->
+            <a href="./UpdateUser">ユーザ情報変更</a>
           </div>
         </div>
       </div>
