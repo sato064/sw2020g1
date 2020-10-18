@@ -58,10 +58,12 @@ CREATE TABLE handles (
 
 
 INSERT INTO users
-VALUES ('a181408w', '近藤羽音', 'hanehane'),
-('e185401f', '市川晴也', 'seiyaseiya'),
-('e185408w', '佐藤央', 'oooooooo'),
-('e185417m', '渡邊幹斗', 'kantokanto');
+VALUES ('a181408w', '近藤羽音', '$2a$10$XOJmkMkhALPxnM0FAedt0OE7X66y1CMCyyu5WzTEJYvNNqHsaf/8a'),
+('e185401f', '市川晴也', '$2a$10$ACbEBSxsLHETB6Ey4vMpKeZbHN4HCzBnv5fRBiZjjek9pzb.xfPhC'),
+('e185408w', '佐藤央', '$2a$10$LqJY0WohA8ktos.9ms4YM.RdZIO.A3aAlfHuiRc/4LmR0YsazsQUe'),
+('e185417m', '渡邊幹斗', '$2a$10$zA/VW.M6g7b.88X0WqktB.oVlBY5xXZKpZZfQNJIUoode5HdJI4Qa');
+
+-- hanehane,seiyaseiya,oooooooo,kantokanto
 
 INSERT INTO projects (title, overview, host_id, deadline, status, is_delayed)
 VALUES ('親睦会', 'これからともにアプリ開発していくので懇親会をしましょう！', 'a181408w', '2020-04-01 00:00:00', 2, true),
