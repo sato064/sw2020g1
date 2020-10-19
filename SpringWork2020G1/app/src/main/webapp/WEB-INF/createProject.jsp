@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,java.io.*" %>
 <%List<User> userList = (ArrayList<User>) request.getAttribute("userList"); %>
 <%String name = (String)session.getAttribute("UserName");%>
+<%String[] errorMessage = (String[])request.getAttribute("errorMessage");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -14,8 +15,13 @@ pageEncoding="UTF-8"%>
         ようこそ<br>
         新規プロジェクト作成<br>
         <form action="/SpringWork2020G1/CreateProject" name="formName" method="post">
-            タイトル<input type="text" id="title" name="title" placeholder="プロジェクト名" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
-            概要<textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview" placeholder="概要" maxlength="300" size="80" pattern=".*\S+.*" required></textarea><br>
+            タイトル   <%if(!(errorMessage[0].equals("null"))){%>
+                <font color="red"><%=errorMessage[0]%></font><%}%><br>
+            <input type="text" id="title" name="title" placeholder="プロジェクト名" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
+            概要   <%if(!(errorMessage[1].equals("null"))){%>
+                <font color="red"><%=errorMessage[1]%></font><%}%><br>
+            <textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview" placeholder="概要" maxlength="300" size="80" pattern=".*\S+.*" required></textarea><br>
+            参加者<br>
             <select id="user" name="user" multiple>
                 <option disabled selected>参加者を選択してください</option>
                 <%for(int count=0;count<=userList.size()-1;count=count+1){%>
@@ -25,7 +31,9 @@ pageEncoding="UTF-8"%>
                     <%}%>
                 <%}%>
             </select><br>
-            期日<input type="date" id="deadline" name="deadline" value="2020-10-10"><br>
+            期日   <%if(!(errorMessage[2].equals("null"))){%>
+                <font color="red"><%=errorMessage[2]%></font><%}%><br>
+            <input type="date" id="deadline" name="deadline" value="2020-10-21"><br>
             <button type="submit" onclick="history.back()">戻る</button>
             <button type="submit">作成</button>
         </form>
