@@ -31,14 +31,11 @@ public class Login extends HttpServlet {
 
     // doPostメソッドから呼び出される(リダイレクトされる)
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         
-        //RestaurantManager manager = new RestaurantManager();
-        //List<Restaurant> list = manager.findAll(); //Restaurantのリストの全レコードの取得
-        //request.setAttribute("list", list); //Restaurantのリストをlistという名前でリクエストスコープに保存
-        
+        String[] errorMessage = {"null"};
+        request.setAttribute("errorMessage",errorMessage);
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
         // RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registReview.jsp");
@@ -89,7 +86,11 @@ public class Login extends HttpServlet {
 
             response.sendRedirect("./Main");
         }else{
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/loginError.jsp");
+            String[] errorMessage = new String[1];
+            errorMessage[0] = "ユーザIDまたはパスワードが違います。";
+            request.setAttribute("errorMessage",errorMessage);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
             dispatcher.forward(request, response);
         }
 
