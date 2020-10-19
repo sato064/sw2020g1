@@ -44,5 +44,14 @@ public class ParticipateManager extends HttpServlet{
 
         
     }
+    public void punishMenber(int prjid) {
+        ParticipateDAO participateDAO = new ParticipateDAO();
+        this.connection = participateDAO.createConnection();
+        participateDAO.punishMenber(prjid, this.connection);
+        participateDAO.closeConnection(this.connection);
+        this.connection = null;
+
+        
+    }
 
 }

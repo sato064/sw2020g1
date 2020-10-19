@@ -217,6 +217,28 @@ public class ProjectDAO extends DriverAccessor{
         } finally {
         }
     }
+    public void refProject(Project project,Connection connection) {
+        try {
+            //読み込み用
+            String sql = "update projects set title = ?,overview = ?,host_id = ?,deadline = ?,status = ? WHERE id=?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, project.getProjectTITLE());
+            statement.setString(2, project.getOverview());
+            statement.setString(3, project.getHostID());
+            statement.setString(4, project.getDeadline());
+            statement.setInt(5, project.getProjectSTATUS());
+            statement.setInt(6, project.getProjectID());
+            statement.executeUpdate();
+            statement.close();
+
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+        } finally {
+        }
+    }
+
+
     public void deleteProject(Project project,Connection connection){
         try {
 

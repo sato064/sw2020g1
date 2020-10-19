@@ -99,5 +99,20 @@ public class ParticipateDAO extends DriverAccessor{
         } finally {
         }
     }
+    public void punishMenber(int prjid,Connection connection){
+        try {
+            String punishsql = "delete from participates where prj_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(punishsql);
+            stmt.setInt(1,prjid);
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            stmt.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+        }
+    }
+
     
 }

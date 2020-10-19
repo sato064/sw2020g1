@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%
 String name = (String)session.getAttribute("UserName");
+String id =(String)session.getAttribute("UserId");
 Project finded_project = (Project)request.getAttribute("finded_project");
 List<Project> projectList = (List<Project>) request.getAttribute("projectList");
 List<Participate> participateList = (List<Participate>) request.getAttribute("participateList");
@@ -35,6 +36,12 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             <% if(finded_project.getProjectSTATUS()==2) {}else{ %>
               <a href="${url}">このプロジェクトに参加する</a>
             <% } %>
+    <c:url value="/UpdateProject" var="url2" >
+    <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
+    </c:url>
+    <% if(finded_project.getHostID().equals(id)) { %>
+      <a href="${url2}">編集</a>
+    <% } %>
 
     <a href="./Main">ホームへ戻る</a><br>
 
