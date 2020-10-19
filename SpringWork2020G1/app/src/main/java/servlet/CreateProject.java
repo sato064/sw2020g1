@@ -2,6 +2,7 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import beans.User;
@@ -39,6 +41,9 @@ public class CreateProject extends HttpServlet {
         UserManager userManager = new UserManager();
         List<User> userList = userManager.userList();
         request.setAttribute("userList",userList);
+
+        String[] errorMessage = {"null","null","null"};
+        request.setAttribute("errorMessage",errorMessage);
 
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProject.jsp");
@@ -75,29 +80,58 @@ public class CreateProject extends HttpServlet {
         System.out.println("取得した文字列は" + hostIdStr + "です！");
         // projectオブジェクトに情報を格納
         Project project = new Project(0,title,overview,hostIdStr,deadline,0,false);
-    
-        // StudentManagerオブジェクトの生成
-        ProjectManager manager = new ProjectManager();
-    
-        // 登録
-        manager.registProject(project);
-        int prj_id = manager.getProject(project);
 
-        //particiateに登録
-        Participate pt = new Participate(id,prj_id);
-        ParticipateManager party = new ParticipateManager();
-        party.createParticipate(pt);
-        for(int i=0;i<user.length;i++){
-            System.out.println("LET登録＝"+ user[i]);
-            pt = new Participate(user[i],prj_id);
-            party = new ParticipateManager();
-            party.createParticipate(pt);
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String today = dateFormat.format(date);
+        String[] date1 = deadline.split("-",0);
+        String[] date2 = today.split("-",0);
+    
+        int check = 0;
+        if(date1[0].compareTo(date2[0])>0){
+            check = 1;
+        }else if(date1[0].compareTo(date2[0])==0){
+            if(date1[1].compareTo(date2[1])>0){
+                check = 1;
+            }else if(date1[1].compareTo(date2[1])==0){
+                if(date1[2].compareTo(date2[2])>=0){
+                    check =1;
+                }else{
+                    check =0;
+                }
+            }else{
+                check =0;
+            }
+        }else{
+            check =0;
         }
-    
-        // 成功画面を表示する
-        //response.sendRedirect("/SpringWork2020G1/Main");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProjectSuccess.jsp");
-        dispatcher.forward(request, response);
 
+        if(check ==1){
+            ProjectManager manager = new ProjectManager(); 
+            manager.registProject(project);
+            int prj_id = manager.getProject(project);
+            Participate pt = new Participate(id,prj_id);
+            ParticipateManager party = new ParticipateManager();
+            party.createParticipate(pt);
+            for(int i=0;i<user.length;i++){
+                pt = new Participate(user[i],prj_id);
+                party = new ParticipateManager();
+                party.createParticipate(pt);
+            }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProjectSuccess.jsp");
+            dispatcher.forward(request, response);
+        }else{
+            String[] errorMessage = new String[3];
+            errorMessage[0] = "タイトルは30文字以内で記載してください。";
+            errorMessage[1] = "概要は300文字以内で記載してください。";
+            errorMessage[2] = "期日が違います。";
+            request.setAttribute("errorMessage",errorMessage);
+
+            UserManager userManager = new UserManager();
+            List<User> userList = userManager.userList();
+            request.setAttribute("userList",userList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProject.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }
