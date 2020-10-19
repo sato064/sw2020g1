@@ -142,7 +142,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
                 <%for(int w1=0;w1<=userList.size()-1;w1++){%>
                   <%User user = userList.get(w1);%>
                   <%if(participate.getUserId().equals(user.getId())){%>
-                    <% if(name==user.getName()) { %>
+                    <% if(name.equals(user.getName())) { %>
                       <% noParticipate = false; %>
                       ●
                     <% } %>
