@@ -19,157 +19,158 @@ List<User> userList = (List<User>) request.getAttribute("userList");
   <title>終了したプロジェクト一覧</title>
   <link rel="stylesheet" type="text/css" href="css/finished.css">
 </head>
-<header>
-  <div class="header-left">
-    <div class="header-left-top">
-      ようこそ　${sessionScope.UserName}さん
-    </div>
-    <div class="header-left-bottom">
-      <div class="header-left-left">
-        <a href="/SpringWork2020G1/Logout">ログアウト </a>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="header-left-top">
+        ようこそ　${sessionScope.UserName}さん
       </div>
-      <div class="header-left-right">
-        <a href="./UpdateUser">ユーザ情報の変更</a>
+      <div class="header-left-bottom">
+        <div class="header-left-left">
+          <a href="/SpringWork2020G1/Logout">ログアウト </a>
+        </div>
+        <div class="header-left-right">
+          <a href="./UpdateUser">ユーザ情報の変更</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="header-right">
-    <div class="header-right-left">
-      <a href="./Main">プロジェクト一覧</a>
-    </div>
-    <div class="header-right-right">
-      <a href="./CreateProject">＋</a>
-    </div>
-  </div>
-</header><br><br><br><br><br>
-
-<table border="1">
-  <center>
-    <tr>
-      <th>プロジェクト名</th>
-      <th>概要</th>
-      <th>期日</th>
-      <th>メンバー</th>
-      <th>詳細</th>
-    </tr>
-    <%int i = 0;%>
-    <%for (Project project : projectList) {%>
-    <%int k = 0;%>
-    <%project = projectList.get(i);%>
-    <tr>
-      <td><%=project.getProjectTITLE()%></td>
-      <td><%=project.getOverview()%></td>
-      <td><%=project.getDeadline()%></td>
-      <td>
-        <%for (Participate participate : participateList) {%>
-        <%participate = participateList.get(k);%>
-        <%if(project.getProjectID() == participate.getPrjId()){%>
-        <%for(int w=0;w<=userList.size()-1;w++){%>
-        <%User user = userList.get(w);%>
-        <%if(participate.getUserId().equals(user.getId())){%>
-        <%=user.getName()+" "%>
-        <%}%>
-                <%}%>
-        <%}%>
-            <%k++;} %>
-      </td>
-      <td>
-        <c:url value="/ShowProject" var="url">
-          　
-          <c:param name="id" value="<%=project.getPrjIDStr()%>" />
-        </c:url>
-        <a href="${url}">リンク</a>
-      </td>
-    </tr>
-    <%i = i+1;%>
-    <%}%>
-  </center>
-</table>
-<br><br>
-
-    <%int i1 = 0;%>
-    <%for (Project project : projectList) {%>
-    <%int k1 = 0;%>
-    <%boolean noParticipate = true; %>
-    <%project = projectList.get(i1);%>
-    <div class="prj">
-      <div class="prj-header">
-        <div class="prj-header-left">
-          <div class="prj-header-left-left">
-            <% if(project.getProjectSTATUS()==0) { %>
-            <div class="status0">予定</div>
-            <% } %>
-            <% if(project.getProjectSTATUS()==1) { %>
-            <div class="status1">実行中</div>
-            <% } %>
-            <% if(project.getProjectSTATUS()==2) { %>
-            <div class="status2">終了</div>
-            <% } %>
-          </div>
-          <div class="prj-header-left-right">
-            <%if(project.getIsDelayed()){%>
-            遅れ
-            <%}%>
-          </div>
-        </div>
-        <div class="prj-header-right">
-          <%=project.getDeadline()%>まで
-        </div>
-      </div><br>
-      <div class="prj-title">
-        <%=project.getProjectTITLE()%>
+    <div class="header-right">
+      <div class="header-right-left">
+        <a href="./Main">プロジェクト一覧</a>
       </div>
-      <div class="members">
-        <div class="members-title">
-          プロジェクトホスト<br>
-        </div>
-        <div class="members-title">
-          参加者<br>
-        </div>
-        <%for (Participate participate : participateList) {%>
-        <%participate = participateList.get(k1);%>
-        <%if(project.getProjectID() == participate.getPrjId()){%>
-        <%for(int w1=0;w1<=userList.size()-1;w1++){%>
-        <%User user = userList.get(w1);%>
-        <%if(participate.getUserId().equals(user.getId())){%>
-        <% if(name.equals(user.getName())) { %>
-        <% noParticipate = false; %>
-        ●
-        <% } else { %>
-          　
-        <% } %>
-        <%=user.getName()+" "%>
-        <br>
-        <%}%>
-        <%}%>
-        <%}%>
-        <%k1++;} %>
+      <div class="header-right-right">
+        <a href="./CreateProject">＋</a>
       </div>
-      <div class="view">
-        <div class="overview">
-          <div class="overview-title">
-            概要<br>
-          </div>
-          <%=project.getOverview()%>
-        </div>
-        <div class="participate">
-          <!-- ⭐️ここに参加のボタンいれてえ⭐️ -->
-          <% if(noParticipate == true) { %>
-          <c:url value="/JoinProject" var="url1">    　
+    </div>
+  </header><br><br><br><br><br>
+  
+  <table border="1">
+    <center>
+      <tr>
+        <th>プロジェクト名</th>
+        <th>概要</th>
+        <th>期日</th>
+        <th>メンバー</th>
+        <th>詳細</th>
+      </tr>
+      <%int i = 0;%>
+      <%for (Project project : projectList) {%>
+      <%int k = 0;%>
+      <%project = projectList.get(i);%>
+      <tr>
+        <td><%=project.getProjectTITLE()%></td>
+        <td><%=project.getOverview()%></td>
+        <td><%=project.getDeadline()%></td>
+        <td>
+          <%for (Participate participate : participateList) {%>
+          <%participate = participateList.get(k);%>
+          <%if(project.getProjectID() == participate.getPrjId()){%>
+          <%for(int w=0;w<=userList.size()-1;w++){%>
+          <%User user = userList.get(w);%>
+          <%if(participate.getUserId().equals(user.getId())){%>
+          <%=user.getName()+" "%>
+          <%}%>
+                  <%}%>
+          <%}%>
+              <%k++;} %>
+        </td>
+        <td>
+          <c:url value="/ShowProject" var="url">
+            　
             <c:param name="id" value="<%=project.getPrjIDStr()%>" />
           </c:url>
-          <a href="${url1}">このプロジェクトに参加する</a>
+          <a href="${url}">リンク</a>
+        </td>
+      </tr>
+      <%i = i+1;%>
+      <%}%>
+    </center>
+  </table>
+  <br><br>
+  
+      <%int i1 = 0;%>
+      <%for (Project project : projectList) {%>
+      <%int k1 = 0;%>
+      <%boolean noParticipate = true; %>
+      <%project = projectList.get(i1);%>
+      <div class="prj">
+        <div class="prj-header">
+          <div class="prj-header-left">
+            <div class="prj-header-left-left">
+              <% if(project.getProjectSTATUS()==0) { %>
+              <div class="status0">予定</div>
+              <% } %>
+              <% if(project.getProjectSTATUS()==1) { %>
+              <div class="status1">実行中</div>
+              <% } %>
+              <% if(project.getProjectSTATUS()==2) { %>
+              <div class="status2">終了</div>
+              <% } %>
+            </div>
+            <div class="prj-header-left-right">
+              <%if(project.getIsDelayed()){%>
+              遅れ
+              <%}%>
+            </div>
+          </div>
+          <div class="prj-header-right">
+            <%=project.getDeadline()%>まで
+          </div>
+        </div><br>
+        <div class="prj-title">
+          <%=project.getProjectTITLE()%>
+        </div>
+        <div class="members">
+          <div class="members-title">
+            プロジェクトホスト<br>
+          </div>
+          <div class="members-title">
+            参加者<br>
+          </div>
+          <%for (Participate participate : participateList) {%>
+          <%participate = participateList.get(k1);%>
+          <%if(project.getProjectID() == participate.getPrjId()){%>
+          <%for(int w1=0;w1<=userList.size()-1;w1++){%>
+          <%User user = userList.get(w1);%>
+          <%if(participate.getUserId().equals(user.getId())){%>
+          <% if(name.equals(user.getName())) { %>
+          <% noParticipate = false; %>
+          ●
           <% } else { %>
-          <c:url value="/JoinProject" var="url1">
-            <c:param name="id" value="<%=project.getPrjIDStr()%>" />
-          </c:url>
-          <a href="${url1}">詳細だけど、リンク先はちがう
-          </a>
+            　
           <% } %>
+          <%=user.getName()+" "%>
+          <br>
+          <%}%>
+          <%}%>
+          <%}%>
+          <%k1++;} %>
+        </div>
+        <div class="view">
+          <div class="overview">
+            <div class="overview-title">
+              概要<br>
+            </div>
+            <%=project.getOverview()%>
+          </div>
+          <div class="participate">
+            <!-- ⭐️ここに参加のボタンいれてえ⭐️ -->
+            <% if(noParticipate == true) { %>
+            <c:url value="/JoinProject" var="url1">    　
+              <c:param name="id" value="<%=project.getPrjIDStr()%>" />
+            </c:url>
+            <a href="${url1}">このプロジェクトに参加する</a>
+            <% } else { %>
+            <c:url value="/JoinProject" var="url1">
+              <c:param name="id" value="<%=project.getPrjIDStr()%>" />
+            </c:url>
+            <a href="${url1}">詳細だけど、リンク先はちがう
+            </a>
+            <% } %>
+          </div>
         </div>
       </div>
-    </div>
-    <%i1 = i1+1;%>
-    <%}%>
-  </body>
+      <%i1 = i1+1;%>
+      <%}%>
+</body>
 </html>
