@@ -46,6 +46,8 @@ public class RegistUser extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
+        
+
         // requestオブジェクトから登録情報の取り出し
         String name = request.getParameter("name");
         String id = request.getParameter("id");

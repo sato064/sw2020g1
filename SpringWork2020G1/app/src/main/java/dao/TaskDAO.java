@@ -17,7 +17,7 @@ public class TaskDAO extends DriverAccessor{
 
     public static final String DISPLAY_TASK = "select * from tasks";
     public static final String FIND_TASK = "select * from tasks where prj_id = ?";
-    public static final String REGIST_TASK = "insert into tasks ( title, overview, deadline, status ,is_delayed) values(?, ?, ?, ? ,?)";
+    public static final String REGIST_TASK = "insert into tasks ( prj_id, title, overview, deadline, status ,is_delayed) values(? ,?, ?, ?, ? ,?)";
     public static final String DELETE_TASK = "delete from tasks where taskId = ?";
 
     public List<Task> taskList(Connection connection){
@@ -84,11 +84,12 @@ public class TaskDAO extends DriverAccessor{
     public void registTask(Task task,Connection connection) {
         try {
             PreparedStatement stmt = connection.prepareStatement(REGIST_TASK);
-            stmt.setString(1, task.getTaskTITLE());
-            stmt.setString(2, task.getOverview());
-            stmt.setString(3, task.getDeadline());
-            stmt.setInt(4, 0);
-            stmt.setBoolean(5, false);
+            stmt.setInt(1, task.getProjectID());
+            stmt.setString(2, task.getTaskTITLE());
+            stmt.setString(3, task.getOverview());
+            stmt.setString(4, task.getDeadline());
+            stmt.setInt(5, task.getTaskSTATUS());
+            stmt.setBoolean(6, false);
             stmt.executeUpdate();
 
         } catch (SQLException e) {

@@ -65,7 +65,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <a href="${url2}">編集</a>
     <% } %>
     <br>
-    <c:url value="/UpdateProject" var="url3" >
+    <c:url value="/CreateTask" var="url3" >
     <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
     </c:url>
     <a href="${url3}">タスクの新規作成</a>
