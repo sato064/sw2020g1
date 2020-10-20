@@ -15,24 +15,32 @@ List<User> userList = (List<User>) request.getAttribute("userList");
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <title>top</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-  </head>
-  <body>
-    <header>
-      <div class="welcome">
-        ようこそ
-        ${sessionScope.UserName}さん
-      </div><br>
-      <div class="logout">
-        <a href="/SpringWork2020G1/Logout">ログアウト </a>
-      </div>
-      <a href="./Main">現存プロジェクトはこっち</a>
-        <div class="right">
-          <a href="./CreateProject">＋</a>
+    <title>終了したプロジェクト一覧</title>
+    <link rel="stylesheet" type="text/css" href="css/finished.css">
+      <header>
+      <div class="header-left">
+        <div class="header-left-top">
+          ようこそ　${sessionScope.UserName}さん
         </div>
+        <div class="header-left-bottom">
+          <div class="header-left-left">
+            <a href="/SpringWork2020G1/Logout">ログアウト </a>
+          </div>
+          <div class="header-left-right">
+            <a href="./UpdateUser">ユーザ情報の変更</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-right-left">
+          <a href="./Main">プロジェクト一覧</a>
+        </div>
+        <div class="header-right-right">
+            <a href="./CreateProject">＋</a>
+        </div>
+      </div>
+    </header><br><br><br><br><br>
 
-    </header>
     <table border="1">
       <center>
       <tr>
