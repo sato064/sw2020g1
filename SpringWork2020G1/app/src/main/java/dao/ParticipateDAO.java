@@ -80,9 +80,6 @@ public class ParticipateDAO extends DriverAccessor{
             e.printStackTrace();
         } finally {
         }
-        
-
-    
     }
     public void joinProject(String userid,int prjid,Connection connection){
         try {
@@ -113,6 +110,4 @@ public class ParticipateDAO extends DriverAccessor{
         } finally {
         }
     }
-
-    
 }
