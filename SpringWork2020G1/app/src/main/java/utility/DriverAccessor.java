@@ -20,7 +20,7 @@ public class DriverAccessor {
     private final static String USER_NAME = "root";
 
     // データベースのユーザーのパスワード (デフォルトでは設定なし)
-    private final static String PASSWORD = "";
+    private final static String PASSWORD = "root";
 
     // データベースとの接続を行う
     // データベースの接続情報を持ったConnectionオブジェクトを返す
