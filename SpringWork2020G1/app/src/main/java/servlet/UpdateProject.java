@@ -75,9 +75,17 @@ public class UpdateProject extends HttpServlet {
         //System.out.println("---------------");
         //System.out.println(id_str);
         //int prj_id = Integer.parseInt(id_str);
+        request.setCharacterEncoding("UTF-8");
 
-        
-
+        if(request.getParameter("delete")!= null){
+            System.out.println("kesuyo-");
+            ProjectManager manager = new ProjectManager();
+            String prj_id_s = request.getParameter("prjid");
+            int prj_id = Integer.parseInt(prj_id_s);
+            manager.deleteProject(prj_id);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/deleteProjectSuccess.jsp");
+            dispatcher.forward(request, response);
+        }else{
 
         String title = request.getParameter("title");
         String overview = request.getParameter("overview");
@@ -85,11 +93,12 @@ public class UpdateProject extends HttpServlet {
         String user[] = request.getParameterValues("user");
         String prj_id_s = request.getParameter("prjid");
         int prj_id = Integer.parseInt(prj_id_s);
-
         HttpSession session = request.getSession();
         String id = (String)session.getAttribute("UserId");
         Object hostid = session.getAttribute("UserId");
         String hostIdStr = hostid.toString();
+        String status_str = request.getParameter("status");
+        int status = Integer.parseInt(status_str);
 
 
         Date date = new Date();
@@ -119,7 +128,7 @@ public class UpdateProject extends HttpServlet {
 
         if(check ==1){
 
-            Project project = new Project(prj_id,title,overview,hostIdStr,deadline,0,false);
+            Project project = new Project(prj_id,title,overview,hostIdStr,deadline,status,false);
             ProjectManager manager = new ProjectManager();
             manager.updateProject(project);
             int prj_id2 = manager.getProject(project);
@@ -147,6 +156,7 @@ public class UpdateProject extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProject.jsp");
             dispatcher.forward(request, response);
         }
+    }
     }
         
 

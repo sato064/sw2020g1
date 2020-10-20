@@ -26,9 +26,7 @@ request.setAttribute("Prj", project);
             <input type="text" id="title" name="title" value="<%=project.getProjectTITLE()%>" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
             概要   <%if(!(errorMessage[1].equals("null"))){%>
                 <font color="red"><%=errorMessage[1]%></font><%}%><br>
-            <textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview"  maxlength="300" size="80" pattern=".*\S+.*" required>
-            <%=project.getOverview()%>
-            </textarea><br>
+            <textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview"  maxlength="300" size="80" pattern=".*\S+.*" required><%=project.getOverview()%></textarea><br>
             参加者<br>
             <select id="user" name="user" multiple>
                 <option disabled selected>参加者を選択してください</option>
@@ -39,6 +37,10 @@ request.setAttribute("Prj", project);
                     <%}%>
                 <%}%>
             </select><br>
+            状態<br>
+            <input type="radio" name="status" value="0">予定
+            <input type="radio" name="status" checked="checked" value="1">実行中
+            <input type="radio" name="status" value="2">終了<br>
             期日   <%if(!(errorMessage[2].equals("null"))){%>
                 <font color="red"><%=errorMessage[2]%></font><%}%><br>
             <input type="date" id="deadline" name="deadline"><br>
@@ -46,7 +48,8 @@ request.setAttribute("Prj", project);
             <input type="text" id="prjid" name="prjid" value="<%=project.getProjectID()%>">
             </div>
             <button type="submit" onclick="history.back()">戻る</button>
-            <button type="submit">作成</button>
+            <button type="submit">更新</button>
+            <button type="submit" name="delete">削除</button>
         </form>
         
     </body>

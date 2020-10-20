@@ -77,10 +77,10 @@ public class ProjectManager extends HttpServlet{
         return prj_id;
     }
 
-    public void deleteProject(Project project){
+    public void deleteProject(int prj_id){
         ProjectDAO projectDAO = new ProjectDAO();
         this.connection = projectDAO.createConnection();
-        projectDAO.deleteProject(project,this.connection);
+        projectDAO.deleteProject(prj_id,this.connection);
         projectDAO.closeConnection(this.connection);
         this.connection = null;
     }
