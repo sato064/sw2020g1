@@ -92,7 +92,7 @@ public class RegistUser extends HttpServlet {
             String[] errorMessage = new String[4];
             errorMessage[0] = "null";
             errorMessage[1] = "null";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[3] = "null";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
@@ -101,7 +101,7 @@ public class RegistUser extends HttpServlet {
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
             errorMessage[0] = "null";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[2] = "null";
             errorMessage[3] = "null";
             request.setAttribute("errorMessage",errorMessage);
@@ -122,7 +122,7 @@ public class RegistUser extends HttpServlet {
             String[] errorMessage = new String[4];
             errorMessage[0] = "null";
             errorMessage[1] = "null";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[3] = "確認用パスワードが一致しません。";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
@@ -131,7 +131,7 @@ public class RegistUser extends HttpServlet {
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
             errorMessage[0] = "null";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[2] = "null";
             errorMessage[3] = "確認用パスワードが一致しません。";
             request.setAttribute("errorMessage",errorMessage);
@@ -141,8 +141,8 @@ public class RegistUser extends HttpServlet {
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
             errorMessage[0] = "null";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[3] = "null";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
@@ -162,7 +162,7 @@ public class RegistUser extends HttpServlet {
             String[] errorMessage = new String[4];
             errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
             errorMessage[1] = "null";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[3] = "null";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
@@ -171,7 +171,7 @@ public class RegistUser extends HttpServlet {
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
             errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[2] = "null";
             errorMessage[3] = "null";
             request.setAttribute("errorMessage",errorMessage);
@@ -181,8 +181,8 @@ public class RegistUser extends HttpServlet {
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
             errorMessage[0] = "null";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[3] = "確認用パスワードが一致しません。";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
@@ -192,7 +192,7 @@ public class RegistUser extends HttpServlet {
             String[] errorMessage = new String[4];
             errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
             errorMessage[1] = "null";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[3] = "確認用パスワードが一致しません。";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
@@ -201,7 +201,7 @@ public class RegistUser extends HttpServlet {
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
             errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[2] = "null";
             errorMessage[3] = "確認用パスワードが一致しません。";
             request.setAttribute("errorMessage",errorMessage);
@@ -211,8 +211,8 @@ public class RegistUser extends HttpServlet {
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
             errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
             errorMessage[3] = "null";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
@@ -221,8 +221,8 @@ public class RegistUser extends HttpServlet {
         System.out.println("エラーエラー");
         String[] errorMessage = new String[4];
         errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
-        errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
-        errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+        errorMessage[1] = "ユーザIDは全角半角8文字以上16文字以下で記載してください。";
+        errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
         errorMessage[3] = "確認用パスワードが一致しません。";
         request.setAttribute("errorMessage",errorMessage);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
