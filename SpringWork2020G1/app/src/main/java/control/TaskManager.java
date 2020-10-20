@@ -56,10 +56,10 @@ public class TaskManager extends HttpServlet{
         return taskList;
     }
 
-    public void deleteTask(Task task){
+    public void deleteTask(Integer taskid){
         TaskDAO taskDAO = new TaskDAO();
         this.connection = taskDAO.createConnection();
-        //taskDAO.deleteTask(task,this.connection);
+        taskDAO.deleteTask(taskid,this.connection);
         taskDAO.closeConnection(this.connection);
         this.connection = null;
     }
@@ -69,6 +69,22 @@ public class TaskManager extends HttpServlet{
         int id = taskDAO.findTaskIdByName(name, this.connection);
         taskDAO.closeConnection(this.connection);
         return id;
+
+    }
+    public Task findTaskById(Integer id){
+        TaskDAO taskDAO = new TaskDAO();
+        this.connection = taskDAO.createConnection();
+        Task task = taskDAO.findTaskIdById(id, this.connection);
+        taskDAO.closeConnection(this.connection);
+        return task;
+
+    }
+    public void updateTask(Task task){
+        TaskDAO taskDAO = new TaskDAO();
+        this.connection = taskDAO.createConnection();
+        taskDAO.updateTask(task, this.connection);
+        taskDAO.closeConnection(this.connection);
+        this.connection = null;
 
     }
 }
