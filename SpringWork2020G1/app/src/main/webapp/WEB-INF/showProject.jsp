@@ -10,8 +10,9 @@ pageEncoding="UTF-8"%>
 String name = (String)session.getAttribute("UserName");
 String id =(String)session.getAttribute("UserId");
 Project finded_project = (Project)request.getAttribute("finded_project");
+int project_id = (int)request.getAttribute("prj_id");
 List<Project> projectList = (List<Project>) request.getAttribute("projectList");
-List<Task> task_list = (List<Task>) request.getAttribute("task_list"); 
+List<Task> task_list = (List<Task>) request.getAttribute("task_list");
 List<Participate> participateList = (List<Participate>) request.getAttribute("participateList");
 List<User> userList = (List<User>) request.getAttribute("userList");
 %>
@@ -46,8 +47,11 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <a href="${url2}">編集</a>
     <% } %>
     <br>
+    <c:url value="/UpdateProject" var="url3" >
+    <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
+    </c:url>
+    <a href="${url3}">タスクの新規作成</a>
     <%if(task_list != null) {%>
-
     タスク一覧<br>
     <%int i1 = 0;%>
     <%for (Task task : task_list) { %>

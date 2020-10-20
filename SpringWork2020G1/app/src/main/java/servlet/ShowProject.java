@@ -40,6 +40,7 @@ public class ShowProject extends HttpServlet {
         String Prjid_str = request.getParameter("id");
         System.out.println(Prjid_str);
         int prjid = Integer.parseInt(Prjid_str);
+        request.setAttribute("prj_id",prjid);
         //タスク取得
         TaskManager tManager = new TaskManager();
         List<Task> taskList = tManager.findList(prjid);
