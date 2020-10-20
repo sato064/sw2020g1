@@ -24,7 +24,7 @@ public class ProjectDAO extends DriverAccessor{
     public static final String REGIST_PROJECT = "insert into projects (title, overview, host_id, deadline, status ,is_delayed) values(?, ?, ?, ?, ? ,?)";
     public static final String FIND_PROJECT = "select * from projects where id = ?";
     public static final String UPDATE_STATUS = "update projects set `is_delayed` = true WHERE id=?";
-    public static final String DELETE_PROJECT = "delete from projects where projectId = ?";
+    public static final String DELETE_PROJECT = "delete from projects where id = ?";
 
     public List<Project> projectList(Connection connection){
         try {
@@ -239,11 +239,11 @@ public class ProjectDAO extends DriverAccessor{
     }
 
 
-    public void deleteProject(Project project,Connection connection){
+    public void deleteProject(int prj_id,Connection connection){
         try {
 
             PreparedStatement statement = connection.prepareStatement(DELETE_PROJECT);
-            statement.setInt(1,project.getProjectID());
+            statement.setInt(1,prj_id);
             statement.executeUpdate();
             statement.close();
 
