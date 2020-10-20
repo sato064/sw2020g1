@@ -95,13 +95,13 @@ List<User> userList = (List<User>) request.getAttribute("userList");
         </div>
       </div>
       <%i1 = i1+1;%>
-    <%} }else{}%>
+    <%} }else{%>
+      タスクがありません
+    <%}%><br>
 
 
 
 
     <a href="./Main">ホームへ戻る</a><br>
-
-
-    
+  </body>
 </html>

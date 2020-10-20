@@ -184,7 +184,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
                 </c:url>
                 <a href="${url1}">このプロジェクトに参加する</a>
               <% } else { %>
-                <c:url value="/JoinProject" var="url1" >
+                <c:url value="/ShowProject" var="url1" >
 　              <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
                 </c:url>
                 <a href="${url1}">詳細だけど、リンク先はちがう
