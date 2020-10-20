@@ -1,7 +1,7 @@
-body{
+body {
   font-family: Roboto;
   margin: 0px;
-  color: #053C58;
+  color: #053c58;
   text-align: center;
 }
 
@@ -13,7 +13,7 @@ header {
   /* display: block; */
   width: 100%;
   padding: 5px 30px 5px 30px;
-  background-color: rgba(204,204,204,0.7);
+  background-color: rgba(204, 204, 204, 0.7);
 }
 
 .header-left {
@@ -62,9 +62,9 @@ header {
   font-size: 11px;
   padding: 6px 12px 6px 12px;
   line-height: 30px;
-  color: #053C58;
+  color: #053c58;
   text-decoration: none;
-  background-color: #EF858C;
+  background-color: #ef858c;
   box-shadow: 1px 1px 1px #405757;
 }
 
@@ -72,9 +72,9 @@ header {
   font-size: 11px;
   padding: 6px 12px 6px 12px;
   line-height: 30px;
-  color: #053C58;
+  color: #053c58;
   text-decoration: none;
-  background-color: #AFC8E1;
+  background-color: #afc8e1;
   box-shadow: 1px 1px 1px #405757;
 }
 
@@ -82,9 +82,9 @@ header {
   font-size: 15px;
   padding: 15px 13px 15px 13px;
   line-height: 57px;
-  color: #053C58;
+  color: #053c58;
   text-decoration: none;
-  background-color: #99CCCC;
+  background-color: #99cccc;
   box-shadow: 1px 1px 1px #405757;
 }
 
@@ -92,26 +92,28 @@ header {
   border-radius: 100%;
   padding: 8px;
   border: none;
-  background-color: #99CCCC;
+  background-color: #99cccc;
   font-size: 35px;
   line-height: 57px;
   color: #fff;
   text-decoration: none;
   box-shadow: 1px 1px 1px #405757;
-  text-shadow: 1px 1px 1px #009999, -1px  1px 1px #009999, 1px  -1px 1px #009999, -1px  -1px 1px #009999;
+  text-shadow: 1px 1px 1px #009999, -1px 1px 1px #009999, 1px -1px 1px #009999,
+    -1px -1px 1px #009999;
 }
 
-.header-right-left a:hover, .header-right-right a:hover, .header-left-left a:hover, .header-left-right a:hover {
-  box-shadow:
-    1px 1px 3px transparent,
-    -1px -1px 3px transparent,
-    inset 1px 1px 3px #405757,
-    inset -1px -1px 3px #fff;
+.header-right-left a:hover,
+.header-right-right a:hover,
+.header-left-left a:hover,
+.header-left-right a:hover,
+.prj .view .participate .showTask a:hover {
+  box-shadow: 1px 1px 3px transparent, -1px -1px 3px transparent,
+    inset 1px 1px 3px #405757, inset -1px -1px 3px #fff;
   transition: all 0.3s;
 }
 
 .prj {
-  background-color: #EAEEF1;
+  background-color: #eaeef1;
   /* margin: 5px 60px 20px 60px; */
   margin: 0px 60px 25px 60px;
   padding: 15px 30px;
@@ -135,15 +137,15 @@ header {
 }
 
 .status0 {
-  background-color: #FEF67F;
+  background-color: #fef67f;
 }
 
 .status1 {
-  background-color: #A691CA;
+  background-color: #a691ca;
 }
 
 .status2 {
-  background-color: #00478B;
+  background-color: #00478b;
 }
 
 .prj-header-left-right {
@@ -204,4 +206,13 @@ header {
 .participate {
   margin-top: 20px;
   text-align: right;
+}
+
+.prj .view .participate .showTask a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 1px 1px 1px #405757;
 }
