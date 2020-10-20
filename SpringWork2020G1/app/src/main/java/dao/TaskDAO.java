@@ -18,7 +18,8 @@ public class TaskDAO extends DriverAccessor{
     public static final String DISPLAY_TASK = "select * from tasks";
     public static final String FIND_TASK = "select * from tasks where prj_id = ?";
     public static final String REGIST_TASK = "insert into tasks ( prj_id, title, overview, deadline, status ,is_delayed) values(? ,?, ?, ?, ? ,?)";
-    public static final String DELETE_TASK = "delete from tasks where taskId = ?";
+    public static final String UPDATE_TASK = "update tasks set prj_id = ?, title = ?, overview = ?, deadline = ?, status = ?, is_delayed = ? where id = ?";
+    public static final String DELETE_TASK = "delete from tasks where id = ?";
 
     public List<Task> taskList(Connection connection){
         try {
@@ -98,6 +99,24 @@ public class TaskDAO extends DriverAccessor{
         } finally {
         }
     }
+    public void updateTask(Task task,Connection connection) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement(UPDATE_TASK);
+            stmt.setInt(1, task.getProjectID());
+            stmt.setString(2, task.getTaskTITLE());
+            stmt.setString(3, task.getOverview());
+            stmt.setString(4, task.getDeadline());
+            stmt.setInt(5, task.getTaskSTATUS());
+            stmt.setBoolean(6, false);
+            stmt.setInt(7, task.getTaskID());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // エラーが発生した場合、エラーの原因を出力する
+            e.printStackTrace();
+        } finally {
+        }
+    }
     public int getTask(Task task,Connection connection) {
         try {
             //読み込み用
@@ -157,14 +176,41 @@ public class TaskDAO extends DriverAccessor{
             return null;
         }
     }
-/*
+    public Task findTaskIdById(Integer id,Connection connection){ //Reviewのリストの全レコードの取得
+        try{
 
-    public void deleteTask(Task task,Connection connection){
+            String sql2 = "SELECT * FROM tasks WHERE id = '"+ id + "'"; //SELECT文(クラス内での定数)
+            PreparedStatement stmt = connection.prepareStatement(sql2);
+            
+            ResultSet rs = stmt.executeQuery(sql2);
+            rs.next(); //SELECT文を実行し結果表を取得
+            Task task = new Task();
+                task.setTaskID(id);
+                task.setProjectID(rs.getInt("prj_id"));
+                task.setTaskTITLE(rs.getString("title"));
+                task.setOverview(rs.getString("overview"));
+                task.setDeadline(rs.getString("deadline"));
+                task.setTaskSTATUS(rs.getInt("status"));
+                task.setIsDelayed(rs.getBoolean("is_delayed"));
+            
+            task.setTaskID(rs.getInt("id"));
+            stmt.close();
+            rs.close();
+            return task;
+        } catch (SQLException e) { //接続やSQL処理の失敗時の処理
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+
+    public void deleteTask(Integer taskid,Connection connection){
 
         try {
 
             PreparedStatement statement = connection.prepareStatement(DELETE_TASK);
-            statement.setInt(1,task.getTaskID());
+            statement.setInt(1,taskid);
             statement.executeUpdate();
             statement.close();
 
@@ -173,6 +219,6 @@ public class TaskDAO extends DriverAccessor{
         } finally {
         }
     }
-*/
+
 
 }

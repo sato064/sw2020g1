@@ -115,6 +115,17 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             
           </div>
         </div>
+    <c:url value="/UpdateTask" var="url4" >
+    <c:param name="id" value="<%=task.getTaskIdStr()%>"/>
+      <c:param name="prj_id" value="<%=finded_project.getPrjIDStr()%>"/>
+    </c:url>
+    <a href="${url4}">タスクの更新</a><br>
+    <c:url value="/DeleteTask" var="url5" >
+    <c:param name="id" value="<%=task.getTaskIdStr()%>"/>
+    </c:url>
+    <a href="${url5}">タスクの削除</a>
+    
+        
       </div>
       <%i1 = i1+1;%>
     <%} }else{%>
