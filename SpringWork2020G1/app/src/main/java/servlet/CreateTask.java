@@ -10,6 +10,10 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +29,7 @@ import beans.Participate;
 import beans.Project;
 import control.TaskManager;
 import control.UserManager;
+import jdk.internal.agent.resources.agent;
 import jdk.internal.jshell.tool.resources.l10n;
 import control.ParticipateManager;
 
@@ -50,6 +55,15 @@ public class CreateTask extends HttpServlet {
         request.setAttribute("PrjId",Prjid_str);
         ParticipateManager pManager = new ParticipateManager();
         List<Participate> participatelist = pManager.findPart(prj_id);
+
+        Date date = new Date(); 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String today = dateFormat.format(date);
+        System.out.println(today);
+
+        request.setAttribute("today",today);
+
+        
 
         UserManager manager2 = new UserManager();
         List<User> userList = manager2.userList();

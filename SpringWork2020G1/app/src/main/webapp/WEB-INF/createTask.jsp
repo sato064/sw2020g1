@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
 <%List<User> userList = (ArrayList<User>) request.getAttribute("userList"); %>
 <%String name = (String)session.getAttribute("UserName");%>
 <%String prj_id = (String)request.getAttribute("PrjId");%>
+<%String today = (String)request.getAttribute("today");%>
 <%String[] errorMessage = (String[])request.getAttribute("errorMessage");%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,7 +27,7 @@ pageEncoding="UTF-8"%>
                         <option value="<%=use.getId()%>"><%=use.getName()%></option>
                 <%}%>
             </select><br>
-            期日<input type="date" id="deadline" name="deadline" value="2020-10-10"><br>
+            期日<input type="date" id="deadline" name="deadline" value="<%=today%>"><br>
             <div hidden>
             <input type="text" id="prj_id" name="prj_id" value="<%=prj_id%>">
             </div>
@@ -34,7 +35,7 @@ pageEncoding="UTF-8"%>
             <input type="radio" name="status" value="0">予定
             <input type="radio" name="status" checked="checked" value="1">実行中
             <br>
-            
+
 
             <input type="submit" value="戻る" onclick="history.back()">
             <input type="submit" value="作成" />
