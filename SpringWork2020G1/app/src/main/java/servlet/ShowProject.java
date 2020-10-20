@@ -14,8 +14,10 @@ import java.util.List;
 
 import beans.User;
 import beans.Project;
+import beans.Task;
 import beans.Participate;
 import control.UserManager;
+import control.TaskManager;
 import sun.java2d.pipe.PixelToParallelogramConverter;
 import control.ProjectManager;
 import control.ParticipateManager;
@@ -38,6 +40,13 @@ public class ShowProject extends HttpServlet {
         String Prjid_str = request.getParameter("id");
         System.out.println(Prjid_str);
         int prjid = Integer.parseInt(Prjid_str);
+        //タスク取得
+        TaskManager tManager = new TaskManager();
+        List<Task> taskList = tManager.findList(prjid);
+        System.out.println("--------------------");
+        System.out.println(taskList);
+        request.setAttribute("task_list",taskList);
+        
         ProjectManager manager = new ProjectManager();
         Project project = manager.findProject(prjid);
         request.setAttribute("finded_project", project);

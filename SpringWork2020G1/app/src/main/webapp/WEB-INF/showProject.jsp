@@ -4,12 +4,14 @@ pageEncoding="UTF-8"%>
 <%@ page import= "beans.User" %>
 <%@ page import= "beans.Participate" %>
 <%@ page import= "beans.Project" %>
+<%@ page import= "beans.Task" %>
 <%@ page import="java.util.List" %>
 <%
 String name = (String)session.getAttribute("UserName");
 String id =(String)session.getAttribute("UserId");
 Project finded_project = (Project)request.getAttribute("finded_project");
 List<Project> projectList = (List<Project>) request.getAttribute("projectList");
+List<Task> task_list = (List<Task>) request.getAttribute("task_list"); 
 List<Participate> participateList = (List<Participate>) request.getAttribute("participateList");
 List<User> userList = (List<User>) request.getAttribute("userList");
 %>
@@ -27,6 +29,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <a href="./CreateProject">＋</a><br>
       <br>
     </header>
+
     プロジェクト名:<%=finded_project.getProjectTITLE()%><br>
     詳細:<%=finded_project.getOverview()%><br>
     期日:<%=finded_project.getDeadline()%><br>
@@ -42,6 +45,60 @@ List<User> userList = (List<User>) request.getAttribute("userList");
     <% if(finded_project.getHostID().equals(id)) { %>
       <a href="${url2}">編集</a>
     <% } %>
+    <br>
+    <%if(task_list != null) {%>
+
+    タスク一覧<br>
+    <%int i1 = 0;%>
+    <%for (Task task : task_list) { %>
+      <%int k1 = 0;%>
+      <%boolean noParticipate = true; %>
+      <%task = task_list.get(i1);%>
+      <div class="prj">
+        <div class="prj-header">
+          <div class="prj-header-left">
+            <div class="prj-header-left-left">
+              <% if(task.getTaskSTATUS()==0) { %>
+                <div class="status0">予定</div>
+              <% } %>
+              <% if(task.getTaskSTATUS()==1) { %>
+                <div class="status1">実行中</div>
+              <% } %>
+              <% if(task.getTaskSTATUS()==2) { %>
+                <div class="status2">終了</div>
+              <% } %>
+            </div>
+            <div class="prj-header-left-right">
+              <%if(task.getIsDelayed()){%>
+                遅れ
+              <%}%>
+            </div>
+          </div>
+          <div class="prj-header-right">
+            <%=task.getDeadline()%>まで
+          </div>
+        </div><br>
+        <div class="prj-title">
+          <%=task.getTaskTITLE()%>
+        </div>
+
+        <div class="view">
+          <div class="overview">
+            <div class="overview-title">
+              概要<br>
+            </div>
+            <%=task.getOverview()%>
+          </div>
+          <div class="participate">
+            
+          </div>
+        </div>
+      </div>
+      <%i1 = i1+1;%>
+    <%} }else{}%>
+
+
+
 
     <a href="./Main">ホームへ戻る</a><br>
 
