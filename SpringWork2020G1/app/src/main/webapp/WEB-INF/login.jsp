@@ -18,7 +18,9 @@ pageEncoding="UTF-8"%>
       登録したユーザIDとパスワードを入力してください。
     </div><br>
     <%if(!(errorMessage[0].equals("null"))){%>
-      <font color="red"><%=errorMessage[0]%></font><%}%><br>
+      <div class="error">
+        <%=errorMessage[0]%><%}%><br>
+      </div>
     <form action="./Login" method="post">
       <div class="tag">
         ユーザ<br>
