@@ -58,7 +58,7 @@ public class RegistUser extends HttpServlet {
         System.out.println("取得した文字列は" + password + "です！");
         System.out.println("idの長さは" + id.length() + "です！");
 
-        if(name.length()<=20 && 8<=id.length() && id.length()<=16 && password.equals(password_con)){
+        if(name.length()<=20 && (8<=id.length() && id.length()<=16) && (8<=password.length() && password.length()<=16) && password.equals(password_con)){
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             
             String pwd_hash = encoder.encode(password);
