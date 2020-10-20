@@ -110,7 +110,9 @@ public class UpdateUser extends HttpServlet {
             User user = new User(id,name,pwd_hash);
             uManager.updateUser(user);
             session.invalidate();
-            response.sendRedirect("./");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUserSuccess.jsp");
+            dispatcher.forward(request, response);
+            // response.sendRedirect("/WEB-INF/updateUserSuccess.jsp");
 
         }else if(name.length()<=20 && (8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == true) && (!auth)){
             System.out.println("エラーエラー");

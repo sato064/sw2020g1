@@ -75,7 +75,9 @@ public class RegistUser extends HttpServlet {
             int count=manager.registUser(user);
             
             if(count==1){
-                response.sendRedirect("/SpringWork2020G1");
+                // response.sendRedirect("/WEB-INF/registUserSuccess.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUserSuccess.jsp");
+                dispatcher.forward(request, response);
             }else{
                 errorMessage[1] = "ユーザIDが重複しています";
                 request.setAttribute("errorMessage",errorMessage);
