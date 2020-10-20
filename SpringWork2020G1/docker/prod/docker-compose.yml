@@ -1,0 +1,14 @@
+version: "3"
+services:
+  app:
+    container_name: springwork2020g1_app
+    build:
+      context: ../../
+      dockerfile: ./docker/prod/java/Dockerfile
+    image: onyx.u-gakugei.ac.jp/springwork_20g1_app
+  mysql:
+    container_name: springwork2020g1_db
+    build:
+      context: ../../
+      dockerfile: ./docker/prod/mysql/Dockerfile
+    image: onyx.u-gakugei.ac.jp/springwork_20g1_db
