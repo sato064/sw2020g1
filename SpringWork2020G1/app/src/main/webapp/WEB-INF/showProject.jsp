@@ -21,7 +21,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
 <html>
   <head>
     <title>タスクの一覧</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/showProject.css">
   </head>
   <body>
     <header>

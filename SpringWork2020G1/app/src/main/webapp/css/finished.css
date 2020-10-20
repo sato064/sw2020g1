@@ -7,6 +7,7 @@ body {
 
 header {
   position: fixed;
+  z-index: 9999;
   display: flex;
   /* display: inline; */
   /* display: inline-block; */
@@ -43,13 +44,13 @@ header {
 
 .header-right-left {
   float: left;
-  width: 80%;
+  width: 70%;
   text-align: right;
 }
 
 .header-right-right {
   float: right;
-  width: 20%;
+  width: 30%;
   text-align: right;
 }
 
