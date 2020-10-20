@@ -75,16 +75,156 @@ public class RegistUser extends HttpServlet {
             
             // 成功画面を表示する
             response.sendRedirect("/SpringWork2020G1");
-        }else{
+        }else if(name.length()<=20 && (8<=id.length() && id.length()<=16) && (8<=password.length() && password.length()<=16)){
             System.out.println("エラーエラー");
             String[] errorMessage = new String[4];
-            errorMessage[0] = "氏名は全角半角1文字以上20文字以下で記載してください。";
-            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
-            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
-            errorMessage[3] = "確認用パスワードが一致しません";
+            errorMessage[0] = "null";
+            errorMessage[1] = "null";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
             request.setAttribute("errorMessage",errorMessage);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
             dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (8<=id.length() && id.length()<=16) && password.equals(password_con)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (8<=password.length() && password.length()<=16) && password.equals(password_con)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=id.length() && id.length()<=16) && (8<=password.length() && password.length()<=16) && password.equals(password_con)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "null";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (8<=id.length() && id.length()<=16)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (8<=password.length() && password.length()<=16)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && password.equals(password_con)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=id.length() && id.length()<=16) && (8<=password.length() && password.length()<=16)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=id.length() && id.length()<=16) && password.equals(password_con)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=password.length() && password.length()<=16) && password.equals(password_con)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=id.length() && id.length()<=16)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=password.length() && password.length()<=16)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(password.equals(password_con)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+            dispatcher.forward(request, response);
+        }else { 
+        System.out.println("エラーエラー");
+        String[] errorMessage = new String[4];
+        errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+        errorMessage[1] = "ユーザIDは全角半角8文字以上6文字以下で記載してください。";
+        errorMessage[2] = "パスワードは全角半角8文字以上6文字以下で記載してください。";
+        errorMessage[3] = "確認用パスワードが一致しません。";
+        request.setAttribute("errorMessage",errorMessage);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUser.jsp");
+        dispatcher.forward(request, response);
         }
     }
 }
