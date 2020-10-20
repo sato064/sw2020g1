@@ -22,6 +22,14 @@ public class TaskManager extends HttpServlet{
         this.connection = null;
         return taskList;
     }
+    public List<Task> findList(int id) {
+        TaskDAO taskDAO = new TaskDAO();
+        this.connection = taskDAO.createConnection();
+        List<Task> taskList = taskDAO.taskListByPrjId(id, this.connection);
+        taskDAO.closeConnection(this.connection);
+        this.connection = null;
+        return taskList;
+    }
 
     public void registTask(Task task){
         TaskDAO taskDAO = new TaskDAO();

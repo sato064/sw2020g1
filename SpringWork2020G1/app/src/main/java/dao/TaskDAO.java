@@ -16,6 +16,7 @@ public class TaskDAO extends DriverAccessor{
 
 
     public static final String DISPLAY_TASK = "select * from tasks";
+    public static final String FIND_TASK = "select * from tasks where prj_id = ?";
     public static final String REGIST_TASK = "insert into tasks ( title, overview, deadline, status ,is_delayed) values(?, ?, ?, ? ,?)";
     public static final String DELETE_TASK = "delete from tasks where taskId = ?";
 
@@ -35,10 +36,45 @@ public class TaskDAO extends DriverAccessor{
                 task.setTaskSTATUS(rs.getInt("status"));
                 task.setIsDelayed(rs.getBoolean("isdelayed"));
                 taskList.add(task);
+                
                 Flag = rs.next();
             }
             statement.close();
             rs.close();
+            
+            return taskList;
+        } catch (SQLException e){
+            return null;
+        }
+    }
+    public List<Task> taskListByPrjId(int id,Connection connection){
+        try {
+            List<Task> taskList = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement(FIND_TASK);
+            statement.setInt(1, id);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            System.out.println(rs);
+            boolean Flag = rs.first();
+            System.out.println(Flag);
+            do{
+
+                System.out.println("REGISTING");
+                Task task = new Task();
+                task.setTaskID(rs.getInt("id"));
+                task.setProjectID(id);
+                task.setTaskTITLE(rs.getString("title"));
+                task.setOverview(rs.getString("overview"));
+                task.setDeadline(rs.getString("deadline"));
+                task.setTaskSTATUS(rs.getInt("status"));
+                task.setIsDelayed(rs.getBoolean("is_delayed"));
+                System.out.println(task);
+                taskList.add(task);
+                Flag = rs.next();
+            }while(Flag);
+            statement.close();
+            rs.close();
+            System.out.println(taskList);
             return taskList;
         } catch (SQLException e){
             return null;
