@@ -15,6 +15,7 @@ import beans.Participate;
 public class ParticipateDAO extends DriverAccessor{
 
     public static final String DISPLAY_PARTICIPATE = "select * from participates";
+    public static final String FIND_PART = "select * from participates where prj_id = ?";
     public static final String CREATE_PARTICIPATE = "insert into participates(user_id,prj_id,is_prj_own) values(?,?,?)";
     public static final String DELETE_PARTICIPATE = "delete from participates where user_id = ? and prj_id = ?";
 
@@ -35,6 +36,29 @@ public class ParticipateDAO extends DriverAccessor{
             statement.close();
             rs.close();
             return participateList;
+        } catch (SQLException e){
+            return null;
+        }
+    }
+    public List<Participate> findPart(int prj_id,Connection connection){
+        try {
+            List<Participate> participateList = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement(FIND_PART);
+            statement.setInt(1, prj_id);
+            ResultSet rs = statement.executeQuery();
+            boolean Flag = rs.first();
+            while (Flag){
+                Participate participate = new Participate();
+                participate.setUserId(rs.getString("user_id"));
+                participate.setPrjId(prj_id);
+                participate.setIsPrjOwn(rs.getBoolean("is_prj_own"));
+                participateList.add(participate);
+                Flag = rs.next();
+            }
+            statement.close();
+            rs.close();
+            return participateList;
+
         } catch (SQLException e){
             return null;
         }

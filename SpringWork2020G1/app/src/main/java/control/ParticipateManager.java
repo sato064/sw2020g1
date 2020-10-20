@@ -21,6 +21,14 @@ public class ParticipateManager extends HttpServlet{
         this.connection = null;
         return participateList;
     }
+    public List<Participate> findPart(int prj_id) {
+        ParticipateDAO participateDAO = new ParticipateDAO();
+        this.connection = participateDAO.createConnection();
+        List<Participate> participateList = participateDAO.findPart(prj_id, this.connection);
+        participateDAO.closeConnection(this.connection);
+        this.connection = null;
+        return participateList;
+    }
     public void createParticipate(Participate participate){
         ParticipateDAO participateDAO = new ParticipateDAO();
         this.connection = participateDAO.createConnection();
@@ -51,7 +59,6 @@ public class ParticipateManager extends HttpServlet{
         participateDAO.closeConnection(this.connection);
         this.connection = null;
 
-        
     }
 
 }
