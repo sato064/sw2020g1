@@ -21,11 +21,9 @@ request.setAttribute("Prj", project);
         <br>
         プロジェクト編集<br>
         <form action="./UpdateProject" name="formName" method="post">
-            タイトル   <%if(!(errorMessage[0].equals("null"))){%>
-                <font color="red"><%=errorMessage[0]%></font><%}%><br>
+            タイトル<br>
             <input type="text" id="title" name="title" value="<%=project.getProjectTITLE()%>" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
-            概要   <%if(!(errorMessage[1].equals("null"))){%>
-                <font color="red"><%=errorMessage[1]%></font><%}%><br>
+            概要<br>
             <textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview"  maxlength="300" size="80" pattern=".*\S+.*" required><%=project.getOverview()%></textarea><br>
             参加者<br>
             <select id="user" name="user" multiple>
@@ -37,16 +35,27 @@ request.setAttribute("Prj", project);
                     <%}%>
                 <%}%>
             </select><br>
+            プロジェクトホストの変更<br>
+            <select id="hostID" name="hostID">
+                <%for(int count=0;count<=userList.size()-1;count=count+1){%>
+                    <%User use = userList.get(count);%>
+                    <%if(name.equals(use.getName())){%>
+                        <option value="nochange" selected><%=use.getName()%></option>
+                    <%}else{%>
+                        <option value="<%=use.getId()%>"><%=use.getName()%></option>
+                    <%}%>
+                <%}%>
+            </select><br>
             状態<br>
             <input type="radio" name="status" value="0">予定
             <input type="radio" name="status" checked="checked" value="1">実行中
             <input type="radio" name="status" value="2">終了<br>
-            期日   <%if(!(errorMessage[2].equals("null"))){%>
-                <font color="red"><%=errorMessage[2]%></font><%}%><br>
+            期日   <%if(!(errorMessage[0].equals("null"))){%>
+                <font color="red"><%=errorMessage[0]%></font><%}%><br>
             <input type="date" id="deadline" name="deadline"><br>
             <div hidden>
             <input type="text" id="prjid" name="prjid" value="<%=project.getProjectID()%>">
-            </div>
+            </div><br>
             <button type="submit" onclick="history.back()">戻る</button>
             <button type="submit">更新</button>
             <button type="submit" name="delete">削除</button>

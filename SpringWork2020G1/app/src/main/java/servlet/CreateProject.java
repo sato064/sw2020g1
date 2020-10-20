@@ -42,7 +42,7 @@ public class CreateProject extends HttpServlet {
         List<User> userList = userManager.userList();
         request.setAttribute("userList",userList);
 
-        String[] errorMessage = {"null","null","null"};
+        String[] errorMessage = {"null"};
         request.setAttribute("errorMessage",errorMessage);
 
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
@@ -107,7 +107,7 @@ public class CreateProject extends HttpServlet {
         }
 
         if(check ==1){
-            ProjectManager manager = new ProjectManager(); 
+            ProjectManager manager = new ProjectManager();
             manager.registProject(project);
             int prj_id = manager.getProject(project);
             Participate pt = new Participate(id,prj_id);
@@ -121,10 +121,8 @@ public class CreateProject extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createProjectSuccess.jsp");
             dispatcher.forward(request, response);
         }else{
-            String[] errorMessage = new String[3];
-            errorMessage[0] = "タイトルは30文字以内で記載してください。";
-            errorMessage[1] = "概要は300文字以内で記載してください。";
-            errorMessage[2] = "期日が違います。";
+            String[] errorMessage = new String[1];
+            errorMessage[0] = "期日が違います。";
             request.setAttribute("errorMessage",errorMessage);
 
             UserManager userManager = new UserManager();

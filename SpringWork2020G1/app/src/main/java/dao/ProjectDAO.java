@@ -200,24 +200,7 @@ public class ProjectDAO extends DriverAccessor{
         }
     }
 
-    public void updateProject(Connection connection) {
-        try {
-            //読み込み用
-            String sql = "select * from projects where id=(select MAX(id) from projects)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
-            rs.first();
-            int prj_id = rs.getInt("id");
-            statement.close();
-            rs.close();
-
-        } catch (SQLException e) {
-            // エラーが発生した場合、エラーの原因を出力する
-            e.printStackTrace();
-        } finally {
-        }
-    }
-    public void refProject(Project project,Connection connection) {
+    public void updateProject(Project project,Connection connection) {
         try {
             //読み込み用
             String sql = "update projects set title = ?,overview = ?,host_id = ?,deadline = ?,status = ? WHERE id=?";
