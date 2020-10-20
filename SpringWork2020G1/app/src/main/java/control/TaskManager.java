@@ -63,4 +63,12 @@ public class TaskManager extends HttpServlet{
         taskDAO.closeConnection(this.connection);
         this.connection = null;
     }
+    public Integer findTaskByName(String name){
+        TaskDAO taskDAO = new TaskDAO();
+        this.connection = taskDAO.createConnection();
+        int id = taskDAO.findTaskIdByName(name, this.connection);
+        taskDAO.closeConnection(this.connection);
+        return id;
+
+    }
 }

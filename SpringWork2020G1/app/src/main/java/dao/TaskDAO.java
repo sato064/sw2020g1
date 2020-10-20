@@ -138,6 +138,25 @@ public class TaskDAO extends DriverAccessor{
             return null;
         }
     }
+    public Integer findTaskIdByName(String name,Connection connection){ //Reviewのリストの全レコードの取得
+        try{
+            System.out.println(name);
+
+            String sql2 = "SELECT * FROM tasks WHERE title = '"+ name + "'"; //SELECT文(クラス内での定数)
+            PreparedStatement stmt = connection.prepareStatement(sql2);
+            System.out.println(stmt);
+            ResultSet rs = stmt.executeQuery(sql2); //SELECT文を実行し結果表を取得
+            Task task = new Task();
+            rs.next();
+            task.setTaskID(rs.getInt("id"));
+            stmt.close();
+            rs.close();
+            return task.getTaskID();
+        } catch (SQLException e) { //接続やSQL処理の失敗時の処理
+            e.printStackTrace();
+            return null;
+        }
+    }
 /*
 
     public void deleteTask(Task task,Connection connection){

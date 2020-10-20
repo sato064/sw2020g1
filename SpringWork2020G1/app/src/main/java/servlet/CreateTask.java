@@ -29,6 +29,8 @@ import beans.Participate;
 import beans.Project;
 import control.TaskManager;
 import control.UserManager;
+import dao.HandleDAO;
+import control.HandleManager;
 import jdk.internal.agent.resources.agent;
 import jdk.internal.jshell.tool.resources.l10n;
 import control.ParticipateManager;
@@ -108,6 +110,12 @@ public class CreateTask extends HttpServlet {
         int prjid = Integer.parseInt(id);
         Object hostid = session.getAttribute("UserId");
         String hostIdStr = hostid.toString();
+        String joiners[] = request.getParameterValues("user");
+
+
+        HandleManager hManager = new HandleManager();
+
+
 
         /*
         ここでdeadlineの型変換をする
@@ -128,6 +136,14 @@ public class CreateTask extends HttpServlet {
     
         // 登録
         manager.registTask(task);
+
+        int taskid = manager.findTaskByName(title);
+
+        for(int i=0;i<joiners.length;i++){
+            hManager.registHandle(taskid,joiners[i]);
+        }
+
+
 
         
         //int tsk_id = manager.getTask(task);
