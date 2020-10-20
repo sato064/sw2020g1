@@ -50,6 +50,7 @@ pageEncoding="UTF-8"%>
             参加者
         </div>
         <select id="user" name="user" multiple>
+            <option disabled selected>参加者を選択してください</option>
             <%for(int count=0;count<=userList.size()-1;count=count+1){%>
             <%User use = userList.get(count);%>
             <%if(name.equals(use.getName())){}else{%>
