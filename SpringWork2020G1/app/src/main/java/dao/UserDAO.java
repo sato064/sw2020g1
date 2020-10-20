@@ -42,18 +42,33 @@ public class UserDAO extends DriverAccessor {
     }
     // 情報をデータベースに登録する
     // 引数はStudentオブジェクトと、Connectionオブジェクト
-    public void registUser(User user, Connection connection) {
+    public int registUser(User user, Connection connection) {
         try {
-            PreparedStatement stmt = connection.prepareStatement(REGIST_USER);
-            // SQLコマンドのクエッションマークに値を、1番目から代入する
-            stmt.setString(1, user.getId());
-            stmt.setString(2, user.getName());
-            stmt.setString(3, user.getPassword());
-            stmt.executeUpdate();
+            String sql = "select count(*) from users where id='" + user.getId() + "'";
+            PreparedStatement stmt2 = connection.prepareStatement(sql);
+            ResultSet rs2 = stmt2.executeQuery();
+            rs2.first();
+            String count = rs2.getString("count(*)");
+            stmt2.close();
+            rs2.close();
+            System.out.println("COUNT1は "+count);
+
+            if(count.equals("0")==true){
+                PreparedStatement stmt = connection.prepareStatement(REGIST_USER);
+                // SQLコマンドのクエッションマークに値を、1番目から代入する
+                stmt.setString(1, user.getId());
+                stmt.setString(2, user.getName());
+                stmt.setString(3, user.getPassword());
+                stmt.executeUpdate();
+                return 1;
+            }else{
+                return 0;
+            }
 
         } catch (SQLException e) {
             // エラーが発生した場合、エラーの原因を出力する
             e.printStackTrace();
+            return 0;
         } finally {
         }
     }

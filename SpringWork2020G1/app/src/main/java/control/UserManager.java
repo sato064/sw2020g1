@@ -28,7 +28,7 @@ public class UserManager extends HttpServlet{
     }
     // 追加
     // 引数はUserオブジェクト
-    public void registUser(User user) {
+    public int registUser(User user) {
 
         // UserDAOオブジェクト生成
         UserDAO userDAO = new UserDAO();
@@ -39,14 +39,15 @@ public class UserManager extends HttpServlet{
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         // UserオブジェクトをDataBaseに登録する
-        userDAO.registUser(user, this.connection);
+        int count=userDAO.registUser(user, this.connection);
 
         // DataBaseとの接続を切断する
         userDAO.closeConnection(this.connection);
 
         // コネクションオブジェクトを破棄する
         this.connection = null;
-
+        
+        return count;
     }
 
     public User login(String id,String pass) {

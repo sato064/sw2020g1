@@ -66,11 +66,6 @@ public class UpdateProject extends HttpServlet {
     // responseオブジェクトを使って、次のページを表示する
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //Project getprj = (Project)request.getAttribute("prj");
-        //System.out.println(getprj);//request.getParameter("id");
-        //System.out.println("---------------");
-        //System.out.println(id_str);
-        //int prj_id = Integer.parseInt(id_str);
         request.setCharacterEncoding("UTF-8");
 
         if(request.getParameter("delete")!= null){
@@ -131,13 +126,22 @@ public class UpdateProject extends HttpServlet {
                 }
                 ProjectManager manager = new ProjectManager();
                 manager.updateProject(project);
-                //int prj_id2 = manager.getProject(project);
+                
                 ParticipateManager party = new ParticipateManager();
                 party.punishMenber(prj_id);
                 Participate pt = new Participate(id,prj_id);
                 party.createParticipate(pt);
+                int host = 0;
                 for(int i=0;i<user.length;i++){
                     pt = new Participate(user[i],prj_id);
+                    party = new ParticipateManager();
+                    party.createParticipate(pt);
+                    if(hostID.equals(user[i])){
+                        host = 1;
+                    }
+                }
+                if(host==0){
+                    pt = new Participate(hostID,prj_id);
                     party = new ParticipateManager();
                     party.createParticipate(pt);
                 }
