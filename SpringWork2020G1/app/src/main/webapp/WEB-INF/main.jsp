@@ -187,8 +187,9 @@ List<User> userList = (List<User>) request.getAttribute("userList");
                 <c:url value="/ShowProject" var="url1" >
 　              <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
                 </c:url>
-                <a href="${url1}">詳細だけど、リンク先はちがう
-                </a>
+                <div class="showTask">
+                  <a href="${url1}">タスク（詳細）みれるようにしてほしいボタンだけどプロジェクト全体にクリック範囲を広げている。最終的にはこの文字は透明にします。</a>
+                </div>
               <% } %>
             </div>
           </div>
