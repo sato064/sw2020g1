@@ -33,6 +33,8 @@ public class UpdateUser extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
+        String[] errorMessage = {"null","null","null","null"};
+        request.setAttribute("errorMessage",errorMessage);
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
         HttpSession session = request.getSession();
@@ -64,14 +66,6 @@ public class UpdateUser extends HttpServlet {
         System.out.println(new_password);
         System.out.println(new_password_con);
 
-        if(!new_password.equals(new_password)){
-            //パスワード不一致警告
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateError.jsp");
-            dispatcher.forward(request, response);
-
-        }else{
-
-        //認証
         UserManager uManager = new UserManager();
         String a_pass = uManager.getPass(id);
 
@@ -83,14 +77,33 @@ public class UpdateUser extends HttpServlet {
 
         System.out.println(auth);
 
+        if(name.length()<=20 && (8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == true) && auth){
+            //パスワード不一致警告
+        //     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateError.jsp");
+        //     dispatcher.forward(request, response);
 
-        if(!auth){
-            //パスワード違い警告
-            System.out.println("why");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateError.jsp");
-            dispatcher.forward(request, response);
-        }
-        else{
+        // }else{
+
+        //認証
+        // UserManager uManager = new UserManager();
+        // String a_pass = uManager.getPass(id);
+
+        // System.out.println(id);
+        // System.out.println(a_pass);
+
+        // BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // boolean auth = encoder.matches(old_password,a_pass);
+
+        // System.out.println(auth);
+
+
+        // if(!auth){
+        //     //パスワード違い警告
+        //     System.out.println("why");
+        //     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateError.jsp");
+        //     dispatcher.forward(request, response);
+        // }
+        // else{
             //変更処理
 
             String pwd_hash = encoder.encode(new_password);
@@ -99,8 +112,158 @@ public class UpdateUser extends HttpServlet {
             session.invalidate();
             response.sendRedirect("./");
 
+        }else if(name.length()<=20 && (8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == true) && (!auth)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == false) && auth){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "null";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (new_password.equals(new_password_con) == true) && auth){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == true) && auth){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "null";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (8<=new_password.length() && new_password.length()<=16)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (new_password.equals(new_password_con) == true) && !(auth)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (new_password.equals(new_password_con) == false) && auth){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == true) && !(auth)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == false) && auth){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((new_password.equals(new_password_con) == true) && auth){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if(name.length()<=20 && (new_password.equals(new_password_con) == false) && !(auth)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "null";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((8<=new_password.length() && new_password.length()<=16) && (new_password.equals(new_password_con) == false) && !(auth)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "null";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((new_password.equals(new_password_con) == true) && !(auth)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "null";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((new_password.equals(new_password_con) == false) && auth){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "null";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
+        }else if((new_password.equals(new_password_con) == false) && !(auth)){
+            System.out.println("エラーエラー");
+            String[] errorMessage = new String[4];
+            errorMessage[0] = "氏名は全角1文字以上20文字以下で記載してください。";
+            errorMessage[1] = "旧パスワードが間違っています。";
+            errorMessage[2] = "パスワードは全角半角8文字以上16文字以下で記載してください。";
+            errorMessage[3] = "確認用パスワードが一致しません。";
+            request.setAttribute("errorMessage",errorMessage);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/updateUser.jsp");
+            dispatcher.forward(request, response);
         }
-        }
+    
 
     }
 }
