@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
         ようこそ<br>
         新規タスク作成<br>
         <form action="/SpringWork2020G1/CreateTask" method="post">
-            タイトル<input type="text" id="title" name="title" placeholder="プロジェクト名" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
+            タイトル<input type="text" id="title" name="title" placeholder="タスク名" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
             概要<textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview" placeholder="概要" maxlength="300" size="80" pattern=".*\S+.*" required></textarea><br>
             <select id="user" name="user" multiple>
                 <option disabled selected>担当者を選択してください</option>
