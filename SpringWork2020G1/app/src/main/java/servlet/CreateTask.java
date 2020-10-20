@@ -6,7 +6,10 @@ package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,9 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Task;
+import beans.User;
 import beans.Participate;
 import beans.Project;
 import control.TaskManager;
+import control.UserManager;
+import jdk.internal.jshell.tool.resources.l10n;
 import control.ParticipateManager;
 
 //アノテーションの記述
@@ -38,6 +44,29 @@ public class CreateTask extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
+        String Prjid_str = request.getParameter("id");
+        System.out.println(Prjid_str);
+        int prj_id = Integer.parseInt(Prjid_str);
+        request.setAttribute("PrjId",Prjid_str);
+        ParticipateManager pManager = new ParticipateManager();
+        List<Participate> participatelist = pManager.findPart(prj_id);
+
+        UserManager manager2 = new UserManager();
+        List<User> userList = manager2.userList();
+
+        List<User> joiner = new ArrayList<User>();
+
+        //プロジェクトに参加しているUser型Listのjoinerの作成
+
+        for(int i = 0; i < userList.size(); i++){
+            for(int i2 = 0; i2 < participatelist.size(); i2++){
+                if(userList.get(i).getId().equals(participatelist.get(i2).getUserId())){
+                    joiner.add(userList.get(i));
+                }
+            }
+            
+        }
+        request.setAttribute("userList",joiner);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createTask.jsp");
         dispatcher.forward(request, response);
     }
@@ -49,15 +78,20 @@ public class CreateTask extends HttpServlet {
         // requestオブジェクトの文字エンコーディングの設定
         request.setCharacterEncoding("UTF-8");
 
+        String Prjid_str = request.getParameter("id");
+
+
         // requestオブジェクトから登録情報の取り出し
         String title = request.getParameter("title");
         String overview = request.getParameter("overview");
         String deadline = request.getParameter("deadline");
         String user = request.getParameter("user");
-
         HttpSession session = request.getSession();
-
-        String id = (String)session.getAttribute("UserId");
+        String id = request.getParameter("prj_id");
+        String str_stu =request.getParameter("status");
+        int status = Integer.parseInt(str_stu);
+        System.out.println(id);
+        int prjid = Integer.parseInt(id);
         Object hostid = session.getAttribute("UserId");
         String hostIdStr = hostid.toString();
 
@@ -71,14 +105,15 @@ public class CreateTask extends HttpServlet {
         System.out.println("取得した文字列は" + overview + "です！");
         System.out.println("取得した文字列は" + deadline + "です！");
         System.out.println("取得した文字列は" + hostIdStr + "です！");
+        System.out.println("取得した文字列は" + id + "です！");
         // projectオブジェクトに情報を格納
-        Project project = new Project(0,title,overview,hostIdStr,deadline,0,false);
+        Task task = new Task(0,prjid,title,overview,deadline,status,false);
     
         // StudentManagerオブジェクトの生成
         TaskManager manager = new TaskManager();
     
         // 登録
-        //manager.registTask(task);
+        manager.registTask(task);
 
         
         //int tsk_id = manager.getTask(task);
