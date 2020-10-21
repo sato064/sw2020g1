@@ -124,6 +124,20 @@ List<User> userList = (List<User>) request.getAttribute("userList");
           <div class="members-title">
             プロジェクトホスト<br>
           </div>
+          <%int jj=0;%>
+            <%for (Participate participate : participateList) {%>
+              <%participate = participateList.get(jj);%>
+              <%if(project.getProjectID() == participate.getPrjId()){%>
+                <%if(participate.getIsPrjOwn() == true){%>
+                  <%for(int jjj=0;jjj<=userList.size()-1;jjj++){%>
+                    <%User user = userList.get(jjj);%>
+                    <%if(participate.getUserId().equals(user.getId())){%>
+                      <%=user.getName()%>
+                    <%}%>
+                  <%}%>
+                <%}%>
+              <%}%>
+            <%jj++;}%>
           <div class="members-title">
             参加者<br>
           </div>
@@ -159,13 +173,13 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             <c:url value="/JoinProject" var="url1">    　
               <c:param name="id" value="<%=project.getPrjIDStr()%>" />
             </c:url>
-            <a href="${url1}">このプロジェクトに参加する</a>
+            <!-- <a href="${url1}">このプロジェクトに参加する</a> -->
             <% } else { %>
-            <c:url value="/JoinProject" var="url1">
+              <c:url value="/ShowProject" var="url">
               <c:param name="id" value="<%=project.getPrjIDStr()%>" />
             </c:url>
             <div class="showTask">
-              <a href="${url1}">タスク（詳細）みれるようにしてほしいボタンだけどプロジェクト全体にクリック範囲を広げている。最終的にはこの文字は透明にします。</a>
+              <a href="${url}">リンク</a>
             </div>
             <% } %>
           </div>

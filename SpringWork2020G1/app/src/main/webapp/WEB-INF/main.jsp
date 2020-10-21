@@ -148,7 +148,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
               <%}%>
             <%jj++;}%>
             <div class="members-title">
-              <br>参加者<br>
+              参加者<br>
             </div>
             <%for (Participate participate : participateList) {%>
               <%participate = participateList.get(k1);%>
@@ -188,7 +188,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
 　              <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
                 </c:url>
                 <div class="showTask">
-                  <a href="${url1}">タスク（詳細）みれるようにしてほしいボタンだけどプロジェクト全体にクリック範囲を広げている。最終的にはこの文字は透明にします。</a>
+                  <a href="${url1}"></a>
                 </div>
               <% } %>
             </div>
