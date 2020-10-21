@@ -221,12 +221,16 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <%} }else{%>
       タスクがありません
       <%}%>
+      <% if(finded_project.getProjectSTATUS()==2) { %>
+        <% }else{ %>
+
       <div class="createTask">
         <c:url value="/CreateTask" var="url3" >
           <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
       </c:url>
       <a href="${url3}">＋</a>
     </div>
+    <% } %>
 </body>
 
 </html>
