@@ -50,7 +50,6 @@ public class ParticipateManager extends HttpServlet{
         participateDAO.closeConnection(this.connection);
         this.connection = null;
 
-        
     }
     public void punishMenber(int prjid) {
         ParticipateDAO participateDAO = new ParticipateDAO();
