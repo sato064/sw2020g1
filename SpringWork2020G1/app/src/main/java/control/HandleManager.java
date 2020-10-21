@@ -18,6 +18,14 @@ public class HandleManager extends HttpServlet{
     public HandleManager(){
 
     }
+    public List<Handle> findHandle() {
+        HandleDAO handleDAO = new HandleDAO();
+        this.connection = handleDAO.createConnection();
+        List<Handle> handleList = handleDAO.handleList(this.connection);
+        handleDAO.closeConnection(this.connection);
+        this.connection = null;
+        return handleList;
+    }
     public void deleteHandle(int taskid) {
         HandleDAO handleDAO = new HandleDAO();
         this.connection = handleDAO.createConnection();

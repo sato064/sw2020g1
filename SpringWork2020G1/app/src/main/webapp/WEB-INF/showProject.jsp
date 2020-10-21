@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%>
 <%@ page import= "beans.Participate" %>
 <%@ page import= "beans.Project" %>
 <%@ page import= "beans.Task" %>
+<%@ page import= "beans.Handle" %>
 <%@ page import="java.util.List" %>
 <%
 String name = (String)session.getAttribute("UserName");
@@ -13,6 +14,7 @@ Project finded_project = (Project)request.getAttribute("finded_project");
 int project_id = (int)request.getAttribute("prj_id");
 List<Project> projectList = (List<Project>) request.getAttribute("projectList");
 List<Task> task_list = (List<Task>) request.getAttribute("task_list");
+List<Handle> handleList = (List<Handle>) request.getAttribute("handleList");
 List<Participate> participateList = (List<Participate>) request.getAttribute("participateList");
 List<User> userList = (List<User>) request.getAttribute("userList");
 %>
@@ -147,6 +149,26 @@ List<User> userList = (List<User>) request.getAttribute("userList");
         <div class="prj-title">
           <%=task.getTaskTITLE()%>
         </div>
+
+        参加者<br>
+        <%int jj=0;%>
+        <%for (Handle handle : handleList) {%>
+          <%handle = handleList.get(jj);%>
+          <%if(task.getTaskID() == handle.getTaskId()){%>
+            <%int w1=0;%>
+            <%for(User user : userList){%>
+              <%user = userList.get(w1);%>
+              <%if(handle.getUserId().equals(user.getId())){%>
+                <% if(name.equals(user.getName())) { %>
+                  ●<%=user.getName()+" "%><br>
+                <%}else{%>
+                  <%=user.getName()+" "%><br>
+                <%}%>
+              <%}%>
+            <%w1++;}%>
+          <%}%>
+        <%jj++;} %>
+
         <c:url value="/UpdateTask" var="url4" >
           <c:param name="id" value="<%=task.getTaskIdStr()%>"/>
             <c:param name="prj_id" value="<%=finded_project.getPrjIDStr()%>"/>
