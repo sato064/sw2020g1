@@ -15,9 +15,11 @@ import java.util.List;
 import beans.User;
 import beans.Project;
 import beans.Task;
+import beans.Handle;
 import beans.Participate;
 import control.UserManager;
 import control.TaskManager;
+import control.HandleManager;
 import sun.java2d.pipe.PixelToParallelogramConverter;
 import control.ProjectManager;
 import control.ParticipateManager;
@@ -51,8 +53,14 @@ public class ShowProject extends HttpServlet {
         ProjectManager manager = new ProjectManager();
         Project project = manager.findProject(prjid);
         request.setAttribute("finded_project", project);
-        //System.out.println(project);
+        
+        HandleManager manager1 = new HandleManager();
+        List<Handle> handleList = manager1.findHandle();
+        request.setAttribute("handleList", handleList);
 
+        UserManager manager2 = new UserManager();
+        List<User> userList = manager2.userList();
+        request.setAttribute("userList", userList);
 
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/showProject.jsp");

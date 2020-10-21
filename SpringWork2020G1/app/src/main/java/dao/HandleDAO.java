@@ -16,11 +16,33 @@ import beans.Task;
 
 public class HandleDAO extends DriverAccessor{
 
-
+    public static final String DISPLAY_HANDLE = "select * from handles";
     public static final String DELETE_HANDLE = "delete from handles where task_id = ?";
     public static final String FIND_HANDLE = "select * from handles where task_id = ?";
     public static final String JOIN_HANDLE = "insert into handles (task_id, user_id,prj_id) values(?, ? ,1)";
 
+    public List<Handle> handleList(Connection connection){
+        try {
+            List<Handle> handleList = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement(DISPLAY_HANDLE);
+            ResultSet rs = statement.executeQuery();
+            boolean Flag = rs.first();
+
+            do {
+                Handle handle = new Handle();
+                handle.setTaskId(rs.getInt("task_id"));
+                handle.setUserId(rs.getString("user_id"));
+                handleList.add(handle);
+                Flag = rs.next();
+            } while (Flag);
+            statement.close();
+            rs.close();
+            System.out.println(handleList);
+            return handleList;
+        } catch (SQLException e){
+            return null;
+        }
+    }
     public void deleteHandle(Integer taskid,Connection connection){
         try {
 
@@ -65,10 +87,6 @@ public class HandleDAO extends DriverAccessor{
         }catch(SQLException e){
             e.printStackTrace();
         }finally{
-
         }
     }
-
-
-    }
-
+}
