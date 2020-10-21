@@ -178,11 +178,11 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             </div>
             <div class="participate">
               <!-- ⭐️ここに参加のボタンいれてえ⭐️ -->
-              <% if(noParticipate == true) { %>
+              <% if(noParticipate == false) { %>
                 <c:url value="/JoinProject" var="url1" >
 　              <c:param name="id" value="<%=project.getPrjIDStr()%>"/>
                 </c:url>
-                <a href="${url1}">このプロジェクトに参加する</a>
+                <a class="participate1" href="${url1}">参加</a>
               <% } else { %>
                 <c:url value="/ShowProject" var="url1" >
 　              <c:param name="id" value="<%=project.getPrjIDStr()%>"/>

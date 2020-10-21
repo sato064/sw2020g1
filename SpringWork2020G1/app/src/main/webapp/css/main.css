@@ -207,9 +207,20 @@ header {
   line-height: 40px;
 }
 
-.participate {
-  margin-top: 20px;
+.participate1 {
+  float: right;
+  width: 4%;
+  padding: 1% 3% 1% 3%;
+  margin: 2% 0% 2% 10%;
   text-align: right;
+  height: auto;
+  border-radius: 10px;
+  border: none;
+  background-color: #99CCCC;
+  color: #053C58;
+  font-size: 150%;
+  text-decoration: none;
+  box-shadow: 1px 1px 3px #405757;
 }
 
 .prj .view .participate .showTask a {
