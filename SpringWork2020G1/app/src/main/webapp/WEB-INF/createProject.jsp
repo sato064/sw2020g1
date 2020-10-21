@@ -32,12 +32,6 @@ pageEncoding="UTF-8"%>
     </div>
 
     <form action="/SpringWork2020G1/CreateProject" name="formName" method="post">
-        <!-- <div class="tag">
-            氏名    <%if(!(errorMessage[0].equals("null"))){%>
-              <font color="red"><%=errorMessage[0]%></font><%}%><br>
-        </div>
-        <input type="text" placeholder="　全角半角1文字以上20文字以下" name="name" required/><br> -->
-
         <div class="tag">
             タイトル
         </div>
