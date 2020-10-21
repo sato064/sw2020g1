@@ -15,37 +15,37 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        
     </head>
     <body>
         ようこそ<br>
-        タスク更新<br>
+        タスク更新<br><br>
+
         <form action="/SpringWork2020G1/UpdateTask" method="post">
-            タイトル<input type="text" id="title" name="title" value="<%=task.getTaskTITLE()%>" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br>
-            概要<textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview"  maxlength="300" size="80" pattern=".*\S+.*" required><%=task.getOverview()%></textarea><br>
+            タイトル<input type="text" id="title" name="title" value="<%=task.getTaskTITLE()%>" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required><br><br>
+            概要<textarea class="uk-textarea" rows="4" type="overview" id="overview" name="overview"  maxlength="300" size="80" pattern=".*\S+.*" required><%=task.getOverview()%></textarea><br><br>
             <select id="user" name="user" multiple>
                 <option disabled selected>担当者を選択してください</option>
                 <%for(int count=0;count<=userList.size()-1;count=count+1){%>
                     <%User use = userList.get(count);%>
                         <option value="<%=use.getId()%>"><%=use.getName()%></option>
                 <%}%>
-            </select><br>
-            期日<input type="date" id="deadline" name="deadline" value="<%=task.getDeadline()%>"><br>
+            </select><br><br>
+            期日<input type="date" id="deadline" name="deadline" value="<%=task.getDeadline()%>"><br><br>
 
             状態<br>
             <input type="radio" name="status" value="0">予定
             <input type="radio" name="status" checked="checked" value="1">実行中
             <input type="radio" name="status" value="2">終了
-            <br>
-            <div>
+            <br><br>
+            <div hidden>
                 <input type="text" id="task_id" name="task_id" value="<%=task.getTaskID()%>" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required>
                 <input type="text" id="prj_id" name="prj_id" value="<%=prj_id%>" maxlength="30" minlength="1" pattern=".*\S+.*" size="35" required>
 
 
             </div>
 
-
-            <input type="submit" value="戻る" onclick="history.back()">
+            <a href="/SpringWork2020G1/Main">ホームに戻る</a><br><br>
             <input type="submit" value="更新" />
         </form>
     </body>
