@@ -62,6 +62,10 @@ public class ShowProject extends HttpServlet {
         List<User> userList = manager2.userList();
         request.setAttribute("userList", userList);
 
+        ParticipateManager manager3 = new ParticipateManager();
+        List<Participate> participateList = manager3.participateList();
+        request.setAttribute("participateList", participateList);
+
         // forwardはrequestオブジェクトを引数として、次のページに渡すことができる
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/showProject.jsp");
         dispatcher.forward(request, response);

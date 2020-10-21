@@ -49,7 +49,21 @@ pageEncoding="UTF-8"%>
                     <%User use = userList.get(count);%>
                         <option value="<%=use.getId()%>"><%=use.getName()%></option>
                 <%}%>
-            </select>
+            </select><br>
+            <div class="tag">
+                状態
+            </div>
+            <div class="radio">
+                <div class="status0">
+                    <input type="radio" name="status" value="0">予定</label>
+                </div>
+                <div class="status1">
+                    <input type="radio" name="status" checked="checked" value="1">実行中</label>
+                </div>
+                <div class="status2">
+                    <input type="radio" name="status" value="2">終了</label>
+                </div>
+            </div>
             <div class="tag">
                 期日
             </div>

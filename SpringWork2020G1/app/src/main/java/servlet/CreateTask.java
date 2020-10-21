@@ -1,7 +1,3 @@
-//--------------------------------
-//	RegistInfo.java
-//--------------------------------
-//　自分が格納されているフォルダ名
 package servlet;
 
 //自分が格納されているフォルダの外にある必要なクラス
@@ -58,7 +54,7 @@ public class CreateTask extends HttpServlet {
         ParticipateManager pManager = new ParticipateManager();
         List<Participate> participatelist = pManager.findPart(prj_id);
 
-        Date date = new Date(); 
+        Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String today = dateFormat.format(date);
         System.out.println(today);
@@ -142,10 +138,6 @@ public class CreateTask extends HttpServlet {
         for(int i=0;i<joiners.length;i++){
             hManager.registHandle(taskid,joiners[i]);
         }
-
-
-
-        
         //int tsk_id = manager.getTask(task);
 
         //particiateじゃないです

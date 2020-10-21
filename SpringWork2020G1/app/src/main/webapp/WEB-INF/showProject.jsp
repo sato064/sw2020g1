@@ -83,11 +83,41 @@ List<User> userList = (List<User>) request.getAttribute("userList");
         <div class="members-title">
           プロジェクトホスト<br>
         </div>
-        <!-- ⭐️ここにプロジェクトのホストの名前いれてえ⭐️ -->
+        <%int q=0;%>
+        <%for (Participate participate : participateList) {%>
+          <%participate = participateList.get(q);%>
+          <%if(project_id == participate.getPrjId()){%>
+            <%if(participate.getIsPrjOwn() == true){%>
+              <%for(int jjj=0;jjj<=userList.size()-1;jjj++){%>
+                <%User user = userList.get(jjj);%>
+                <%if(participate.getUserId().equals(user.getId())){%>
+                  <%=user.getName()%>
+                <%}%>
+              <%}%>
+            <%}%>
+          <%}%>
+        <%q++;}%>
         <div class="members-title">
           <br>参加者<br>
         </div>
-        <!-- ⭐️ここにプロジェクトの参加者のリストいれてえ⭐️ -->
+        <%int j=0;%>
+        <%for (Participate participate : participateList) {%>
+          <%participate = participateList.get(j);%>
+          <%if(project_id == participate.getPrjId()){%>
+            <%for(int w1=0;w1<=userList.size()-1;w1++){%>
+              <%User user = userList.get(w1);%>
+              <%if(participate.getUserId().equals(user.getId())){%>
+                <% if(name.equals(user.getName())) { %>
+                  ●
+                <% } else { %>
+                  　
+                <% } %>
+                <%=user.getName()+" "%>
+                <br>
+              <%}%>
+            <%}%>
+          <%}%>
+        <%j++;} %>
       </div>
       <!-- <div class="view"> -->
         <div class="overview0">
