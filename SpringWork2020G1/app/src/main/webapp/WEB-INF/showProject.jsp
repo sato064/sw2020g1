@@ -22,6 +22,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
   <head>
     <title>タスクの一覧</title>
     <link rel="stylesheet" type="text/css" href="css/showProject.css">
+    <script src="https://kit.fontawesome.com/ab67e91441.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
@@ -49,28 +50,71 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       </div>
     </header><br><br><br><br><br>
 
-    プロジェクト名:<%=finded_project.getProjectTITLE()%><br>
+    <div class="prj0">
+      <div class="prj-header">
+        <div class="prj-header-left">
+          <div class="prj-header-left-left">
+            <% if(finded_project.getProjectSTATUS()==0) { %>
+              <div class="status0">予定</div>
+            <% } %>
+            <% if(finded_project.getProjectSTATUS()==1) { %>
+              <div class="status1">実行中</div>
+            <% } %>
+            <% if(finded_project.getProjectSTATUS()==2) { %>
+              <div class="status2">終了</div>
+            <% } %>
+          </div>
+          <div class="prj-header-left-right">
+            <%if(finded_project.getIsDelayed()){%>
+              遅れ
+            <%}%>
+          </div>
+        </div>
+        <div class="prj-header-right0">
+          <%=finded_project.getDeadline()%>まで
+        </div>
+      </div><br>
+      <div class="prj-title0">
+        <%=finded_project.getProjectTITLE()%>
+      </div>
+      <div class="members0">
+        <div class="members-title">
+          プロジェクトホスト<br>
+        </div>
+        <!-- ⭐️ここにプロジェクトのホストの名前いれてえ⭐️ -->
+        <div class="members-title">
+          <br>参加者<br>
+        </div>
+        <!-- ⭐️ここにプロジェクトの参加者のリストいれてえ⭐️ -->
+      </div>
+      <!-- <div class="view"> -->
+        <div class="overview0">
+          <div class="overview-title">
+            概要<br>
+          </div>
+          <%=finded_project.getOverview()%>
+        </div>
+      <!-- </div> -->
+    </div>
+
+    <!-- プロジェクト名:<%=finded_project.getProjectTITLE()%><br>
     詳細:<%=finded_project.getOverview()%><br>
-    期日:<%=finded_project.getDeadline()%><br>
-    <c:url value="/JoinProject" var="url" >
+    期日:<%=finded_project.getDeadline()%><br> -->
+    <!-- <c:url value="/JoinProject" var="url" >
 　           <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
             </c:url>
             <% if(finded_project.getProjectSTATUS()==2) {}else{ %>
               <a href="${url}">このプロジェクトに参加する</a>
-            <% } %>
+            <% } %> -->
     <c:url value="/UpdateProject" var="url2" >
     <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
     </c:url>
     <% if(finded_project.getHostID().equals(id)) { %>
       <a href="${url2}">編集</a>
     <% } %>
-    <br>
-    <c:url value="/CreateTask" var="url3" >
-    <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
-    </c:url>
-    <a href="${url3}">タスクの新規作成</a>
+    <!-- <br> -->
     <%if(task_list != null) {%>
-    タスク一覧<br>
+    <!-- タスク一覧<br> -->
     <%int i1 = 0;%>
     <%for (Task task : task_list) { %>
       <%int k1 = 0;%>
@@ -103,7 +147,11 @@ List<User> userList = (List<User>) request.getAttribute("userList");
         <div class="prj-title">
           <%=task.getTaskTITLE()%>
         </div>
-
+        <c:url value="/UpdateTask" var="url4" >
+          <c:param name="id" value="<%=task.getTaskIdStr()%>"/>
+            <c:param name="prj_id" value="<%=finded_project.getPrjIDStr()%>"/>
+          </c:url>
+          <a class="fas fa-pencil-alt edit" href="${url4}"></a><br>
         <div class="view">
           <div class="overview">
             <div class="overview-title">
@@ -115,26 +163,20 @@ List<User> userList = (List<User>) request.getAttribute("userList");
             
           </div>
         </div>
-    <c:url value="/UpdateTask" var="url4" >
-    <c:param name="id" value="<%=task.getTaskIdStr()%>"/>
-      <c:param name="prj_id" value="<%=finded_project.getPrjIDStr()%>"/>
-    </c:url>
-    <a href="${url4}">タスクの更新</a><br>
-    <c:url value="/DeleteTask" var="url5" >
-    <c:param name="id" value="<%=task.getTaskIdStr()%>"/>
-    </c:url>
-    <a href="${url5}">タスクの削除</a>
-    
-        
+        <c:url value="/DeleteTask" var="url5" >
+          <c:param name="id" value="<%=task.getTaskIdStr()%>"/>
+        </c:url>
+        <a href="${url5}">タスクの削除</a>
       </div>
       <%i1 = i1+1;%>
-    <%} }else{%>
+      <%} }else{%>
       タスクがありません
-    <%}%><br>
-
-
-
-
-    <a href="./Main">ホームへ戻る</a><br>
+      <%}%>
+      <div class="createTask">
+        <c:url value="/CreateTask" var="url3" >
+          <c:param name="id" value="<%=finded_project.getPrjIDStr()%>"/>
+        </c:url>
+        <a href="${url3}">＋</a>
+      </div>
   </body>
 </html>
