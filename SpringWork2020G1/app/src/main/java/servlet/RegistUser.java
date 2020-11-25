@@ -76,7 +76,7 @@ public class RegistUser extends HttpServlet {
             
             if(count==1){
                 // response.sendRedirect("/WEB-INF/registUserSuccess.jsp");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/registUserSuccess.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp");
                 dispatcher.forward(request, response);
             }else{
                 errorMessage[1] = "ユーザIDが重複しています";

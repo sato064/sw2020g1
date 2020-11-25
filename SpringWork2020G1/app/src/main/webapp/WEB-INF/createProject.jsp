@@ -43,12 +43,12 @@ pageEncoding="UTF-8"%>
         <div class="tag">
             参加者
         </div>
-        <select id="user" name="user" multiple>
+        <select id="user" name="user" multiple required>
             <option disabled selected>参加者を選択してください</option>
             <%for(int count=0;count<=userList.size()-1;count=count+1){%>
             <%User use = userList.get(count);%>
             <%if(name.equals(use.getName())){}else{%>
-            <option value="<%=use.getId()%>"><%=use.getName()%></option>
+            <option value="<%=use.getId()%>" selected><%=use.getName()%></option>
             <%}%>
             <%}%>
         </select>

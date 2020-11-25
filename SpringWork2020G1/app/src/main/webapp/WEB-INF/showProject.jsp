@@ -132,7 +132,7 @@ List<User> userList = (List<User>) request.getAttribute("userList");
       <c:param name="id" value="<%=finded_project.getPrjIDStr()%>" />
     </c:url>
     <% if(finded_project.getHostID().equals(id)) { %>
-    <a href="${url2}">編集</a>
+    <a href="${url2}">プロジェクトの編集</a>
     <% } %>
     <!-- <br> -->
     <%if(task_list != null) {%>

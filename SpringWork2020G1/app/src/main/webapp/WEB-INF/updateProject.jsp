@@ -89,7 +89,7 @@ request.setAttribute("Prj", project);
             </div><br>
             <div submit>
                 <div class="green1">
-                    <button type="submit" onclick="history.back()">戻る</button>
+                    <button type="button" onclick="history.back()">戻る</button>
                 </div>
                 <div class="green2">
                     <button type="submit">更新</button>
